@@ -3,7 +3,6 @@ import { Navbar } from './components/Navbar.tsx';
 import { ChapterToolbar } from './components/ChapterToolbar.tsx';
 import { PageFooter } from './components/PageFooter.tsx';
 import { SearchModal } from './components/SearchModal.tsx';
-import { PdfModal } from './components/PdfModal.tsx';
 import { Page1VisaoGeral } from './pages/Page1VisaoGeral.tsx';
 import { Page2FerramentasImagem } from './pages/Page2FerramentasImagem.tsx';
 import { Page3PromptsImagem } from './pages/Page3PromptsImagem.tsx';
@@ -39,7 +38,6 @@ export default function App() {
 
   const [isContinuousMode, setIsContinuousMode] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
-  const [isPdfOpen, setIsPdfOpen] = useState<boolean>(false);
 
   // Track visited pages for teacher progress
   useEffect(() => {
@@ -110,7 +108,6 @@ export default function App() {
       <Navbar
         currentPage={currentPage}
         onSelectPage={handleSelectPage}
-        onOpenPdf={() => setIsPdfOpen(true)}
         isContinuousMode={isContinuousMode}
         onExitContinuousMode={() => setIsContinuousMode(false)}
       />
@@ -150,7 +147,6 @@ export default function App() {
                   setIsContinuousMode(false);
                   handleSelectPage(n);
                 }}
-                onOpenPdf={() => setIsPdfOpen(true)}
               />
             </section>
             <hr className="border-zinc-200" />
@@ -191,7 +187,7 @@ export default function App() {
             <hr className="border-zinc-200" />
 
             <section id="pagina-9">
-              <Page9Bibliografia onOpenPdf={() => setIsPdfOpen(true)} />
+              <Page9Bibliografia />
             </section>
           </div>
         ) : (
@@ -199,7 +195,6 @@ export default function App() {
             {currentPage === 1 && (
               <Page1VisaoGeral
                 onNavigateToPage={handleSelectPage}
-                onOpenPdf={() => setIsPdfOpen(true)}
               />
             )}
             {currentPage === 2 && <Page2FerramentasImagem />}
@@ -209,9 +204,7 @@ export default function App() {
             {currentPage === 6 && <Page6AtividadesAudio />}
             {currentPage === 7 && <Page7FerramentasVideo />}
             {currentPage === 8 && <Page8EticaSeguranca />}
-            {currentPage === 9 && (
-              <Page9Bibliografia onOpenPdf={() => setIsPdfOpen(true)} />
-            )}
+            {currentPage === 9 && <Page9Bibliografia />}
           </div>
         )}
       </main>
@@ -230,8 +223,6 @@ export default function App() {
           handleSelectPage(pageNum);
         }}
       />
-
-      <PdfModal isOpen={isPdfOpen} onClose={() => setIsPdfOpen(false)} />
     </div>
   );
 }

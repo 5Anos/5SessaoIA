@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
-import { Copy, Check, FileText, ExternalLink } from 'lucide-react';
+import { Copy, Check, ExternalLink } from 'lucide-react';
 import { BIBLIOGRAPHY } from '../data/moduloData.ts';
 
-interface Page9Props {
-  onOpenPdf: () => void;
-}
-
-export const Page9Bibliografia: React.FC<Page9Props> = ({ onOpenPdf }) => {
+export const Page9Bibliografia: React.FC = () => {
   const [copiedIdx, setCopiedIdx] = useState<number | null>(null);
 
   const fallbackCopy = (text: string, idx: number) => {
@@ -126,18 +122,10 @@ export const Page9Bibliografia: React.FC<Page9Props> = ({ onOpenPdf }) => {
       </section>
 
       <section className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8 space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-200 pb-4">
+        <div className="border-b border-zinc-200 pb-4">
           <h2 className="font-display text-xl font-bold text-zinc-900">
             Ficha Técnica e Atualização
           </h2>
-          <button
-            type="button"
-            onClick={onOpenPdf}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs transition-colors self-start sm:self-auto min-h-[36px]"
-          >
-            <FileText className="w-4 h-4" />
-            <span>Abrir PDF Base Original</span>
-          </button>
         </div>
 
         <dl className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">

@@ -1,17 +1,15 @@
 import React from 'react';
-import { ArrowRight, FileText } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { MODULE_OBJECTIVES } from '../data/moduloData.ts';
 import { HERO_STUDIO_IMAGE } from '../data/mediaAssets.ts';
 import { VisualFrame } from '../components/VisualFrame.tsx';
 
 interface Page1Props {
   onNavigateToPage: (pageNumber: number) => void;
-  onOpenPdf: () => void;
 }
 
 export const Page1VisaoGeral: React.FC<Page1Props> = ({
   onNavigateToPage,
-  onOpenPdf,
 }) => {
   return (
     <div className="space-y-12">
@@ -20,23 +18,9 @@ export const Page1VisaoGeral: React.FC<Page1Props> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
           <div className="lg:col-span-7 p-6 sm:p-10 lg:p-12 flex flex-col justify-between gap-8">
             <div className="space-y-5">
-              <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-500 font-medium">
-                <span className="font-semibold text-blue-700">Módulo 3</span>
-                <span aria-hidden="true">·</span>
-                <span>Fonte original: 23 de fevereiro de 2026</span>
-                <span aria-hidden="true">·</span>
-                <span>Última revisão editorial: 13 de novembro de 2026.</span>
-                <span aria-hidden="true">·</span>
-                <span>Autoria: Carla Oliveira</span>
-              </div>
-
               <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 leading-[1.12] max-w-2xl">
                 Ferramentas de IA na Educação
               </h1>
-
-              <p className="text-sm text-zinc-600 leading-relaxed max-w-xl">
-                Fonte base original: Modulo3_FerramentasIA_2 | Genially | Autoria: Carla Oliveira (23 de fevereiro de 2026). Última revisão editorial: 13 de novembro de 2026.
-              </p>
 
               <div className="pt-4 border-t border-zinc-200 space-y-2.5 text-xs sm:text-sm text-zinc-700 leading-relaxed max-w-xl">
                 <p>
@@ -57,14 +41,6 @@ export const Page1VisaoGeral: React.FC<Page1Props> = ({
               >
                 <span>Explorar Ferramentas de Imagem</span>
                 <ArrowRight className="w-4 h-4" />
-              </button>
-              <button
-                type="button"
-                onClick={onOpenPdf}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white hover:bg-zinc-50 text-zinc-800 font-medium text-sm border border-zinc-300 transition-colors min-h-[44px]"
-              >
-                <FileText className="w-4 h-4 text-zinc-500" />
-                <span>Ver PDF Original</span>
               </button>
             </div>
           </div>
