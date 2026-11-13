@@ -51,7 +51,7 @@ test('IMAGE_PROMPTS contains 12 complete prompts with required fields and proven
     assert.ok(p.freeAlternative.length > 0);
     assert.equal(p.testStatus, 'documentation-checked');
   }
-  assert.equal(filterPromptsByCategory('Com Exemplo Visual').length, 4);
+  assert.equal(filterPromptsByCategory('Com Exemplo Visual').length, 12);
   assert.equal(filterPromptsByCategory('Ciência & Anatomia').length, 5);
 });
 

@@ -235,7 +235,19 @@ export const IMAGE_TOOLS: ImageTool[] = [
   },
 ];
 
-export type PromptImageKey = 'space-library' | 'renewable-energy' | 'human-heart' | 'plant-cell';
+export type PromptImageKey =
+  | 'space-library'
+  | 'digital-classroom'
+  | 'future-programmer'
+  | 'mars-base'
+  | 'tech-agriculture'
+  | 'renewable-energy'
+  | 'smart-street'
+  | 'human-heart'
+  | 'circulatory-system'
+  | 'human-brain'
+  | 'digestive-system'
+  | 'plant-cell';
 
 export type PromptTestStatus =
   | 'tested'
@@ -287,7 +299,8 @@ export const IMAGE_PROMPTS: ImagePrompt[] = [
     prompt: 'Cria uma ilustração educativa de uma sala de aula contemporânea, luminosa e organizada, onde um pequeno grupo de alunos utiliza tablets e dispositivos de realidade virtual para explorar o sistema solar. Representa planetas em projeções tridimensionais no espaço da sala, com o professor a orientar a atividade. Utiliza cores equilibradas, ambiente acolhedor, diversidade de alunos e tecnologia visualmente plausível. Estilo de ilustração editorial moderna, composição horizontal 16:9. Não incluas texto, marcas ou logótipos.',
     expectedResult: 'Sala de aula moderna, com alunos a explorar representações tridimensionais de planetas.',
     freeAlternative: 'Leonardo.Ai',
-    imageStatus: 'pending',
+    imageKey: 'digital-classroom',
+    imageStatus: 'illustrative',
     testStatus: 'documentation-checked',
   },
   {
@@ -299,7 +312,8 @@ export const IMAGE_PROMPTS: ImagePrompt[] = [
     prompt: 'Cria uma ilustração futurista realista de uma pessoa adulta a trabalhar como programadora num espaço tecnológico moderno. A pessoa está sentada diante de uma secretária com vários ecrãs holográficos que apresentam estruturas abstratas de código e gráficos, sem palavras legíveis. Ao fundo, vê-se uma cidade inteligente através de uma janela panorâmica. Utiliza iluminação cinematográfica, composição equilibrada, ambiente profissional e detalhes tecnológicos plausíveis. Formato horizontal 16:9. Sem logótipos ou marcas de água.',
     expectedResult: 'Profissional de programação num ambiente tecnológico futurista, com ecrãs e cidade inteligente.',
     freeAlternative: 'Microsoft Designer',
-    imageStatus: 'pending',
+    imageKey: 'future-programmer',
+    imageStatus: 'illustrative',
     testStatus: 'documentation-checked',
   },
   {
@@ -311,7 +325,8 @@ export const IMAGE_PROMPTS: ImagePrompt[] = [
     prompt: 'Cria uma imagem de uma base científica humana em Marte, com módulos habitacionais pressurizados, painéis solares, um veículo explorador e dois astronautas com fatos espaciais adequados ao ambiente marciano. Representa a superfície avermelhada do planeta, montanhas ao longe e uma atmosfera poeirenta subtil. A base deve parecer funcional e cientificamente plausível, não uma cidade de ficção científica. Estilo de concept art realista, iluminação natural e formato horizontal 16:9. Sem texto, bandeiras, logótipos ou marcas de água.',
     expectedResult: 'Base científica funcional na superfície marciana, com astronautas, módulos e veículo explorador.',
     freeAlternative: 'Microsoft Designer',
-    imageStatus: 'pending',
+    imageKey: 'mars-base',
+    imageStatus: 'illustrative',
     testStatus: 'documentation-checked',
   },
   {
@@ -323,7 +338,8 @@ export const IMAGE_PROMPTS: ImagePrompt[] = [
     prompt: 'Cria uma imagem fotorrealista de uma estufa agrícola tecnológica e sustentável. Mostra culturas organizadas em sistemas de cultivo vertical e hidropónico, sensores ambientais, tubagens de rega e pequenos robots autónomos a monitorizar as plantas. A estufa deve apresentar luz natural, vegetação saudável e equipamentos plausíveis. A composição deve transmitir eficiência, inovação e sustentabilidade, sem transformar o cenário numa fantasia futurista. Formato horizontal 16:9. Não incluas texto nem logótipos.',
     expectedResult: 'Estufa moderna com plantas, sensores e automação agrícola.',
     freeAlternative: 'Microsoft Designer',
-    imageStatus: 'pending',
+    imageKey: 'tech-agriculture',
+    imageStatus: 'illustrative',
     testStatus: 'documentation-checked',
   },
   {
@@ -348,7 +364,8 @@ export const IMAGE_PROMPTS: ImagePrompt[] = [
     prompt: 'Cria uma ilustração realista de uma rua urbana inteligente do futuro próximo. Inclui edifícios contemporâneos, lojas com ecrãs digitais sem texto legível, informação interativa integrada no espaço público, pessoas a circular a pé e soluções de mobilidade sustentável. A rua deve ser funcional, acessível, segura e humanizada. Evita um cenário excessivamente distópico ou cheio de ecrãs. Utiliza uma composição horizontal 16:9, luz natural e estilo de visualização arquitetónica realista. Sem logótipos ou marcas de água.',
     expectedResult: 'Rua urbana contemporânea com tecnologia integrada no espaço público.',
     freeAlternative: 'Canva Free',
-    imageStatus: 'pending',
+    imageKey: 'smart-street',
+    imageStatus: 'illustrative',
     testStatus: 'documentation-checked',
   },
   {
@@ -373,7 +390,8 @@ export const IMAGE_PROMPTS: ImagePrompt[] = [
     prompt: 'Cria uma ilustração científica educativa de uma figura humana simplificada, de frente, mostrando o sistema circulatório. Representa uma rede coerente de vasos sanguíneos, com artérias a vermelho e veias a azul, distribuídas pelo corpo de forma anatómica e visualmente organizada. Inclui o coração numa posição anatomicamente adequada. Utiliza estilo de manual escolar, fundo branco e linhas limpas. Não incluas texto, letras ou legendas. A imagem deve ser posteriormente verificada e anotada com base num recurso científico credível.',
     expectedResult: 'Esquema corporal com rede circulatória diferenciada por cores, sem texto.',
     freeAlternative: 'Google Slides ou Canva Free, com uma referência anatómica validada.',
-    imageStatus: 'pending',
+    imageKey: 'circulatory-system',
+    imageStatus: 'illustrative',
     testStatus: 'documentation-checked',
   },
   {
@@ -385,7 +403,8 @@ export const IMAGE_PROMPTS: ImagePrompt[] = [
     prompt: 'Cria uma ilustração científica educativa de um cérebro humano visto lateralmente, com representação anatomicamente plausível dos lobos frontal, parietal, temporal e occipital. Diferencia subtilmente as quatro regiões através de cores suaves, mantendo a continuidade anatómica do cérebro. Estilo de manual escolar de Ciências, fundo branco, linhas limpas e elevada legibilidade. Não incluas texto, letras ou legendas. A imagem deve ser validada com uma fonte científica antes de ser utilizada para ensinar anatomia.',
     expectedResult: 'Cérebro em vista lateral, com as quatro regiões diferenciadas por cor e sem legendas.',
     freeAlternative: 'Canva Free ou Google Slides, utilizando uma imagem anatómica validada.',
-    imageStatus: 'pending',
+    imageKey: 'human-brain',
+    imageStatus: 'illustrative',
     testStatus: 'documentation-checked',
   },
   {
@@ -397,7 +416,8 @@ export const IMAGE_PROMPTS: ImagePrompt[] = [
     prompt: 'Cria uma ilustração científica educativa simplificada do sistema digestivo humano, representado num torso frontal. Mostra a boca, o esófago, o estômago, o intestino delgado e o intestino grosso nas respetivas posições anatómicas. Inclui apenas os órgãos essenciais para a compreensão do percurso dos alimentos. Utiliza estilo de manual escolar, fundo branco, cores suaves e linhas nítidas. Não incluas texto, letras ou legendas. A representação deve ser posteriormente validada com uma fonte científica.',
     expectedResult: 'Diagrama simplificado do sistema digestivo, com os órgãos dispostos na sequência anatómica correta.',
     freeAlternative: 'Canva Free ou Google Slides, com uma referência anatómica validada.',
-    imageStatus: 'pending',
+    imageKey: 'digestive-system',
+    imageStatus: 'illustrative',
     testStatus: 'documentation-checked',
   },
   {

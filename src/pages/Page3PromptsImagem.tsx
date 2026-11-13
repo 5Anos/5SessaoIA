@@ -14,7 +14,6 @@ export const Page3PromptsImagem: React.FC = () => {
 
   const categories = [
     'Todos',
-    'Com Exemplo Visual',
     'Ficção & Futuro',
     'Sociedade & Sustentabilidade',
     'Ciência & Anatomia',
