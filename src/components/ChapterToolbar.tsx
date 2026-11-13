@@ -13,12 +13,14 @@ interface ChapterToolbarProps {
 
 const COMPACT_LABELS: Record<number, string> = {
   1: 'Início',
-  2: 'Ferram. Imagem',
+  2: 'Imagem',
   3: 'Prompts',
-  4: 'Ativ. Imagem',
-  5: 'Ferram. Áudio',
+  4: 'Ativ. Img.',
+  5: 'Áudio',
   6: 'Ativ. Áudio',
-  7: 'Bibliografia',
+  7: 'Vídeo',
+  8: 'Ética',
+  9: 'Recursos',
 };
 
 export const ChapterToolbar: React.FC<ChapterToolbarProps> = ({
@@ -34,11 +36,11 @@ export const ChapterToolbar: React.FC<ChapterToolbarProps> = ({
   return (
     <div className="bg-white border-b border-zinc-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-col xl:flex-row xl:items-center xl:justify-between gap-2.5">
-        {/* 7-Page Chapter Stepper */}
+        {/* 9-Page Chapter Stepper */}
         <div
           role="navigation"
           aria-label="Páginas do Módulo 3"
-          className="flex items-center gap-1 overflow-x-auto pb-1 xl:pb-0 min-w-0"
+          className="flex items-center gap-0.5 overflow-x-auto pb-1 xl:pb-0 min-w-0"
         >
           {PAGES_LIST.map((page) => {
             const isActive = !isContinuousMode && currentPage === page.number;
@@ -54,7 +56,7 @@ export const ChapterToolbar: React.FC<ChapterToolbarProps> = ({
                 }}
                 aria-current={isActive ? 'page' : undefined}
                 aria-label={`${String(page.number).padStart(2, '0')} ${page.shortTitle}`}
-                className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors whitespace-nowrap shrink-0 min-h-[36px] ${
+                className={`inline-flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-medium transition-colors whitespace-nowrap shrink-0 min-h-[36px] ${
                   isActive
                     ? 'bg-zinc-900 text-white font-semibold'
                     : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100'

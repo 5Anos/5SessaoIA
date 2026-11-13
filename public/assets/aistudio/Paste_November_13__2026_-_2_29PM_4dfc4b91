@@ -1,0 +1,1230 @@
+# MÓDULO 3 — COMPLETE PLATFORM REVIEW AND EXACT FILE-BY-FILE CHANGE SPECIFICATION
+
+## 1. YOUR TASK
+
+You are working with an existing React, TypeScript and Vite educational platform called:
+
+**Ferramentas de IA na Educação — Módulo 3**
+
+The platform is intended for teacher training and covers AI tools for creating images, audio and video.
+
+I have already conducted an initial audit of the project. Your task is to use the findings and precise requirements below to prepare a complete, implementation-ready change specification.
+
+**IMPORTANT: DO NOT MODIFY THE PROJECT.**
+
+Do not edit files, write changes to the workspace, create components, install packages or implement anything.
+
+I want a document telling me exactly what to change, in which file, what to locate, what to remove and what complete text or code must replace it.
+
+Do not conduct another expensive general audit. Inspect only the relevant source sections to confirm the specified locations and dependencies.
+
+## 2. EXISTING PROJECT STRUCTURE
+
+The ZIP contains these main files:
+
+```text
+src/
+  App.tsx
+  index.css
+  data/
+    moduloData.ts
+    moduloData.test.ts
+    mediaAssets.ts
+  components/
+    Navbar.tsx
+    ChapterToolbar.tsx
+    PageFooter.tsx
+    SearchModal.tsx
+    PdfModal.tsx
+    VisualFrame.tsx
+  pages/
+    Page1VisaoGeral.tsx
+    Page2FerramentasImagem.tsx
+    Page3PromptsImagem.tsx
+    Page4AtividadesImagem.tsx
+    Page5FerramentasAudio.tsx
+    Page6AtividadesAudio.tsx
+    Page7Bibliografia.tsx
+```
+
+The application currently has seven pages and uses React 19, TypeScript, Vite, Tailwind CSS and Lucide React.
+
+Preserve the existing technology stack and working functionality.
+
+## 3. REQUIRED FINAL STRUCTURE
+
+The final platform must contain nine pages:
+
+| Page | Title | Content |
+|---|---|---|
+| 1 | Visão Geral e Objetivos | Introduction, learning objectives and methodology |
+| 2 | Ferramentas de Imagem | Named tools, capabilities, limitations, free plans and official links |
+| 3 | Prompts para Criar Imagens | Twelve complete prompt examples with tools and expected results |
+| 4 | Atividades com Imagem | Five revised educational activities |
+| 5 | Ferramentas de Áudio | Named tools for speech, audio editing, transcription, music and podcasts |
+| 6 | Atividades com Áudio | Two complete audio activities |
+| 7 | Ferramentas e Atividades de Vídeo | Video generation, avatars, editing, dubbing and practical examples |
+| 8 | Ética, Segurança e Legislação | GDPR, AI Act, copyright, student data and responsible use |
+| 9 | Bibliografia e Recursos | Updated academic and official references |
+
+The three most important principles are:
+
+1. Prioritise quality and educational suitability, not just free access.
+2. Include a suitable free alternative whenever one exists, even if it has limitations.
+3. Every practical prompt example must have a clear educational purpose, an appropriate tool, a complete prompt, an expected result and a free alternative where available.
+
+## 4. PAGE 1 — INTRODUCTION AND OBJECTIVES
+
+**File:** `src/pages/Page1VisaoGeral.tsx`
+
+**File:** `src/data/moduloData.ts`
+
+### Problem A — Incorrect methodological statement
+
+The current page says:
+
+"Este documento contém exclusivamente o texto integral da plataforma Genially (Módulo 3), reproduzido de forma estrita e fidedigna sem qualquer adição ou interpolação externa."
+
+This is no longer true because the platform is being expanded and revised.
+
+**Action: REPLACE**
+
+Use this exact text:
+
+"Este módulo é um recurso de formação para docentes, organizado em torno da exploração crítica e prática de ferramentas de inteligência artificial aplicadas à educação. Inclui informação sobre plataformas, exemplos de prompts, resultados esperados, atividades pedagógicas e orientações para uma utilização responsável. Os conteúdos são sujeitos a atualização, uma vez que as funcionalidades e os planos das ferramentas podem mudar."
+
+Remove the repeated claim about exclusive transcription from the relevant page and footer.
+
+### Problem B — Learning objectives are incomplete and contain language errors
+
+In `src/data/moduloData.ts`, replace the complete `MODULE_OBJECTIVES` array with:
+
+```ts
+export const MODULE_OBJECTIVES: string[] = [
+  'Identificar e comparar ferramentas de inteligência artificial para a criação de imagens, áudio e vídeo.',
+  'Selecionar a ferramenta mais adequada em função do objetivo pedagógico, da qualidade pretendida e das suas limitações.',
+  'Construir, testar e aperfeiçoar prompts, avaliando criticamente os resultados produzidos.',
+  'Criar recursos educativos multimédia adequados a diferentes disciplinas, níveis de ensino e necessidades de aprendizagem.',
+  'Aplicar princípios de segurança, proteção de dados, direitos de autor, acessibilidade e utilização responsável da inteligência artificial.'
+];
+```
+
+Change the page's objective count to five.
+
+### Problem C — Date and version
+
+Keep 23 February 2026 only as the original source date.
+
+Add:
+
+"Última revisão editorial: 13 de novembro de 2026."
+
+Add this warning:
+
+"As funcionalidades, os limites de utilização e os planos gratuitos das ferramentas podem sofrer alterações. Confirme sempre a informação nas páginas oficiais antes de utilizar ou recomendar uma plataforma."
+
+## 5. PAGE 2 — IMAGE TOOLS
+
+**Files:**
+- `src/data/moduloData.ts`
+- `src/pages/Page2FerramentasImagem.tsx`
+
+### Problem A — Remove unidentified tools
+
+Remove these two entries from `IMAGE_TOOLS`:
+
+- "Plataforma de Estilos da Comunidade (Stamina)"
+- "Ferramenta Open Source (Sem Registo)"
+
+Their identity and actual service cannot be established from the existing project. Do not replace an unidentified service with another invented product.
+
+Replace the current six-tool catalogue with these five identified products:
+
+1. Microsoft Designer.
+2. Leonardo.Ai.
+3. Adobe Firefly.
+4. Ideogram.
+5. Canva.
+
+### Problem B — Replace outdated tool information
+
+Use the following exact content as the basis for the tool records in `IMAGE_TOOLS`.
+
+**MICROSOFT DESIGNER**
+
+- Main purpose: accessible creation of images and visual designs through natural-language instructions.
+- Recommended for: teachers who want to start generating visual resources and simple designs.
+- Free plan: free access with a Microsoft account. More frequent use may require a subscription.
+- Limitations: generative AI availability can depend on age and account requirements. Text generated inside images can contain errors.
+- Educational use: illustrations, classroom visuals, simple posters and visual resources.
+- Official website: https://designer.microsoft.com/
+- Free alternative: Canva Free, with limited AI allowance, or Leonardo.Ai Free for image generation.
+
+**LEONARDO.AI**
+
+- Main purpose: generation of images with different visual styles and more advanced creative controls.
+- Recommended for: detailed illustrations, fictional scenarios, visual storytelling and artistic resources.
+- Free plan: 150 daily tokens for eligible free accounts.
+- Limitations: token consumption varies by model and operation. Free creations are public. The platform's rights and licensing arrangements must be explained accurately; do not describe free creations as private or exclusively owned by the user.
+- Educational use: illustrations, historical or fictional reconstructions and creative projects.
+- Official website: https://leonardo.ai/
+- Free alternative: Microsoft Designer.
+
+**ADOBE FIREFLY**
+
+- Main purpose: generation and editing of images using generative AI.
+- Recommended for: image editing, generative filling, object replacement and realistic visual resources.
+- Free plan: limited free daily generations. Do not state that the free plan provides a fixed quota of 25 monthly credits.
+- Limitations: availability and number of free generations can change. Do not claim that generated images are automatically free of all copyright or legal risks.
+- Educational use: editing visual materials, creating illustrations and adapting images for presentations.
+- Official website: https://firefly.adobe.com/
+- Free alternative: Microsoft Designer or Canva Free, depending on the task.
+
+**IDEOGRAM**
+
+- Main purpose: image generation with particular attention to text and typography.
+- Recommended for: posters, covers, visual communication and designs where text is part of the image.
+- Free plan: eligible accounts using Google, Apple or Microsoft sign-in receive 30 free credits per week. Do not state that all accounts receive 10–20 daily generations.
+- Limitations: credits are limited; generated text must still be checked for spelling and accuracy.
+- Educational use: posters, visual campaigns, covers and classroom communication.
+- Official website: https://ideogram.ai/
+- Free alternative: Microsoft Designer or Canva Free, with manual text correction.
+
+**CANVA**
+
+- Main purpose: visual design, layout, presentations, posters, infographics and educational materials.
+- Recommended for: combining generated images, text, diagrams and other visual elements into finished educational resources.
+- Free plan: limited AI allowance. Canva documents up to 20 uses of Standard or Premium AI tools on the Free plan, subject to the type of tool and current allowance.
+- Limitations: not every AI feature is available on the Free plan. Its AI video-generation feature must not be presented as free.
+- Educational use: infographics, posters, worksheets, presentations and final editing of AI-generated images.
+- Official website: https://www.canva.com/
+- Free alternative: Microsoft Designer or manual visual composition in LibreOffice Impress.
+
+### Problem C — Missing direct access to tools
+
+In `Page2FerramentasImagem.tsx`, add one direct action to each tool card:
+
+**Experimentar**
+
+The action must open the official website in a new browser tab.
+
+Do not create a "Ver ficha completa" button, a separate information modal or another details page.
+
+All relevant information must appear directly on the tool card:
+
+- Description.
+- Main capabilities.
+- Best educational use.
+- Free plan and limitations.
+- Privacy or age considerations where relevant.
+- Official source.
+- Experimentar action.
+
+### Problem D — Incorrect copyright claim
+
+In `Page2FerramentasImagem.tsx`, locate the card currently titled:
+
+"Salvaguarda de direitos de autor"
+
+It currently claims that generating original content avoids legal and ethical problems associated with copyrighted images.
+
+**Action: REPLACE**
+
+Use:
+
+"Verificação de direitos e licenças: a geração de uma imagem por IA não garante, por si só, a inexistência de direitos de autor ou de outros direitos de terceiros. É necessário verificar as condições da ferramenta, os direitos sobre os materiais introduzidos, a utilização de marcas, personagens e imagens de pessoas, bem como as condições de utilização do resultado."
+
+### Problem E — Incorrect section heading
+
+The section "OUTRAS FERRAMENTAS & CRIAÇÃO DE INFOGRÁFICOS" currently displays generic benefits instead of other tools or infographic instructions.
+
+Replace its heading and contents with:
+
+**"COMO ESCOLHER A FERRAMENTA DE IMAGEM"**
+
+Display four concise criteria:
+
+1. **Tipo de resultado:** fotografia, ilustração, diagrama, cartaz ou edição de imagem.
+2. **Controlo criativo:** necessidade de controlar estilo, composição, proporções e elementos visuais.
+3. **Texto na imagem:** quando existir texto, considerar ferramentas com melhores capacidades tipográficas e rever sempre a ortografia.
+4. **Condições de utilização:** confirmar limites gratuitos, idade mínima, privacidade, licenças e direitos de utilização.
+
+Retain the separate teacher-benefits section, correcting all Portuguese spelling and removing duplicated claims.
+
+## 6. PAGE 3 — TWELVE COMPLETE IMAGE PROMPTS
+
+**Files:**
+- `src/data/moduloData.ts`
+- `src/pages/Page3PromptsImagem.tsx`
+- `src/data/mediaAssets.ts`
+
+The existing twelve prompts are incomplete. They only contain a title, category and short prompt.
+
+Replace the `ImagePrompt` interface and the `IMAGE_PROMPTS` data with a structure that supports:
+
+```ts
+interface ImagePrompt {
+  id: number;
+  title: string;
+  category: string;
+  objective: string;
+  recommendedTool: string;
+  prompt: string;
+  expectedResult: string;
+  freeAlternative: string;
+  imageKey?: PromptImageKey;
+  imageStatus: 'validated' | 'illustrative' | 'pending';
+  testStatus: 'tested' | 'tested-with-limitations' | 'documentation-checked' | 'not-tested';
+}
+```
+
+Use the following complete content.
+
+### PROMPT 1 — BIBLIOTECA NO ESPAÇO
+
+**Objetivo pedagógico:** estimular a criatividade, a exploração de cenários futuristas e a visualização de ambientes científicos.
+
+**Ferramenta recomendada:** Leonardo.Ai.
+
+**Prompt:**
+
+"Cria uma ilustração cinematográfica em formato horizontal 16:9 do interior de uma enorme biblioteca científica instalada numa estação espacial em forma de anel. Mostra estantes curvas repletas de livros, dois astronautas adultos a ler em gravidade zero e janelas panorâmicas com a Terra visível ao fundo. Utiliza uma perspetiva ampla, iluminação azul suave com apontamentos dourados, arquitetura futurista plausível e elevado detalhe visual. A composição deve transmitir tranquilidade, descoberta e conhecimento. Não incluas palavras, letras, logótipos ou marcas de água."
+
+**Resultado esperado:** imagem panorâmica de uma biblioteca espacial, com a Terra visível através das janelas e astronautas a ler.
+
+**Alternativa gratuita:** Microsoft Designer.
+
+### PROMPT 2 — SALA DE AULA DIGITAL
+
+**Objetivo pedagógico:** explorar cenários de aprendizagem enriquecidos por tecnologia e discutir as possibilidades e limitações da realidade virtual.
+
+**Ferramenta recomendada:** Microsoft Designer.
+
+**Prompt:**
+
+"Cria uma ilustração educativa de uma sala de aula contemporânea, luminosa e organizada, onde um pequeno grupo de alunos utiliza tablets e dispositivos de realidade virtual para explorar o sistema solar. Representa planetas em projeções tridimensionais no espaço da sala, com o professor a orientar a atividade. Utiliza cores equilibradas, ambiente acolhedor, diversidade de alunos e tecnologia visualmente plausível. Estilo de ilustração editorial moderna, composição horizontal 16:9. Não incluas texto, marcas ou logótipos."
+
+**Resultado esperado:** sala de aula moderna, com alunos a explorar representações tridimensionais de planetas.
+
+**Alternativa gratuita:** Leonardo.Ai.
+
+### PROMPT 3 — PROGRAMADOR DO FUTURO
+
+**Objetivo pedagógico:** relacionar competências digitais, programação e profissões emergentes.
+
+**Ferramenta recomendada:** Leonardo.Ai.
+
+**Prompt:**
+
+"Cria uma ilustração futurista realista de uma pessoa adulta a trabalhar como programadora num espaço tecnológico moderno. A pessoa está sentada diante de uma secretária com vários ecrãs holográficos que apresentam estruturas abstratas de código e gráficos, sem palavras legíveis. Ao fundo, vê-se uma cidade inteligente através de uma janela panorâmica. Utiliza iluminação cinematográfica, composição equilibrada, ambiente profissional e detalhes tecnológicos plausíveis. Formato horizontal 16:9. Sem logótipos ou marcas de água."
+
+**Resultado esperado:** profissional de programação num ambiente tecnológico futurista, com ecrãs e cidade inteligente.
+
+**Alternativa gratuita:** Microsoft Designer.
+
+### PROMPT 4 — BASE HUMANA EM MARTE
+
+**Objetivo pedagógico:** explorar a exploração espacial, a ciência e a sustentabilidade em ambientes extremos.
+
+**Ferramenta recomendada:** Leonardo.Ai.
+
+**Prompt:**
+
+"Cria uma imagem de uma base científica humana em Marte, com módulos habitacionais pressurizados, painéis solares, um veículo explorador e dois astronautas com fatos espaciais adequados ao ambiente marciano. Representa a superfície avermelhada do planeta, montanhas ao longe e uma atmosfera poeirenta subtil. A base deve parecer funcional e cientificamente plausível, não uma cidade de ficção científica. Estilo de concept art realista, iluminação natural e formato horizontal 16:9. Sem texto, bandeiras, logótipos ou marcas de água."
+
+**Resultado esperado:** base científica funcional na superfície marciana, com astronautas, módulos e veículo explorador.
+
+**Alternativa gratuita:** Microsoft Designer.
+
+### PROMPT 5 — AGRICULTURA TECNOLÓGICA
+
+**Objetivo pedagógico:** compreender a relação entre tecnologia, agricultura, sustentabilidade e produção alimentar.
+
+**Ferramenta recomendada:** Adobe Firefly.
+
+**Prompt:**
+
+"Cria uma imagem fotorrealista de uma estufa agrícola tecnológica e sustentável. Mostra culturas organizadas em sistemas de cultivo vertical e hidropónico, sensores ambientais, tubagens de rega e pequenos robots autónomos a monitorizar as plantas. A estufa deve apresentar luz natural, vegetação saudável e equipamentos plausíveis. A composição deve transmitir eficiência, inovação e sustentabilidade, sem transformar o cenário numa fantasia futurista. Formato horizontal 16:9. Não incluas texto nem logótipos."
+
+**Resultado esperado:** estufa moderna com plantas, sensores e automação agrícola.
+
+**Alternativa gratuita:** Microsoft Designer.
+
+### PROMPT 6 — ENERGIAS RENOVÁVEIS
+
+**Objetivo pedagógico:** identificar fontes de energia renovável e discutir a transição energética.
+
+**Ferramenta recomendada:** Adobe Firefly.
+
+**Prompt:**
+
+"Cria uma fotografia realista de uma paisagem com um parque eólico e painéis solares instalados de forma organizada. Mostra turbinas eólicas de proporções realistas, painéis solares a acompanhar o relevo e vegetação natural no primeiro plano. A cena decorre ao nascer do sol, com luz suave e céu parcialmente limpo. A composição deve transmitir sustentabilidade e equilíbrio entre tecnologia e natureza. Fotografia paisagística de elevada qualidade, formato horizontal 16:9. Sem texto, logótipos ou marcas de água."
+
+**Resultado esperado:** paisagem realista com turbinas eólicas e painéis solares.
+
+**Alternativa gratuita:** Microsoft Designer.
+
+### PROMPT 7 — RUA TECNOLÓGICA
+
+**Objetivo pedagógico:** discutir cidades inteligentes, mobilidade, comércio digital e utilização da tecnologia no espaço público.
+
+**Ferramenta recomendada:** Microsoft Designer.
+
+**Prompt:**
+
+"Cria uma ilustração realista de uma rua urbana inteligente do futuro próximo. Inclui edifícios contemporâneos, lojas com ecrãs digitais sem texto legível, informação interativa integrada no espaço público, pessoas a circular a pé e soluções de mobilidade sustentável. A rua deve ser funcional, acessível, segura e humanizada. Evita um cenário excessivamente distópico ou cheio de ecrãs. Utiliza uma composição horizontal 16:9, luz natural e estilo de visualização arquitetónica realista. Sem logótipos ou marcas de água."
+
+**Resultado esperado:** rua urbana contemporânea com tecnologia integrada no espaço público.
+
+**Alternativa gratuita:** Canva Free.
+
+### PROMPT 8 — CORAÇÃO HUMANO
+
+**Objetivo pedagógico:** apoiar a exploração visual da anatomia e da organização do sistema cardiovascular.
+
+**Ferramenta recomendada:** Adobe Firefly para a ilustração base, com identificação posterior das estruturas no Canva.
+
+**Prompt:**
+
+"Cria uma ilustração científica educativa simplificada de um coração humano visto de frente, com proporções anatómicas plausíveis. Representa claramente as duas aurículas, os dois ventrículos, a aorta, as veias cavas, a artéria pulmonar e as veias pulmonares. Utiliza cores distintas para o sangue oxigenado e não oxigenado, sem exageros decorativos. Estilo de manual escolar de Ciências Naturais, fundo branco e composição limpa. Não incluas legendas, letras ou setas. A imagem destina-se a ser posteriormente anotada pelo professor e deve ser validada com uma fonte científica."
+
+**Resultado esperado:** ilustração anatómica simplificada do coração, sem legendas, preparada para receber identificações corretas.
+
+**Alternativa gratuita:** construir o esquema no Canva ou Google Slides com base numa imagem anatómica de fonte credível.
+
+### PROMPT 9 — SISTEMA CIRCULATÓRIO
+
+**Objetivo pedagógico:** compreender a circulação sanguínea e distinguir artérias e veias.
+
+**Ferramenta recomendada:** Adobe Firefly para a imagem base e Canva para as legendas.
+
+**Prompt:**
+
+"Cria uma ilustração científica educativa de uma figura humana simplificada, de frente, mostrando o sistema circulatório. Representa uma rede coerente de vasos sanguíneos, com artérias a vermelho e veias a azul, distribuídas pelo corpo de forma anatómica e visualmente organizada. Inclui o coração numa posição anatomicamente adequada. Utiliza estilo de manual escolar, fundo branco e linhas limpas. Não incluas texto, letras ou legendas. A imagem deve ser posteriormente verificada e anotada com base num recurso científico credível."
+
+**Resultado esperado:** esquema corporal com rede circulatória diferenciada por cores, sem texto.
+
+**Alternativa gratuita:** Google Slides ou Canva Free, com uma referência anatómica validada.
+
+### PROMPT 10 — CÉREBRO HUMANO
+
+**Objetivo pedagógico:** apoiar a identificação das principais regiões do cérebro e a sua localização.
+
+**Ferramenta recomendada:** Adobe Firefly para a ilustração base e Canva para as legendas.
+
+**Prompt:**
+
+"Cria uma ilustração científica educativa de um cérebro humano visto lateralmente, com representação anatomicamente plausível dos lobos frontal, parietal, temporal e occipital. Diferencia subtilmente as quatro regiões através de cores suaves, mantendo a continuidade anatómica do cérebro. Estilo de manual escolar de Ciências, fundo branco, linhas limpas e elevada legibilidade. Não incluas texto, letras ou legendas. A imagem deve ser validada com uma fonte científica antes de ser utilizada para ensinar anatomia."
+
+**Resultado esperado:** cérebro em vista lateral, com as quatro regiões diferenciadas por cor e sem legendas.
+
+**Alternativa gratuita:** Canva Free ou Google Slides, utilizando uma imagem anatómica validada.
+
+### PROMPT 11 — SISTEMA DIGESTIVO
+
+**Objetivo pedagógico:** compreender a sequência dos órgãos envolvidos na digestão.
+
+**Ferramenta recomendada:** Adobe Firefly para a ilustração base e Canva para as legendas.
+
+**Prompt:**
+
+"Cria uma ilustração científica educativa simplificada do sistema digestivo humano, representado num torso frontal. Mostra a boca, o esófago, o estômago, o intestino delgado e o intestino grosso nas respetivas posições anatómicas. Inclui apenas os órgãos essenciais para a compreensão do percurso dos alimentos. Utiliza estilo de manual escolar, fundo branco, cores suaves e linhas nítidas. Não incluas texto, letras ou legendas. A representação deve ser posteriormente validada com uma fonte científica."
+
+**Resultado esperado:** diagrama simplificado do sistema digestivo, com os órgãos dispostos na sequência anatómica correta.
+
+**Alternativa gratuita:** Canva Free ou Google Slides, com uma referência anatómica validada.
+
+### PROMPT 12 — CÉLULA VEGETAL
+
+**Objetivo pedagógico:** identificar os principais constituintes de uma célula vegetal.
+
+**Ferramenta recomendada:** Adobe Firefly para a ilustração base e Canva para as legendas.
+
+**Prompt:**
+
+"Cria uma ilustração científica educativa de uma célula vegetal vista em corte, com formato aproximadamente retangular. Representa claramente a parede celular, a membrana plasmática, o citoplasma, o núcleo, os cloroplastos e um grande vacúolo central. Os elementos devem estar organizados de forma visualmente coerente e cientificamente plausível. Estilo de manual escolar de Ciências Naturais, cores suaves, fundo branco e composição limpa. Não incluas palavras, letras ou legendas. A imagem deve ser validada com uma fonte científica antes de ser utilizada em contexto letivo."
+
+**Resultado esperado:** diagrama de uma célula vegetal com os principais organelos representados, sem legendas.
+
+**Alternativa gratuita:** Canva Free ou Google Slides, com base numa referência científica validada.
+
+### Interface obrigatória da página 3
+
+Every prompt card must display:
+
+1. Objetivo pedagógico.
+2. Ferramenta recomendada.
+3. Prompt completo.
+4. Resultado esperado — a corresponding image.
+5. Alternativa gratuita, quando exista.
+6. Estado de validação do prompt.
+
+Add a visible copy button for the complete prompt.
+
+Do not display only a gallery of images separated from the prompts.
+
+The expected-result image must belong to the respective prompt.
+
+The four current assets in `src/assets/images/` do not contain source or generation metadata establishing which platform generated them. Do not describe them as verified outputs from Microsoft Designer, Leonardo, Adobe Firefly or Ideogram.
+
+Use them only as illustrative references until their provenance and correspondence are confirmed.
+
+For all twelve prompts, provide a visible image area. Where no verified result exists, display a clearly labelled placeholder with the expected-result description. Do not use unrelated images.
+
+Do not generate twelve new images during this task. This would consume unnecessary credits.
+
+## 7. PROMPT TESTING REQUIREMENTS
+
+The user specifically requires that prompts be compatible with the platform recommended for each task.
+
+For every prompt:
+
+- Check the platform's actual documented capabilities.
+- Check whether the requested format and features are supported.
+- Check whether the prompt is realistic for the selected tool.
+- If access to the actual platform is available, execute the prompt once, without repeated attempts.
+- Do not use Google AI Studio image-generation credits to simulate tests on another platform.
+- If the platform requires an account or access that is unavailable, do not claim to have tested it.
+
+Use these exact statuses:
+
+- "Testado e validado"
+- "Testado com limitações"
+- "Compatibilidade verificada na documentação; execução não realizada"
+- "Por testar"
+
+If an image is only illustrative, identify it as such.
+
+Never claim that a prompt was tested when it was not.
+
+## 8. PAGE 4 — IMAGE ACTIVITIES
+
+**Files:**
+- `src/data/moduloData.ts`
+- `src/pages/Page4AtividadesImagem.tsx`
+
+Retain the five activities, but revise their pedagogical and technical content.
+
+Every activity must display:
+
+- Objetivo pedagógico.
+- Destinatários ou nível de ensino recomendado, when it can be established.
+- Duração estimada.
+- Ferramenta recomendada.
+- Prompt completo.
+- Resultado esperado, with a corresponding image.
+- Alternativa gratuita.
+- Etapas de implementação.
+- Critérios de avaliação.
+- Cuidados e limitações.
+
+Do not invent a specific school year when the activity is adaptable.
+
+### Activity 1 — As Estações do Ano com IA
+
+Keep the original activity but improve it.
+
+Replace its implementation instructions with:
+
+**Etapa 1 — Observação**
+
+"Apresentar uma imagem de uma árvore ou paisagem e pedir aos alunos que identifiquem os elementos observáveis: folhas, flores, temperatura aparente, presença de neve e estado da vegetação."
+
+**Etapa 2 — Transformação com IA**
+
+"Utilizar a mesma imagem de referência para criar quatro versões sazonais. Manter, tanto quanto possível, o mesmo enquadramento e os mesmos elementos principais, alterando apenas os aspetos associados à estação do ano."
+
+**Etapa 3 — Comparação**
+
+"Comparar as quatro imagens, identificar as alterações e justificar as respostas com base nas características observadas. Distinguir as alterações sazonais plausíveis dos elementos inventados pela IA."
+
+**Ferramenta recomendada:** Adobe Firefly, para edição da imagem de referência.
+
+**Alternativa gratuita:** Microsoft Designer, quando a edição por referência estiver disponível na conta.
+
+**Prompt:**
+
+"Utiliza a imagem fornecida como referência. Mantém a mesma árvore, o mesmo enquadramento, a mesma perspetiva e o mesmo cenário. Altera apenas os elementos sazonais para representar o outono: folhas amarelas e castanhas, algumas folhas no chão e luz natural própria desta estação. Não acrescentes objetos, pessoas, texto ou elementos que não pertençam à paisagem."
+
+**Resultado esperado:** quatro imagens comparáveis da mesma árvore nas quatro estações.
+
+### Activity 2 — Património e Futuro
+
+Retain the educational objective but add a privacy safeguard.
+
+Replace the instruction to photograph any local space with:
+
+"Os alunos escolhem um espaço público ou um edifício da localidade. Devem privilegiar fotografias sem pessoas identificáveis, matrículas, moradas particulares ou outros dados pessoais. Podem também utilizar imagens de fontes com licença adequada."
+
+**Ferramenta recomendada:** Adobe Firefly, para edição generativa da imagem.
+
+**Alternativa gratuita:** Microsoft Designer, quando a edição pretendida estiver disponível.
+
+**Prompt:**
+
+"Utiliza a fotografia fornecida como referência. Mantém a estrutura principal do espaço e a perspetiva original. Transforma a área selecionada num espaço público sustentável, com vegetação autóctone, zonas de sombra, percursos pedonais acessíveis e mobiliário urbano funcional. A proposta deve ser visualmente plausível e respeitar a identidade arquitetónica do local. Não acrescentes pessoas identificáveis, texto ou logótipos."
+
+**Resultado esperado:** comparação visual antes/depois, mantendo a identidade do espaço original.
+
+### Activity 3 — Visualizing Idioms
+
+Retain the activity but improve the prompt and output.
+
+**Ferramenta recomendada:** Microsoft Designer.
+
+**Alternativa gratuita:** Leonardo.Ai.
+
+**Prompt:**
+
+"Cria duas imagens independentes para a expressão inglesa [INSERIR EXPRESSÃO]. A primeira deve representar o significado literal das palavras. A segunda deve representar visualmente o significado figurado da expressão na cultura inglesa. Mantém um estilo de ilustração coerente nas duas imagens. Não incluas texto ou legendas. As imagens devem permitir que os alunos comparem a interpretação literal com a interpretação idiomática."
+
+**Resultado esperado:** duas imagens contrastantes que permitem explicar o significado literal e figurado.
+
+### Activity 4 — A Alegoria da Caverna Moderna
+
+Retain the philosophical objective.
+
+**Ferramenta recomendada:** Leonardo.Ai.
+
+**Alternativa gratuita:** Microsoft Designer.
+
+**Prompt:**
+
+"Cria uma ilustração conceptual contemporânea inspirada na Alegoria da Caverna de Platão. Representa um grupo de pessoas numa sala escura, viradas para projeções luminosas de ecrãs que mostram imagens simplificadas do mundo. Uma figura começa a afastar-se dos ecrãs e dirige-se para uma abertura iluminada que simboliza o conhecimento e a descoberta da realidade. Inclui referências subtis a redes sociais e desinformação, sem apresentar marcas ou logótipos. A imagem deve permitir discutir simbolismo, perceção e pensamento crítico."
+
+**Resultado esperado:** composição simbólica que contrapõe a dependência das imagens digitais à procura de conhecimento.
+
+### Activity 5 — Biomecânica do Movimento
+
+This activity requires a fundamental correction.
+
+The existing version asks AI to create the "forma perfeita" of a sports movement and then uses that image to correct students' own movements.
+
+This is scientifically unsafe because a generated image is not a validated biomechanical reference.
+
+**Remove the claim that AI can establish the correct or perfect execution of a sports technique.**
+
+Replace the activity's implementation with:
+
+**Etapa 1 — Referência técnica validada**
+
+"O professor seleciona um movimento desportivo e apresenta uma demonstração validada por um profissional qualificado ou por uma fonte técnica reconhecida, como uma federação desportiva."
+
+**Etapa 2 — Apoio visual**
+
+"A IA pode ser utilizada para criar um storyboard ilustrativo das diferentes fases do movimento, com base na descrição técnica previamente validada pelo professor. As imagens devem ser identificadas como ilustrações e não como modelos biomecânicos de referência."
+
+**Etapa 3 — Análise pedagógica**
+
+"Os alunos identificam as fases do movimento e comparam-nas com a demonstração técnica validada. A avaliação e o feedback motor são realizados pelo professor ou por profissional qualificado, não pela imagem gerada por IA."
+
+**Ferramenta recomendada:** Leonardo.Ai ou Microsoft Designer apenas para storyboard ilustrativo.
+
+**Alternativa gratuita:** ferramentas de apresentação ou desenho manual com base em imagens técnicas validadas.
+
+Add this warning:
+
+"Não utilizar imagens geradas por IA como única referência para ensinar ou corrigir técnicas desportivas. Não carregar vídeos identificáveis de alunos em plataformas externas sem autorização e validação institucional."
+
+## 9. PAGE 5 — AUDIO TOOLS
+
+**File:** `src/pages/Page5FerramentasAudio.tsx`
+
+### Problem A — Generic and unidentified products
+
+Remove these generic entries:
+
+- AI Text to Music.
+- AI Music Generator.
+- Gerador de Música IA.
+- Gerador de Letras IA.
+- Gerador de Voz de Canto.
+- Gerador de Covers de Música.
+- Vídeo de Música IA.
+- Extensão 1.
+- Aplicação 2.
+- Ferramenta 3.
+
+These are not sufficiently identified products.
+
+### Problem B — Create a named catalogue
+
+Create the following categories:
+
+**1. Síntese de voz — Text-to-Speech**
+
+**ElevenLabs**
+
+- Recommended for natural synthetic voices and narration.
+- Free plan: 10,000 monthly credits, shared across available products.
+- Limitations: the free plan does not include the paid commercial licence. Voice cloning requires particular care and appropriate authorisation.
+- Official website: https://elevenlabs.io/
+- Free alternative: teacher-recorded narration edited with Audacity.
+
+**2. Melhoria da qualidade de áudio**
+
+**Adobe Podcast — Enhance Speech**
+
+- Recommended for reducing background noise and improving speech recordings.
+- Free plan: audio only, maximum 30 minutes per file and one hour of enhancement per day.
+- Limitations: no video processing, batch processing or advanced controls in the free plan.
+- Official website: https://podcast.adobe.com/
+- Free alternative: Audacity, using manual noise reduction and audio processing.
+
+**3. Edição e gravação de áudio**
+
+**Audacity**
+
+- Recommended for recording, cutting, mixing and editing audio.
+- Free and open-source software.
+- Available for Windows, macOS and Linux.
+- It is an audio editor, not a text-to-speech generator.
+- Official website: https://www.audacityteam.org/
+
+**4. Podcasts e resumos áudio com IA**
+
+**NotebookLM**
+
+- Recommended for generating Audio Overviews from supplied sources.
+- Supports Audio Overviews in Portuguese from Portugal.
+- It generates a conversational summary of source material; it is not a substitute for a fully scripted student-produced podcast.
+- Official website: https://notebooklm.google/
+
+**5. Publicação de podcasts**
+
+**Spotify for Creators**
+
+- Present it as a podcast hosting, publishing and distribution platform, not as an AI audio generator.
+- Official website: https://creators.spotify.com/
+
+### Problem C — Meeting transcription tools
+
+Remove the three unidentified meeting tools.
+
+Do not replace them with invented names.
+
+If a specific meeting transcription tool is proposed, it must have:
+
+- An identifiable product name.
+- Official website.
+- Actual supported meeting platforms.
+- Free-plan limitations.
+- Recording and transcription features.
+- Privacy and consent considerations.
+
+Otherwise, omit this section.
+
+### Problem D — Audio capabilities
+
+Clarify that these are different tasks:
+
+- Text-to-speech.
+- Voice synthesis.
+- Audio recording.
+- Audio editing.
+- Speech enhancement.
+- Transcription.
+- Music generation.
+- Podcast creation.
+- Audio publishing.
+
+Do not describe a tool as performing a task that it does not actually support.
+
+## 10. PAGE 6 — AUDIO ACTIVITIES
+
+**Files:**
+- `src/data/moduloData.ts`
+- `src/pages/Page6AtividadesAudio.tsx`
+
+Move "O Dobrador Poliglota" out of the audio activities because it is fundamentally a video translation and dubbing activity.
+
+Keep two audio activities.
+
+### Activity 1 — Vozes do Património
+
+**Objetivo pedagógico:** desenvolver consciência histórica e patrimonial, investigação e comunicação oral.
+
+**Ferramenta recomendada:** NotebookLM for source-based research and ElevenLabs for synthetic narration.
+
+**Prompt:**
+
+"Com base exclusivamente nas fontes históricas fornecidas, escreve um guião de narração em primeira pessoa, como se o monumento escolhido estivesse a contar a sua própria história. Utiliza português europeu, linguagem clara e adequada a um público escolar. O texto deve ter entre 150 e 180 palavras, incluir a origem do monumento, a sua função e a sua importância histórica. Não inventes datas, personagens ou acontecimentos. Quando a informação não estiver nas fontes, assinala que é necessário confirmar."
+
+**Resultado esperado:** narração áudio em português europeu, com voz clara, ritmo natural e duração aproximada de um minuto.
+
+**Alternativa gratuita:** gravar a narração com a voz do professor ou dos alunos, com autorização adequada, e editar no Audacity.
+
+### Activity 2 — Podcast Cidade 2050
+
+**Objetivo pedagógico:** desenvolver pensamento crítico sobre sustentabilidade, argumentação e comunicação oral.
+
+**Ferramenta recomendada:** gravação dos alunos, edição com Audacity e melhoria opcional com Adobe Podcast.
+
+**Prompt:**
+
+"Cria um guião para um podcast escolar intitulado 'Cidade 2050'. O podcast deve ter um apresentador e dois convidados com perspetivas diferentes sobre a cidade do futuro. Aborda mobilidade sustentável, energia, espaços verdes, habitação e tecnologia. Distingue factos atuais de previsões e cenários hipotéticos. Não inventes estatísticas nem apresentes previsões como certezas. Utiliza português europeu, linguagem clara e uma duração estimada de três a quatro minutos."
+
+**Resultado esperado:** podcast com introdução, diálogo argumentativo, diferentes perspetivas e conclusão fundamentada.
+
+**Alternativa gratuita:** gravação e edição integral com Audacity.
+
+For both activities, add a visual representation of the expected output, such as an audio cover or waveform preview. Do not present a static image as if it were the actual audio file.
+
+## 11. PAGE 7 — VIDEO TOOLS AND ACTIVITY
+
+Create a new file:
+
+`src/pages/Page7FerramentasVideo.tsx`
+
+Create the corresponding data in:
+
+`src/data/moduloData.ts`
+
+The page must have three clearly differentiated categories.
+
+### A. AI video generation
+
+**Runway**
+
+- Recommended for short text-to-video and image-to-video sequences.
+- Free plan: 125 one-time credits; they do not renew.
+- Limitations: limited selection of models and tools, watermarks on free outputs.
+- Official website: https://runwayml.com/
+- Free alternative: create simple animations and transitions manually in CapCut.
+
+### B. AI avatars and video translation
+
+**HeyGen**
+
+- Recommended for AI presenters, dubbing and video translation.
+- Free plan: up to three videos per month, up to one minute each, with watermark and limited resolution.
+- Limitations: quotas and available features can change. Do not promise unlimited video translation.
+- Official website: https://www.heygen.com/
+- Free alternative: CapCut for subtitles, editing and manually recorded voice-over. This is not an equivalent automatic lip-sync solution.
+
+### C. Video editing
+
+**CapCut**
+
+- Recommended for editing clips, adding subtitles, arranging scenes, narration and sound.
+- Free plan: basic editing tools are available.
+- Limitations: AI features, export options and premium effects may require a paid plan.
+- Official website: https://www.capcut.com/
+- Free alternative: basic editing in CapCut itself or another free editor, depending on the task.
+
+Do not recommend Sora: the product was discontinued on 26 April 2026.
+
+Do not recommend Google ImageFX to users in Portugal unless official availability is confirmed for Portugal.
+
+### Video prompt example 1 — Ciclo da Água
+
+**Objetivo pedagógico:** explicar as principais fases do ciclo da água.
+
+**Ferramenta recomendada:** Runway.
+
+**Prompt:**
+
+"Create a short educational animated sequence showing the water cycle in a natural landscape. Show sunlight heating a lake, water evaporating into the atmosphere, clouds forming through condensation, rain falling over mountains and water flowing back into rivers and lakes. Use a clean educational animation style, stable camera, simple visual transitions and scientifically coherent movement. Do not include written labels, subtitles, logos or watermarks. Landscape 16:9."
+
+**Resultado esperado:** vídeo curto com sequência visual clara de evaporação, condensação, precipitação e recolha.
+
+**Alternativa gratuita:** criar uma animação simples com imagens, transições e setas no CapCut.
+
+### Video prompt example 2 — Apresentador Digital
+
+**Objetivo pedagógico:** produzir uma breve apresentação oral de um conteúdo curricular.
+
+**Ferramenta recomendada:** HeyGen.
+
+**Prompt:**
+
+"Create a short educational presenter video using a professional, friendly and natural-looking adult presenter. The presenter speaks in European Portuguese, with clear pronunciation, a calm pace and an appropriate educational tone. Use the following script exactly, without adding unsupported facts: [INSERT VERIFIED SCRIPT]. Use a clean classroom-style background, medium framing and natural facial expressions. Do not add logos or distracting visual effects."
+
+**Resultado esperado:** vídeo curto com apresentador digital, discurso claro e enquadramento profissional.
+
+**Alternativa gratuita:** gravar o professor ou formador e editar o vídeo no CapCut.
+
+### Video prompt example 3 — Dobrador Poliglota
+
+**Objetivo pedagógico:** desenvolver competência linguística e avaliar criticamente traduções e dobragens automáticas.
+
+**Ferramenta recomendada:** HeyGen.
+
+**Prompt/instruções:**
+
+"Translate the supplied short video from European Portuguese into English. Preserve the original meaning, tone and intention. Use natural English, maintain technical terms and proper names, and do not introduce new information. Generate accurate subtitles and, where supported by the selected plan, a translated voice track with synchronised speech. Do not imitate a student's voice or likeness without the required authorisation. The final translation must be reviewed by a language teacher."
+
+**Resultado esperado:** vídeo traduzido, com legendas e faixa de voz em inglês, quando a funcionalidade estiver disponível no plano utilizado.
+
+**Alternativa gratuita:** CapCut, com legendas e narração gravada manualmente.
+
+### Activity — O Dobrador Poliglota
+
+Move this activity from `AUDIO_ACTIVITIES` to a new `VIDEO_ACTIVITIES` array.
+
+Use these three stages:
+
+1. Escolha de um vídeo curto, com direitos de utilização adequados.
+2. Tradução, legendagem e eventual dobragem com IA.
+3. Comparação entre original e tradução, identificando erros, expressões idiomáticas e diferenças de registo.
+
+Add the following safeguard:
+
+"Não utilizar vídeos de alunos, imagens identificáveis ou gravações de voz pessoais em serviços externos sem validação institucional e cumprimento das regras de proteção de dados."
+
+## 12. PAGE 8 — ETHICS, SAFETY AND LEGISLATION
+
+Create:
+
+`src/pages/Page8EticaSeguranca.tsx`
+
+Create the corresponding structured content in:
+
+`src/data/moduloData.ts`
+
+This page is mandatory. The existing platform does not provide an adequate legal, ethical and safety section.
+
+Use the following exact content, organised into readable cards.
+
+### 1. Proteção de dados e RGPD
+
+"Imagens, vídeos e gravações de voz que permitam identificar uma pessoa constituem dados pessoais. A utilização destes elementos em ferramentas de inteligência artificial deve respeitar o Regulamento Geral sobre a Proteção de Dados (RGPD), incluindo os princípios da finalidade, minimização, transparência, segurança e limitação da conservação."
+
+"Antes de utilizar serviços externos com dados de alunos, a escola deve avaliar a finalidade, a base jurídica, as condições do serviço, os destinatários, os períodos de conservação e as eventuais transferências de dados. Deve ser consultado o responsável pela proteção de dados da instituição sempre que necessário."
+
+"Não carregar fotografias, vídeos, vozes, nomes, avaliações ou outros dados identificáveis de alunos em ferramentas públicas sem validação institucional."
+
+### 2. Imagem, voz e dados de menores
+
+"A utilização de imagem e voz de crianças e jovens exige especial cuidado. A imagem ou a voz não são automaticamente categorias especiais de dados, mas podem constituir dados pessoais quando permitem identificar uma pessoa. Os dados biométricos são uma categoria especial quando tratados para identificar uma pessoa de forma inequívoca."
+
+"Não presumir que o consentimento é sempre a única base jurídica possível. A base legal e as condições de utilização devem ser determinadas pela entidade responsável, de acordo com o contexto e a legislação aplicável."
+
+"Para demonstrações pedagógicas, privilegiar exemplos sintéticos, imagens não identificáveis e gravações sem dados pessoais."
+
+### 3. Direitos de autor e licenças
+
+"Uma imagem, voz, música ou vídeo produzido por inteligência artificial não fica automaticamente livre de direitos de autor ou de outros direitos de terceiros."
+
+"Antes de utilizar ou publicar um resultado, verificar as condições da plataforma, os direitos dos materiais introduzidos, a utilização de marcas, personagens, obras protegidas e imagens de pessoas."
+
+"Registar a origem dos recursos utilizados e identificar conteúdos gerados por IA sempre que tal seja relevante para a transparência e para o contexto pedagógico."
+
+### 4. Regulamento Europeu da Inteligência Artificial
+
+"O Regulamento (UE) 2024/1689, conhecido como AI Act, estabelece regras harmonizadas para a inteligência artificial na União Europeia. A sua aplicação ocorre por fases."
+
+"A obrigação de promover um nível suficiente de literacia em IA, prevista no artigo 4.º, é aplicável desde 2 de fevereiro de 2025. O regulamento tem outras datas de aplicação e disposições transitórias, pelo que devem ser consultadas as versões oficiais atualizadas."
+
+"Nem todas as ferramentas de IA utilizadas na educação são automaticamente classificadas como sistemas de alto risco. A classificação depende da finalidade prevista e da utilização concreta do sistema."
+
+### 5. Validação pedagógica e científica
+
+"Os conteúdos produzidos por IA podem incluir erros factuais, científicos, históricos, linguísticos e visuais. O professor deve verificar a informação antes de a utilizar com os alunos."
+
+"Em conteúdos científicos, anatómicos, médicos ou técnicos, uma imagem gerada não deve substituir uma fonte científica validada."
+
+### 6. Responsabilidade e supervisão humana
+
+"A inteligência artificial deve apoiar o trabalho pedagógico, não substituir o juízo profissional do professor. A seleção, adaptação, validação e utilização dos resultados permanecem sob responsabilidade humana."
+
+### 7. Lista de verificação antes de utilizar uma ferramenta
+
+Display these questions:
+
+- A ferramenta é adequada à idade dos utilizadores?
+- O plano gratuito permite realizar a atividade?
+- São introduzidos dados pessoais de alunos?
+- A escola autoriza a utilização do serviço?
+- Existem direitos de utilização sobre os materiais introduzidos?
+- O resultado foi verificado quanto à sua exatidão?
+- O recurso é acessível e adequado aos alunos?
+- É possível explicar como foi produzido o resultado?
+
+Add official references and links to the European Commission, EUR-Lex, UNESCO and CNPD. Never invent a legal requirement or an official document.
+
+## 13. PAGE 9 — BIBLIOGRAPHY AND OFFICIAL RESOURCES
+
+Rename:
+
+`src/pages/Page7Bibliografia.tsx`
+
+to:
+
+`src/pages/Page9Bibliografia.tsx`
+
+Update imports accordingly.
+
+The existing bibliography contains incomplete references and does not adequately support the current content.
+
+Retain relevant academic works only where they are actually used in the module.
+
+Add these official references:
+
+1. European Commission. (2026). *Guidelines on the ethical use of artificial intelligence and data in teaching and learning for educators*. European Education Area.  
+   https://education.ec.europa.eu/pt-pt/focus-topics/digital-education/actions/plan/ethical-guidelines-for-educators-on-using-artificial-intelligence
+
+2. European Parliament and Council of the European Union. (2024). *Regulation (EU) 2024/1689 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act).*  
+   https://eur-lex.europa.eu/eli/reg/2024/1689/oj
+
+3. European Parliament and Council of the European Union. (2016). *Regulation (EU) 2016/679 (General Data Protection Regulation).*  
+   https://eur-lex.europa.eu/eli/reg/2016/679/oj
+
+4. UNESCO. (2024). *AI competency framework for teachers*. UNESCO.  
+   https://www.unesco.org/en/articles/ai-competency-framework-teachers
+
+5. UNESCO. (2023). *Guidance for generative AI in education and research*. UNESCO.  
+   https://unesdoc.unesco.org/ark:/48223/pf0000386693
+
+6. Comissão Nacional de Proteção de Dados. Official website and relevant guidance.  
+   https://www.cnpd.pt/
+
+Verify exact bibliographic details and use APA 7 consistently.
+
+Do not retain incomplete citations as if they were complete.
+
+Add a note:
+
+"Os planos, funcionalidades, limites de utilização e condições legais das plataformas podem mudar. A data de consulta e a ligação à fonte oficial devem acompanhar a informação apresentada."
+
+## 14. TECHNICAL CHANGES REQUIRED
+
+These changes must be included in the file-by-file specification.
+
+### A. `index.html`
+
+The current HTML declares:
+
+```html
+<html lang="en">
+```
+
+Replace with:
+
+```html
+<html lang="pt-PT">
+```
+
+Update the title and metadata to reflect the complete module, including image, audio, video and responsible AI use.
+
+### B. `src/data/moduloData.ts`
+
+Update:
+
+- `PAGES_LIST` to nine pages.
+- `PageInfo.navGroup` to include the new audio, video and ethics groups.
+- All page titles and descriptions.
+- `IMAGE_TOOLS`.
+- `IMAGE_PROMPTS`.
+- `IMAGE_ACTIVITIES`.
+- `AUDIO_ACTIVITIES`.
+- New `VIDEO_TOOLS`.
+- New `VIDEO_ACTIVITIES`.
+- New ethics and legal content.
+- `MODULE_OBJECTIVES`.
+
+The current Page 5 entry incorrectly uses:
+
+```ts
+navGroup: 'imagem'
+```
+
+Correct it to the appropriate audio group.
+
+The new Page 7 must be video, Page 8 ethics and Page 9 bibliography.
+
+### C. `src/App.tsx`
+
+Update all hard-coded page limits from seven to nine.
+
+This includes:
+
+- Hash parsing and validation.
+- Keyboard navigation.
+- Continuous reading mode.
+- Page rendering.
+- Page sections.
+- New imports for pages 7 and 8.
+- New bibliography import for page 9.
+
+Do not simply add two pages to the visible navigation while leaving the routing restricted to seven.
+
+### D. `src/components/Navbar.tsx`
+
+Update the desktop navigation to provide access to the new content categories.
+
+Ensure that audio, video, ethics and bibliography can be reached clearly.
+
+Preserve the mobile navigation and make sure all nine pages are available.
+
+### E. `src/components/ChapterToolbar.tsx`
+
+Update the page labels and progress navigation for nine pages.
+
+Correct the category names and make sure that progress reflects all nine pages.
+
+### F. `src/components/PageFooter.tsx`
+
+Ensure that the previous/next navigation works correctly with nine pages.
+
+Remove the repeated statement that the application is exclusively a verbatim Genially transcription.
+
+Replace it with:
+
+"Recurso de apoio à formação de docentes sobre ferramentas de inteligência artificial na educação. A informação sobre plataformas, funcionalidades e planos gratuitos é dinâmica e deve ser confirmada nas fontes oficiais."
+
+### G. `src/components/SearchModal.tsx`
+
+The current search does not cover the audio tool catalogue and does not cover a dedicated video catalogue.
+
+Expand the search so that it includes:
+
+- Image tools.
+- Image prompts.
+- Image prompt objectives and alternatives.
+- Image activities.
+- Audio tools.
+- Audio activities.
+- Video tools.
+- Video activities.
+- Legal and ethical topics.
+- Bibliography.
+
+Search results must navigate to the correct page.
+
+Do not create a separate search engine or external API.
+
+### H. `src/data/moduloData.test.ts`
+
+The tests currently assume:
+
+- Exactly seven pages.
+- Six image tools.
+- Three audio activities.
+- No video tools.
+- No ethics page.
+
+Update the tests to match the new structure.
+
+Add tests for:
+
+- Nine pages.
+- Five identified image tools.
+- Twelve image prompts.
+- Required fields on all prompts.
+- Five image activities.
+- Two audio activities.
+- Video tools and video activities.
+- Ethics content.
+- Search coverage for audio and video tools.
+- Correct page navigation and progress calculation.
+
+Update the package test command only if compatible with the existing Node runtime.
+
+Do not remove existing working tests merely to make the new tests pass.
+
+## 15. GENERAL EDITORIAL AND DESIGN CORRECTIONS
+
+Across all nine pages:
+
+- Use European Portuguese (Portugal).
+- Correct missing accents, spelling, punctuation and grammatical errors.
+- Avoid Brazilian Portuguese expressions.
+- Use consistent terminology: "ferramenta", "plano gratuito", "prompt", "resultado esperado", "objetivo pedagógico".
+- Remove unsupported superlatives such as "a melhor do mercado" or "garante".
+- Avoid presenting AI-generated content as factually correct without verification.
+- Keep the existing clean and light visual identity.
+- Improve visual hierarchy only where it genuinely helps reading.
+- Do not redesign the whole interface unnecessarily.
+- Make cards visually consistent.
+- Ensure text remains readable on mobile.
+- Maintain accessible contrast, keyboard focus and descriptive image alternative text.
+
+The design should remain professional, contemporary and suitable for teacher training.
+
+Do not add decorative images that do not illustrate the actual task.
+
+## 16. IMAGE AND RESULT PROVENANCE
+
+The platform must distinguish three things:
+
+1. An actual output generated by the recommended tool.
+2. An illustrative reference image.
+3. A result that has not yet been generated or validated.
+
+Never present an image generated by another platform as an output from the recommended tool.
+
+For each image prompt, the corresponding expected-result image must be displayed with the prompt.
+
+If a real result has not been generated yet, identify the image as pending and show the expected-result description.
+
+Do not generate images during this task. The purpose is to minimise Google AI Studio credits.
+
+## 17. EXACT OUTPUT REQUIRED
+
+Do not return a generic audit.
+
+Return a precise implementation specification, in European Portuguese, using this structure for every change:
+
+### ALTERAÇÃO [number] — [title]
+
+**Ficheiro:** exact file path.
+
+**Localização:** exact component, interface, array, object, heading or text to locate.
+
+**Texto/código atual:** quote the exact existing text or code that identifies the location.
+
+**Ação:** REPLACE / INSERT / DELETE / MOVE / RENAME / RESTRUCTURE.
+
+**Conteúdo final:** provide the complete text or code to insert or replace, ready to copy and paste.
+
+**Posição:** specify exactly where new content must be inserted.
+
+**Dependências:** list any other files that must be updated.
+
+**Prioridade:** Critical / High / Medium / Low.
+
+Do not tell me to "improve the content" or "update the page".
+
+Tell me exactly what content must replace the existing content.
+
+Do not invent line numbers. Use exact file paths and unique text or code anchors.
+
+If a change is already specified in this prompt, use it rather than inventing a different solution.
+
+## 18. CREDIT CONSERVATION — STRICT
+
+The purpose is to minimise Google AI Studio usage.
+
+Therefore:
+
+- Do not modify the project.
+- Do not generate images.
+- Do not generate videos or audio.
+- Do not run multiple agents.
+- Do not run repeated audit cycles.
+- Do not read the same source file repeatedly.
+- Do not reproduce complete files unnecessarily.
+- Do not produce long explanations of general AI concepts.
+- Do not generate alternative versions of the same content.
+- Do not create new dependencies unless essential.
+- Do not redesign components that are already working.
+- Do not spend tokens repeating the project inventory.
+
+Use the exact requirements and content supplied above.
+
+Inspect only the code sections necessary to identify the precise change locations and technical dependencies.
+
+The final answer must focus on the exact file, the current text, the action and the complete replacement content.
+
+## FINAL INSTRUCTION
+
+I want a complete, copy-and-paste-ready change specification for the entire platform.
+
+The output must tell me:
+
+**WHICH FILE → WHAT TO FIND → WHAT TO REMOVE OR REPLACE → THE COMPLETE NEW TEXT OR CODE → WHERE TO INSERT IT.**
+
+Do not implement anything.
+
+Stop after delivering the complete specification.

@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { CheckSquare, Square, RotateCcw, Target, ListChecks, Award } from 'lucide-react';
+import {
+  CheckSquare,
+  Square,
+  RotateCcw,
+  Target,
+  ListChecks,
+  Award,
+  Copy,
+  Check,
+  ShieldAlert,
+  Volume2,
+} from 'lucide-react';
 import { AUDIO_ACTIVITIES } from '../data/moduloData.ts';
 
 const STORAGE_KEY = 'm3_audio_activity_checklist_v1';
 
 export const Page6AtividadesAudio: React.FC = () => {
   const [selectedActivityId, setSelectedActivityId] = useState<string>(AUDIO_ACTIVITIES[0].id);
+  const [copiedPrompt, setCopiedPrompt] = useState(false);
   const [checkedSteps, setCheckedSteps] = useState<Record<string, boolean>>(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -48,27 +60,36 @@ export const Page6AtividadesAudio: React.FC = () => {
     return keys.filter((k) => checkedSteps[`${activityId}:${k}`]).length;
   };
 
+  const handleCopyPrompt = (text: string) => {
+    if (navigator?.clipboard?.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        setCopiedPrompt(true);
+        setTimeout(() => setCopiedPrompt(false), 2000);
+      });
+    }
+  };
+
   return (
     <div className="space-y-10">
-      {/* Page Header */}
       <header className="border-b border-zinc-200 pb-6 space-y-2">
         <div className="text-xs font-medium text-zinc-500">
-          Página 6 de 7 · Prática Letiva com Áudio
+          Página 6 de 9 · Prática Letiva com Áudio
         </div>
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
-          ATIVIDADES EM SALA DE AULA COM FERRAMENTAS DE AUDIO
+          ATIVIDADES EM SALA DE AULA COM FERRAMENTAS DE ÁUDIO
         </h1>
         <p className="text-sm sm:text-base text-zinc-600 max-w-2xl leading-relaxed">
-          Três propostas didáticas completas para produção sonora, podcast escolar e tradução crítica em vídeo.
+          Duas propostas didáticas completas para narração histórica e produção de podcast escolar (a atividade "O Dobrador Poliglota" integra agora a Página 7 — Vídeo).
         </p>
       </header>
 
-      {/* Split Curriculum Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <aside className="lg:col-span-4 bg-white rounded-2xl border border-zinc-200 divide-y divide-zinc-200 overflow-hidden">
           <div className="px-5 py-3.5 bg-zinc-50 text-xs font-semibold text-zinc-700 flex items-center justify-between">
             <span>Planos de Áudio</span>
-            <span className="font-mono text-zinc-500 tabular-nums">3 propostas</span>
+            <span className="font-mono text-zinc-500 tabular-nums">
+              {AUDIO_ACTIVITIES.length} propostas
+            </span>
           </div>
           {AUDIO_ACTIVITIES.map((act, index) => {
             const isSelected = act.id === selectedActivityId;
@@ -78,7 +99,10 @@ export const Page6AtividadesAudio: React.FC = () => {
               <button
                 key={act.id}
                 type="button"
-                onClick={() => setSelectedActivityId(act.id)}
+                onClick={() => {
+                  setSelectedActivityId(act.id);
+                  setCopiedPrompt(false);
+                }}
                 className={`w-full text-left px-5 py-4 transition-colors flex flex-col gap-1.5 ${
                   isSelected ? 'bg-amber-50/70' : 'hover:bg-zinc-50'
                 }`}
@@ -111,7 +135,7 @@ export const Page6AtividadesAudio: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b border-zinc-200 pb-6">
             <div className="space-y-1.5">
               <div className="text-xs font-medium text-amber-800">
-                Plano de Aula Integral de Áudio
+                Plano de Aula de Áudio
               </div>
               <h2 className="font-display text-2xl font-bold text-zinc-900">
                 {activeActivity.title}
@@ -130,8 +154,60 @@ export const Page6AtividadesAudio: React.FC = () => {
             )}
           </div>
 
-          {/* [Objetivos] */}
-          <section className="space-y-3">
+          <section className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm bg-[#f8f8f6] p-4 rounded-xl border border-zinc-200/80">
+              <div>
+                <span className="font-semibold text-zinc-900">Ferramenta recomendada: </span>
+                <span className="text-zinc-700">{activeActivity.recommendedTool}</span>
+              </div>
+              <div>
+                <span className="font-semibold text-zinc-900">Alternativa gratuita: </span>
+                <span className="text-zinc-700">{activeActivity.freeAlternative}</span>
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-sm font-bold text-zinc-900">Prompt completo</span>
+                <button
+                  type="button"
+                  onClick={() => handleCopyPrompt(activeActivity.prompt)}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-white transition-colors ${
+                    copiedPrompt ? 'bg-teal-700' : 'bg-zinc-900 hover:bg-blue-700'
+                  }`}
+                >
+                  {copiedPrompt ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                  <span>{copiedPrompt ? 'Copiado' : 'Copiar Prompt'}</span>
+                </button>
+              </div>
+              <p className="font-mono text-xs text-zinc-800 leading-relaxed bg-[#f8f8f6] p-4 rounded-xl border border-zinc-200/80 select-all">
+                {activeActivity.prompt}
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-4 space-y-2.5">
+              <div className="flex items-center gap-2 text-xs font-semibold text-zinc-900">
+                <Volume2 className="w-4 h-4 text-amber-700 shrink-0" aria-hidden="true" />
+                <span>Resultado esperado e pré-visualização ilustrativa</span>
+              </div>
+              <p className="text-xs sm:text-sm text-zinc-700">{activeActivity.expectedResult}</p>
+              <div
+                className="flex items-center gap-1 h-8 px-3 rounded-lg bg-white border border-zinc-200"
+                aria-hidden="true"
+              >
+                {[30, 65, 45, 90, 55, 75, 40, 85, 50, 70, 35, 60, 80, 45, 55, 30].map((h, idx) => (
+                  <span
+                    key={idx}
+                    className="flex-1 rounded-full bg-amber-600/60"
+                    style={{ height: `${h}%` }}
+                  />
+                ))}
+              </div>
+              <p className="text-[11px] text-zinc-500">{activeActivity.visualPreviewLabel}</p>
+            </div>
+          </section>
+
+          <section className="space-y-3 pt-4 border-t border-zinc-200">
             <div className="flex items-center justify-between gap-2">
               <h3 className="inline-flex items-center gap-2 text-sm font-bold text-zinc-900">
                 <Target className="w-4 h-4 text-amber-800 shrink-0" aria-hidden="true" />
@@ -162,7 +238,6 @@ export const Page6AtividadesAudio: React.FC = () => {
             </ul>
           </section>
 
-          {/* [Implementacao] */}
           <section className="space-y-4 pt-6 border-t border-zinc-200">
             <h3 className="inline-flex items-center gap-2 text-sm font-bold text-zinc-900">
               <ListChecks className="w-4 h-4 text-amber-800 shrink-0" aria-hidden="true" />
@@ -207,7 +282,7 @@ export const Page6AtividadesAudio: React.FC = () => {
                     {item.ferramentas && item.ferramentas.length > 0 && (
                       <div className="pt-2 space-y-1.5">
                         <div className="text-xs font-semibold text-zinc-500">
-                          Ferramentas recomendadas:
+                          Ferramentas associadas:
                         </div>
                         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                           {item.ferramentas.map((tool, tIdx) => (
@@ -215,7 +290,7 @@ export const Page6AtividadesAudio: React.FC = () => {
                               key={tIdx}
                               className="text-xs text-zinc-800 bg-[#f8f8f6] px-3 py-2 rounded-lg border border-zinc-200/80"
                             >
-                              * {tool}
+                              · {tool}
                             </li>
                           ))}
                         </ul>
@@ -227,12 +302,11 @@ export const Page6AtividadesAudio: React.FC = () => {
             </div>
           </section>
 
-          {/* [Avaliacao] */}
           <section className="pt-6 border-t border-zinc-200 space-y-3">
             <div className="flex items-center justify-between gap-2">
               <h3 className="inline-flex items-center gap-2 text-sm font-bold text-zinc-900">
                 <Award className="w-4 h-4 text-amber-800 shrink-0" aria-hidden="true" />
-                <span>Avaliacao:</span>
+                <span>Avaliação:</span>
               </h3>
               <button
                 type="button"
@@ -255,7 +329,7 @@ export const Page6AtividadesAudio: React.FC = () => {
 
             <div className="space-y-1.5">
               <div className="text-xs font-semibold text-zinc-500">
-                Avaliacao das Aprendizagens:
+                Avaliação das Aprendizagens:
               </div>
               <ul className="space-y-1.5 text-sm text-zinc-700">
                 {activeActivity.avaliacao.itens.map((it, i) => (
@@ -265,6 +339,16 @@ export const Page6AtividadesAudio: React.FC = () => {
                   </li>
                 ))}
               </ul>
+            </div>
+          </section>
+
+          <section className="pt-5 border-t border-zinc-200">
+            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3 text-xs sm:text-sm text-amber-950 leading-relaxed">
+              <ShieldAlert className="w-4 h-4 shrink-0 mt-0.5 text-amber-700" aria-hidden="true" />
+              <div>
+                <strong className="font-semibold">Cuidados e proteção de dados: </strong>
+                {activeActivity.safeguards}
+              </div>
             </div>
           </section>
         </article>

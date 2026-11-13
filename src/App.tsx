@@ -10,7 +10,9 @@ import { Page3PromptsImagem } from './pages/Page3PromptsImagem.tsx';
 import { Page4AtividadesImagem } from './pages/Page4AtividadesImagem.tsx';
 import { Page5FerramentasAudio } from './pages/Page5FerramentasAudio.tsx';
 import { Page6AtividadesAudio } from './pages/Page6AtividadesAudio.tsx';
-import { Page7Bibliografia } from './pages/Page7Bibliografia.tsx';
+import { Page7FerramentasVideo } from './pages/Page7FerramentasVideo.tsx';
+import { Page8EticaSeguranca } from './pages/Page8EticaSeguranca.tsx';
+import { Page9Bibliografia } from './pages/Page9Bibliografia.tsx';
 
 const VISITED_KEY = 'm3_visited_pages_v1';
 
@@ -20,7 +22,7 @@ export default function App() {
     const match = hash.match(/#pagina-(\d+)/);
     if (match) {
       const pageNum = parseInt(match[1], 10);
-      if (pageNum >= 1 && pageNum <= 7) return pageNum;
+      if (pageNum >= 1 && pageNum <= 9) return pageNum;
     }
     return 1;
   });
@@ -63,7 +65,7 @@ export default function App() {
       const match = window.location.hash.match(/#pagina-(\d+)/);
       if (match) {
         const pageNum = parseInt(match[1], 10);
-        if (pageNum >= 1 && pageNum <= 7) {
+        if (pageNum >= 1 && pageNum <= 9) {
           setCurrentPage(pageNum);
         }
       }
@@ -85,7 +87,7 @@ export default function App() {
         return;
       }
       if (!isContinuousMode) {
-        if (e.key === 'ArrowRight' && currentPage < 7) {
+        if (e.key === 'ArrowRight' && currentPage < 9) {
           setCurrentPage((prev) => prev + 1);
           window.scrollTo({ top: 0, behavior: 'smooth' });
         } else if (e.key === 'ArrowLeft' && currentPage > 1) {
@@ -131,7 +133,7 @@ export default function App() {
             <div className="px-5 py-4 rounded-xl bg-white border border-zinc-200 text-xs sm:text-sm text-zinc-700 flex flex-wrap items-center justify-between gap-3">
               <div>
                 <strong className="font-semibold text-zinc-900">Leitura Contínua: </strong>
-                A visualizar todas as 7 páginas do Módulo 3 em sequência.
+                A visualizar todas as 9 páginas do Módulo 3 em sequência.
               </div>
               <button
                 type="button"
@@ -179,7 +181,17 @@ export default function App() {
             <hr className="border-zinc-200" />
 
             <section id="pagina-7">
-              <Page7Bibliografia onOpenPdf={() => setIsPdfOpen(true)} />
+              <Page7FerramentasVideo />
+            </section>
+            <hr className="border-zinc-200" />
+
+            <section id="pagina-8">
+              <Page8EticaSeguranca />
+            </section>
+            <hr className="border-zinc-200" />
+
+            <section id="pagina-9">
+              <Page9Bibliografia onOpenPdf={() => setIsPdfOpen(true)} />
             </section>
           </div>
         ) : (
@@ -195,8 +207,10 @@ export default function App() {
             {currentPage === 4 && <Page4AtividadesImagem />}
             {currentPage === 5 && <Page5FerramentasAudio />}
             {currentPage === 6 && <Page6AtividadesAudio />}
-            {currentPage === 7 && (
-              <Page7Bibliografia onOpenPdf={() => setIsPdfOpen(true)} />
+            {currentPage === 7 && <Page7FerramentasVideo />}
+            {currentPage === 8 && <Page8EticaSeguranca />}
+            {currentPage === 9 && (
+              <Page9Bibliografia onOpenPdf={() => setIsPdfOpen(true)} />
             )}
           </div>
         )}

@@ -9,7 +9,7 @@ interface PdfModalProps {
 export const PdfModal: React.FC<PdfModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
-  const pdfUrl = '/assets/aistudio/modulo3-ferramentas-ia-educacao-v2_a9efd33b.pdf';
+  const pdfUrl = `${import.meta.env.BASE_URL}assets/aistudio/modulo3-ferramentas-ia-educacao-v2_a9efd33b.pdf`;
 
   return (
     <div
@@ -26,10 +26,10 @@ export const PdfModal: React.FC<PdfModalProps> = ({ isOpen, onClose }) => {
         <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3.5 border-b border-zinc-200 bg-zinc-50">
           <div className="min-w-0">
             <h2 className="text-sm font-bold text-zinc-900 truncate">
-              Documento Original de Referência (9 Páginas)
+              Documento Base Original de Referência (23 de fevereiro de 2026)
             </h2>
             <p className="text-xs text-zinc-500 truncate">
-              modulo3-ferramentas-ia-educacao-v2_a9efd33b.pdf · Autoria: Carla Oliveira
+              modulo3-ferramentas-ia-educacao-v2_a9efd33b.pdf · Autoria: Carla Oliveira · Versão anterior à revisão editorial
             </p>
           </div>
           <div className="flex items-center gap-2 shrink-0">

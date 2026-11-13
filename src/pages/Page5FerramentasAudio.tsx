@@ -1,221 +1,145 @@
 import React from 'react';
-import { Check } from 'lucide-react';
-
-const AUDIO_CAPABILITIES = [
-  'Converter texto em voz (texto -> audio) com diferentes vozes e entoacoes.',
-  'Transcrever automaticamente ficheiros de audio para texto (audio -> texto).',
-  'Gerar narracoes realistas para videos, apresentacoes e conteudos educativos.',
-  'Melhorar a qualidade do som, reduzindo ruido e ajustando niveis de volume.',
-  'Traduzir automaticamente audio para outros idiomas, mantendo a naturalidade da voz.',
-  'Criar vozes personalizadas ou adaptar o estilo vocal a diferentes contextos.',
-  'Produzir podcasts, entrevistas simuladas e dialogos educativos com apoio de IA.',
-];
-
-const MUSIC_TOOLS = [
-  { name: 'AI Text to Music', desc: 'transforma texto (uma descricao ou ideia) em musica.' },
-  { name: 'AI Music Generator', desc: 'cria musica escolhendo estilo, ritmo ou ambiente, sem precisar de escrever texto detalhado.' },
-  { name: 'Gerador de Musica IA', desc: 'cria musica automaticamente (instrumental ou completa)' },
-  { name: 'Gerador de Letras IA', desc: 'escreve letras de musicas' },
-  { name: 'Gerador de Voz de Canto', desc: 'transforma texto em voz a cantar' },
-  { name: 'Gerador de Covers de Musica', desc: 'recria musicas com outra voz/estilo' },
-  { name: 'Video de Musica IA', desc: 'cria videoclipes automaticamente' },
-];
-
-const MEETING_TOOLS = [
-  {
-    code: 'Extensao 1',
-    title: 'Transcricao e Atas para Docs',
-    plataformas: 'Google Meet, Zoom e MS Teams',
-    acesso: 'Instalar a extensao para Google Chrome',
-    funcionalidades: '[OK] transcricao em direto | [OK] resumo com IA | [OK] tarefas/decisoes | [OK] atas simples | [OK] exporta para Docs',
-    gratuito: 'SIM... mas com limites mensais.',
-  },
-  {
-    code: 'Aplicacao 2',
-    title: 'Gravacao e Identificacao de Oradores',
-    plataformas: 'Google Meet, Zoom and MS Teams',
-    acesso: 'Instalar a extensao para Google Chrome ou Instalar no Computador',
-    funcionalidades: '[OK] gravacao | [OK] transcricao automatica | [OK] identificacao de quem falou | [OK] resumos/atas por IA | [OK] extracao de tarefas e pontos importantes',
-    gratuito: 'SIM... mas com limites mensais.',
-  },
-  {
-    code: 'Ferramenta 3',
-    title: 'Resumos e Destaques Automaticos',
-    plataformas: 'Google Meet, Zoom and MS Teams',
-    acesso: 'Instalar a extensao para Google Chrome',
-    funcionalidades: '[OK] gravacao | [OK] resumo automatico | [OK] destaques automaticos | [OK] atas IA',
-    gratuito: 'SIM... para a transcricao das reunioes.',
-  },
-];
+import { ExternalLink, Info } from 'lucide-react';
+import { AUDIO_TASK_CATEGORIES, AUDIO_TOOLS } from '../data/moduloData.ts';
 
 const PEDAGOGICAL_BENEFITS = [
   {
-    title: 'Diferenciacao pedagogica',
-    desc: 'Explicacoes em audio para apoiar diferentes ritmos de aprendizagem.',
+    title: 'Diferenciação pedagógica',
+    desc: 'Explicações em áudio para apoiar diferentes ritmos de aprendizagem.',
   },
   {
-    title: 'Poupanca de tempo',
-    desc: 'Conversao rapida de texto em narracao e transcricao automatica.',
+    title: 'Poupança de tempo',
+    desc: 'Apoio na preparação de guiões, narrações e limpeza de gravações existentes.',
   },
   {
-    title: 'Melhoria da comunicacao',
-    desc: 'Voz clara, legendas automaticas e reducao de ruido.',
+    title: 'Melhoria da comunicação',
+    desc: 'Voz clara, redução de ruído de fundo e preparação de materiais legendados.',
   },
   {
-    title: 'Avaliacao diversificada',
-    desc: 'Trabalhos orais gravados e feedback em audio.',
+    title: 'Avaliação diversificada',
+    desc: 'Trabalhos orais gravados, podcasts escolares e feedback em áudio.',
   },
   {
-    title: 'Traducao e apoio linguistico',
-    desc: 'Conteudos acessiveis em varios idiomas.',
+    title: 'Apoio linguístico',
+    desc: 'Exploração da oralidade, pronúncia e compreensão auditiva.',
   },
   {
-    title: 'Inclusao',
-    desc: 'Apoio a alunos com dificuldades de leitura ou necessidades especificas.',
+    title: 'Inclusão',
+    desc: 'Apoio a alunos com dificuldades de leitura ou necessidades educativas específicas.',
   },
 ];
 
 export const Page5FerramentasAudio: React.FC = () => {
   return (
     <div className="space-y-12">
-      {/* Page Header */}
       <header className="border-b border-zinc-200 pb-6 space-y-2">
         <div className="text-xs font-medium text-zinc-500">
-          Página 5 de 7 · Som, Narração e Transcrição
+          Página 5 de 9 · Som, Narração, Edição e Podcasts
         </div>
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
-          FERRAMENTAS DE AUDIO
+          FERRAMENTAS DE ÁUDIO
         </h1>
         <p className="text-sm sm:text-base text-zinc-600 max-w-2xl leading-relaxed">
-          Capacidades sonoras, criação musical por IA, ferramentas para gravação e atas de reuniões e vantagens pedagógicas.
+          Diferenciação clara de tarefas sonoras, catálogo de cinco ferramentas identificadas, planos gratuitos, limitações, alternativas e vantagens pedagógicas.
         </p>
       </header>
 
-      {/* ESTAS FERRAMENTAS PERMITEM: */}
       <section className="space-y-5">
-        <div className="flex items-end justify-between border-b border-zinc-200 pb-3">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-zinc-200 pb-3">
           <h2 className="font-display text-xl font-bold text-zinc-900">
-            ESTAS FERRAMENTAS PERMITEM:
+            TAREFAS E CAPACIDADES DE ÁUDIO (DISTINÇÃO FUNCIONAL)
           </h2>
-          <span className="text-xs text-zinc-500 tabular-nums">7 capacidades</span>
+          <span className="text-xs text-zinc-500 tabular-nums">
+            {AUDIO_TASK_CATEGORIES.length} tarefas distintas
+          </span>
         </div>
 
-        <div className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8">
-          <ol className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
-            {AUDIO_CAPABILITIES.map((item, idx) => (
+        <div className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8 space-y-4">
+          <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
+            Nem todas as plataformas realizam as mesmas tarefas. Deve distinguir-se entre síntese de texto em fala, síntese vocal, gravação, edição, melhoria de voz, transcrição, geração musical, criação de podcasts e publicação.
+          </p>
+          <ol className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {AUDIO_TASK_CATEGORIES.map((task, idx) => (
               <li
                 key={idx}
-                className="flex items-baseline gap-3.5 text-sm text-zinc-800 leading-relaxed pb-3 border-b border-zinc-100 last:border-b-0 md:[&:nth-last-child(2)]:border-b-0"
+                className="flex items-baseline gap-2.5 text-sm text-zinc-800 bg-[#f8f8f6] px-3.5 py-2.5 rounded-lg border border-zinc-200/70"
               >
                 <span className="font-mono text-xs font-semibold text-amber-700 tabular-nums shrink-0">
                   {String(idx + 1).padStart(2, '0')}
                 </span>
-                <span>{item}</span>
+                <span>{task}</span>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      {/* Musica e Criacao Sonora com IA */}
-      <section className="space-y-5">
-        <div className="border-b border-zinc-200 pb-4 space-y-1">
-          <div className="text-xs font-medium text-zinc-500">FERRAMENTAS DE AUDIO COM IA</div>
-          <h2 className="font-display text-2xl font-bold text-zinc-900">
-            Musica e Criacao Sonora com IA
-          </h2>
-          <p className="text-sm text-zinc-600">
-            Gera musica automaticamente com inteligencia artificial para projetos criativos (videos, jogos, etc.):
-          </p>
-        </div>
-
-        <div className="bg-white rounded-2xl border border-zinc-200 divide-y divide-zinc-200">
-          {MUSIC_TOOLS.map((tool, idx) => (
-            <div
-              key={idx}
-              className="px-6 py-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 sm:gap-8"
-            >
-              <div className="font-display text-sm sm:text-base font-bold text-zinc-900 sm:w-1/3 shrink-0">
-                {tool.name}
-              </div>
-              <div className="text-sm text-zinc-600 leading-relaxed sm:w-2/3">
-                {tool.desc}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* FERRAMENTAS DE AUDIO - GRAVACAO REUNIOES */}
       <section className="space-y-6">
         <div className="border-b border-zinc-200 pb-4 space-y-1">
           <h2 className="font-display text-2xl font-bold text-zinc-900">
-            FERRAMENTAS DE AUDIO - GRAVACAO REUNIOES
+            CATÁLOGO DE FERRAMENTAS IDENTIFICADAS
           </h2>
           <p className="text-sm text-zinc-600">
-            Soluções para transcrição em direto, identificação de oradores e resumos automáticos.
+            Cinco plataformas com função claramente delimitada, condições gratuitas e alternativas sem custos.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {MEETING_TOOLS.map((tool) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {AUDIO_TOOLS.map((tool) => (
             <article
-              key={tool.code}
-              className="bg-white rounded-2xl border border-zinc-200 p-6 flex flex-col justify-between gap-5"
+              key={tool.id}
+              className="bg-white rounded-2xl border border-zinc-200 p-6 flex flex-col justify-between gap-4"
             >
-              <div className="space-y-2">
-                <div className="text-xs font-mono font-semibold text-amber-700">
-                  {tool.code}
+              <div className="space-y-2.5">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-xs font-semibold text-amber-800">{tool.category}</span>
+                  <a
+                    href={tool.officialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-blue-700 text-white text-xs font-semibold transition-colors shrink-0 min-h-[36px]"
+                  >
+                    <span>Experimentar</span>
+                    <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                  </a>
                 </div>
-                <h3 className="font-display text-lg font-bold text-zinc-900">
-                  {tool.title}
-                </h3>
+                <h3 className="font-display text-xl font-bold text-zinc-900">{tool.name}</h3>
+                <p className="text-sm text-zinc-700 leading-relaxed">{tool.recommendedFor}</p>
               </div>
 
               <dl className="divide-y divide-zinc-100 border-t border-zinc-200 text-xs sm:text-sm">
-                <div className="py-3 space-y-1">
-                  <dt className="font-semibold text-zinc-900">Plataformas</dt>
-                  <dd className="text-zinc-600">{tool.plataformas}</dd>
+                <div className="py-2.5 space-y-0.5">
+                  <dt className="font-semibold text-zinc-900">Plano gratuito</dt>
+                  <dd className="text-zinc-600 leading-relaxed">{tool.freePlan}</dd>
                 </div>
-                <div className="py-3 space-y-1">
-                  <dt className="font-semibold text-zinc-900">Acesso</dt>
-                  <dd className="text-zinc-600">{tool.acesso}</dd>
+                <div className="py-2.5 space-y-0.5">
+                  <dt className="font-semibold text-zinc-900">Limitações e âmbito</dt>
+                  <dd className="text-zinc-600 leading-relaxed">{tool.limitations}</dd>
                 </div>
-                <div className="py-3 space-y-1.5">
-                  <dt className="font-semibold text-zinc-900">Funcionalidades</dt>
-                  <dd>
-                    <ul className="space-y-1.5 text-xs text-zinc-700 leading-relaxed">
-                      {tool.funcionalidades
-                        .split('|')
-                        .map((item) => item.replace('[OK]', '').trim())
-                        .filter(Boolean)
-                        .map((feat, fIdx) => (
-                          <li key={fIdx} className="flex items-start gap-2">
-                            <Check
-                              className="w-3.5 h-3.5 text-teal-700 shrink-0 mt-0.5"
-                              aria-hidden="true"
-                            />
-                            <span>{feat}</span>
-                          </li>
-                        ))}
-                    </ul>
-                  </dd>
+                <div className="py-2.5 space-y-0.5">
+                  <dt className="font-semibold text-zinc-900">Alternativa gratuita</dt>
+                  <dd className="text-zinc-600 leading-relaxed">{tool.freeAlternative}</dd>
                 </div>
-                <div className="pt-3 space-y-1">
-                  <dt className="font-semibold text-zinc-900">Gratuito?</dt>
-                  <dd className="text-zinc-800 font-medium">{tool.gratuito}</dd>
-                </div>
+                {tool.clarification && (
+                  <div className="py-2.5 text-xs text-teal-800">{tool.clarification}</div>
+                )}
               </dl>
             </article>
           ))}
         </div>
+
+        <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-4 flex items-start gap-3 text-xs sm:text-sm text-zinc-700">
+          <Info className="w-4 h-4 text-zinc-500 shrink-0 mt-0.5" aria-hidden="true" />
+          <p>
+            Ferramentas genéricas de música por IA ou extensões de transcrição de reuniões sem identificação oficial verificável foram removidas. Qualquer solução de transcrição de reuniões só deve ser adotada após validação institucional, verificação das plataformas suportadas, limites gratuitos e cumprimento das regras de privacidade e consentimento.
+          </p>
+        </div>
       </section>
 
-      {/* VANTAGENS PEDAGOGICAS DO AUDIO */}
       <section className="space-y-5">
         <div className="border-b border-zinc-200 pb-3">
           <h2 className="font-display text-2xl font-bold text-zinc-900">
-            VANTAGENS PEDAGOGICAS DO AUDIO
+            VANTAGENS PEDAGÓGICAS DO ÁUDIO
           </h2>
         </div>
 

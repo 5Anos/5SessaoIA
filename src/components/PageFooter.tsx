@@ -87,10 +87,10 @@ export const PageFooter: React.FC<PageFooterProps> = ({
       <div className="border-t border-zinc-200 bg-[#f8f8f6] py-6 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center space-y-2">
           <p className="text-xs text-zinc-600 leading-relaxed">
-            <strong className="font-semibold text-zinc-800">Nota:</strong> Este documento contém exclusivamente o texto integral da plataforma Genially (Módulo 3), reproduzido de forma estrita e fidedigna sem qualquer adição ou interpolação externa.
+            Recurso de apoio à formação de docentes sobre ferramentas de inteligência artificial na educação. A informação sobre plataformas, funcionalidades e planos gratuitos é dinâmica e deve ser confirmada nas fontes oficiais.
           </p>
           <p className="text-xs text-zinc-500">
-            Fonte: Modulo3_FerramentasIA_2 · Genially · Autoria: Carla Oliveira (23 de fevereiro de 2026) · 2026
+            Fonte original: Modulo3_FerramentasIA_2 · Autoria: Carla Oliveira (23 de fevereiro de 2026) · Revisão editorial: 13 de novembro de 2026
           </p>
         </div>
       </div>

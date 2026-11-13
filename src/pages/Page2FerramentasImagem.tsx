@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { LayoutGrid, Table2, CheckCircle2 } from 'lucide-react';
+import { LayoutGrid, Table2, CheckCircle2, ExternalLink, ShieldAlert } from 'lucide-react';
 import {
   IMAGE_CAPABILITIES,
-  IMAGE_TOOLS,
   filterImageTools,
 } from '../data/moduloData.ts';
 
@@ -13,28 +12,26 @@ export const Page2FerramentasImagem: React.FC = () => {
   const tools = filterImageTools(focusFilter);
 
   const filterTabs = [
-    { id: 'todas', label: 'Todas (6)' },
-    { id: 'iniciacao', label: 'Iniciação & Sem Registo' },
+    { id: 'todas', label: 'Todas (5)' },
+    { id: 'iniciacao', label: 'Iniciação & Design' },
     { id: 'controlo-estilo', label: 'Controlo & Estilo' },
     { id: 'edicao-texto', label: 'Edição & Tipografia' },
   ];
 
   return (
     <div className="space-y-12">
-      {/* Page Header */}
       <header className="border-b border-zinc-200 pb-6 space-y-2">
         <div className="text-xs font-medium text-zinc-500">
-          Página 2 de 7 · Criação Visual com IA
+          Página 2 de 9 · Criação Visual com IA
         </div>
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
           FERRAMENTAS DE IMAGEM
         </h1>
         <p className="text-sm sm:text-base text-zinc-600 max-w-2xl leading-relaxed">
-          Capacidades generativas, análise comparativa de 6 plataformas, criação de infográficos e benefícios pedagógicos para o docente.
+          Capacidades generativas, análise comparativa de 5 plataformas identificadas, critérios de escolha, verificação de direitos e benefícios pedagógicos para docentes.
         </p>
       </header>
 
-      {/* ESTAS FERRAMENTAS PERMITEM: */}
       <section className="space-y-5">
         <div className="flex items-end justify-between border-b border-zinc-200 pb-3">
           <h2 className="font-display text-xl font-bold text-zinc-900">
@@ -60,7 +57,6 @@ export const Page2FerramentasImagem: React.FC = () => {
         </div>
       </section>
 
-      {/* FERRAMENTAS DE IMAGEM COM IA */}
       <section className="space-y-6">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-zinc-200 pb-4">
           <div>
@@ -68,12 +64,11 @@ export const Page2FerramentasImagem: React.FC = () => {
               FERRAMENTAS DE IMAGEM COM IA
             </h2>
             <p className="text-xs sm:text-sm text-zinc-500 mt-1">
-              Compare modelos, planos gratuitos e destaques para escolher a ferramenta adequada ao contexto de sala de aula.
+              Compare finalidades, planos gratuitos, limitações, alternativas e aceda diretamente às páginas oficiais.
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
-            {/* Focus filter */}
             <div className="flex items-center gap-1 p-1 bg-zinc-100 rounded-lg overflow-x-auto max-w-full">
               {filterTabs.map((tab) => (
                 <button
@@ -91,7 +86,6 @@ export const Page2FerramentasImagem: React.FC = () => {
               ))}
             </div>
 
-            {/* View mode toggle */}
             <div className="flex items-center gap-1 p-1 bg-zinc-100 rounded-lg shrink-0">
               <button
                 type="button"
@@ -131,27 +125,65 @@ export const Page2FerramentasImagem: React.FC = () => {
                 className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 flex flex-col justify-between gap-5"
               >
                 <div className="space-y-3">
-                  <div className="text-xs font-medium text-blue-700">{tool.shortTag}</div>
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-xs font-medium text-blue-700">{tool.shortTag}</span>
+                    <a
+                      href={tool.officialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Experimentar ${tool.name} no site oficial`}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white text-xs font-semibold transition-colors shrink-0 min-h-[36px]"
+                    >
+                      <span>Experimentar</span>
+                      <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                    </a>
+                  </div>
                   <h3 className="font-display text-xl font-bold text-zinc-900">
                     {tool.name}
                   </h3>
-                  <p className="text-sm text-zinc-700 leading-relaxed">{tool.summary}</p>
+                  <p className="text-sm text-zinc-700 leading-relaxed">{tool.description}</p>
                 </div>
 
                 <dl className="divide-y divide-zinc-100 border-t border-zinc-200 text-xs sm:text-sm">
-                  {tool.modelo && (
-                    <div className="py-3 space-y-1">
-                      <dt className="font-semibold text-zinc-900">Modelo</dt>
-                      <dd className="text-zinc-600 leading-relaxed">{tool.modelo}</dd>
-                    </div>
-                  )}
                   <div className="py-3 space-y-1">
-                    <dt className="font-semibold text-zinc-900">Plano Gratuito</dt>
-                    <dd className="text-zinc-600 leading-relaxed">{tool.planoGratuito}</dd>
+                    <dt className="font-semibold text-zinc-900">Principais capacidades</dt>
+                    <dd className="text-zinc-600 leading-relaxed">
+                      <ul className="list-disc pl-4 space-y-1">
+                        {tool.capabilities.map((cap, idx) => (
+                          <li key={idx}>{cap}</li>
+                        ))}
+                      </ul>
+                    </dd>
                   </div>
-                  <div className="pt-3 space-y-1">
-                    <dt className="font-semibold text-blue-800">Destaque</dt>
-                    <dd className="text-zinc-700 leading-relaxed">{tool.destaque}</dd>
+                  <div className="py-3 space-y-1">
+                    <dt className="font-semibold text-zinc-900">Melhor utilização educativa</dt>
+                    <dd className="text-zinc-600 leading-relaxed">{tool.educationalUse}</dd>
+                  </div>
+                  <div className="py-3 space-y-1">
+                    <dt className="font-semibold text-zinc-900">Plano gratuito e limitações</dt>
+                    <dd className="text-zinc-600 leading-relaxed">
+                      <strong className="font-medium text-zinc-800">{tool.freePlan}</strong>{' '}
+                      {tool.limitations}
+                    </dd>
+                  </div>
+                  <div className="py-3 space-y-1">
+                    <dt className="font-semibold text-zinc-900">Privacidade e idade</dt>
+                    <dd className="text-zinc-600 leading-relaxed">{tool.privacyOrAge}</dd>
+                  </div>
+                  <div className="py-3 space-y-1">
+                    <dt className="font-semibold text-zinc-900">Alternativa gratuita</dt>
+                    <dd className="text-zinc-600 leading-relaxed">{tool.freeAlternative}</dd>
+                  </div>
+                  <div className="pt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-500">
+                    <span>Fonte oficial: {tool.officialSource}</span>
+                    <a
+                      href={tool.officialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-700 hover:underline font-medium break-all"
+                    >
+                      {tool.officialUrl}
+                    </a>
                   </div>
                 </dl>
               </article>
@@ -159,13 +191,13 @@ export const Page2FerramentasImagem: React.FC = () => {
           </div>
         ) : (
           <div className="bg-white rounded-2xl border border-zinc-200 overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[760px]">
+            <table className="w-full text-left border-collapse min-w-[780px]">
               <thead>
                 <tr className="border-b border-zinc-200 bg-zinc-50 text-xs font-semibold text-zinc-700">
-                  <th className="py-3.5 px-5 w-1/5">Ferramenta</th>
-                  <th className="py-3.5 px-5 w-1/4">Enquadramento / Modelo</th>
-                  <th className="py-3.5 px-5 w-1/4">Plano Gratuito</th>
-                  <th className="py-3.5 px-5 w-[30%]">Destaque Pedagógico</th>
+                  <th className="py-3.5 px-5">Ferramenta</th>
+                  <th className="py-3.5 px-5">Utilização Educativa</th>
+                  <th className="py-3.5 px-5">Plano Gratuito & Limitações</th>
+                  <th className="py-3.5 px-5">Acesso</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-200 text-xs sm:text-sm">
@@ -175,13 +207,21 @@ export const Page2FerramentasImagem: React.FC = () => {
                       {tool.name}
                     </td>
                     <td className="py-4 px-5 text-zinc-600 leading-relaxed">
-                      {tool.modelo ? tool.modelo : tool.summary}
+                      {tool.educationalUse}
                     </td>
                     <td className="py-4 px-5 text-zinc-600 leading-relaxed">
-                      {tool.planoGratuito}
+                      {tool.freePlan} {tool.limitations}
                     </td>
-                    <td className="py-4 px-5 text-zinc-800 leading-relaxed">
-                      {tool.destaque}
+                    <td className="py-4 px-5">
+                      <a
+                        href={tool.officialUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white text-xs font-semibold whitespace-nowrap"
+                      >
+                        <span>Experimentar</span>
+                        <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                      </a>
                     </td>
                   </tr>
                 ))}
@@ -191,31 +231,31 @@ export const Page2FerramentasImagem: React.FC = () => {
         )}
       </section>
 
-      {/* OUTRAS FERRAMENTAS & CRIACAO DE INFOGRAFICOS */}
+      {/* COMO ESCOLHER A FERRAMENTA DE IMAGEM */}
       <section className="space-y-5">
         <div className="border-b border-zinc-200 pb-3">
           <h2 className="font-display text-xl font-bold text-zinc-900">
-            OUTRAS FERRAMENTAS & CRIACAO DE INFOGRAFICOS
+            COMO ESCOLHER A FERRAMENTA DE IMAGEM
           </h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {[
             {
-              title: 'Impacto visual:',
-              text: 'torna os diapositivos e as sebentas muito mais apelativos e interessantes para os alunos.',
+              title: 'Tipo de resultado:',
+              text: 'fotografia, ilustração, diagrama, cartaz ou edição de imagem.',
             },
             {
-              title: 'Personalizacao total:',
-              text: 'permite criar exatamente a imagem necessaria para explicar um conceito especifico, sem estar limitado aos bancos de imagens genericos.',
+              title: 'Controlo criativo:',
+              text: 'necessidade de controlar estilo, composição, proporções e elementos visuais.',
             },
             {
-              title: 'Economia de tempo:',
-              text: 'gera em poucos segundos ilustracoes ou fotos que, de outra forma, levariam horas a encontrar na internet ou a desenhar manualmente.',
+              title: 'Texto na imagem:',
+              text: 'quando existir texto, considerar ferramentas com melhores capacidades tipográficas e rever sempre a ortografia.',
             },
             {
-              title: 'Salvaguarda de direitos de autor:',
-              text: 'ao gerar conteudos originais, evita riscos legais e problemas eticos associados a utilizacao de imagens protegidas encontradas na web.',
+              title: 'Condições de utilização:',
+              text: 'confirmar limites gratuitos, idade mínima, privacidade, licenças e direitos de utilização.',
             },
           ].map((item, idx) => (
             <div key={idx} className="bg-white rounded-xl border border-zinc-200 p-5 space-y-2">
@@ -227,16 +267,24 @@ export const Page2FerramentasImagem: React.FC = () => {
             </div>
           ))}
         </div>
+
+        <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 flex items-start gap-3 text-xs sm:text-sm text-amber-950 leading-relaxed">
+          <ShieldAlert className="w-4 h-4 shrink-0 mt-0.5 text-amber-700" aria-hidden="true" />
+          <div>
+            <strong className="font-semibold">Verificação de direitos e licenças: </strong>
+            a geração de uma imagem por IA não garante, por si só, a inexistência de direitos de autor ou de outros direitos de terceiros. É necessário verificar as condições da ferramenta, os direitos sobre os materiais introduzidos, a utilização de marcas, personagens e imagens de pessoas, bem como as condições de utilização do resultado.
+          </div>
+        </div>
       </section>
 
-      {/* BENEFICIOS PARA OS PROFESSORES */}
+      {/* BENEFÍCIOS PARA OS PROFESSORES */}
       <section className="space-y-6">
         <div className="border-b border-zinc-200 pb-4 space-y-1">
           <h2 className="font-display text-2xl font-bold text-zinc-900">
-            BENEFICIOS PARA OS PROFESSORES
+            BENEFÍCIOS PARA OS PROFESSORES
           </h2>
           <p className="text-sm text-zinc-600">
-            Na otica do professor, estas ferramentas oferecem diversas vantagens:
+            Na ótica do professor, estas ferramentas apoiam a criação e adaptação de materiais visuais quando sujeitas a validação pedagógica e científica:
           </p>
         </div>
 
@@ -248,29 +296,12 @@ export const Page2FerramentasImagem: React.FC = () => {
                 <span>Benefício 01</span>
               </div>
               <h3 className="font-display text-lg font-bold text-zinc-900">
-                Criar materiais didaticos visuais
+                Criar materiais didáticos visuais
               </h3>
             </div>
             <p className="text-sm text-zinc-600 leading-relaxed">
-              As ferramentas de IA podem transformar: descricoes textuais, conceitos abstratos e guioes de aula em ilustracoes personalizadas, diagramas, fotos realistas e esquemas visuais unicos.
+              As ferramentas de IA podem transformar descrições textuais, conceitos abstratos e guiões de aula em ilustrações personalizadas, esquemas visuais e composições para apresentações ou fichas de trabalho, após revisão pelo docente.
             </p>
-            <div className="pt-4 border-t border-zinc-200 space-y-2.5">
-              <div className="text-xs font-semibold text-zinc-900">Ferramentas uteis:</div>
-              <ul className="space-y-2 text-xs sm:text-sm text-zinc-600 leading-relaxed">
-                <li>
-                  <strong className="text-zinc-900">Microsoft Designer</strong> - cria imagens e designs rapidos a partir de comandos simples.
-                </li>
-                <li>
-                  <strong className="text-zinc-900">Leonardo.ai</strong> - permite criar ilustracoes artisticas com elevado controlo de estilo.
-                </li>
-                <li>
-                  <strong className="text-zinc-900">Adobe Firefly</strong> - ideal para editar fotos existentes ou criar imagens eticas para apresentacoes.
-                </li>
-                <li>
-                  <strong className="text-zinc-900">Ideogram</strong> - a melhor opcao para criar imagens que contenham textos e palavras precisas.
-                </li>
-              </ul>
-            </div>
           </article>
 
           <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-4">
@@ -280,26 +311,12 @@ export const Page2FerramentasImagem: React.FC = () => {
                 <span>Benefício 02</span>
               </div>
               <h3 className="font-display text-lg font-bold text-zinc-900">
-                Estimular a Literacia Visual e Criatividade
+                Estimular a Literacia Visual e a Criatividade
               </h3>
             </div>
             <p className="text-sm text-zinc-600 leading-relaxed">
-              A IA nao serve apenas para o professor criar; serve para os alunos explorarem.
+              Apoia projetos de narrativa visual e análise crítica em turma, permitindo debater enviesamentos, erros anatómicos, incoerências visuais ou estereótipos gerados pelos modelos.
             </p>
-            <dl className="divide-y divide-zinc-100 border-t border-zinc-200 text-xs sm:text-sm">
-              <div className="py-3 space-y-1">
-                <dt className="font-semibold text-zinc-900">Projetos de Storytelling:</dt>
-                <dd className="text-zinc-600 leading-relaxed">
-                  Os alunos podem ilustrar as suas proprias historias ou poemas, dando vida a personagens que antes apenas imaginavam.
-                </dd>
-              </div>
-              <div className="pt-3 space-y-1">
-                <dt className="font-semibold text-zinc-900">Analise Critica:</dt>
-                <dd className="text-zinc-600 leading-relaxed">
-                  Debater com a turma porque e que a IA gerou determinada imagem (vieses, erros anatomicos ou estereotipos), desenvolvendo o espirito critico sobre a tecnologia.
-                </dd>
-              </div>
-            </dl>
           </article>
 
           <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-4">
@@ -309,26 +326,12 @@ export const Page2FerramentasImagem: React.FC = () => {
                 <span>Benefício 03</span>
               </div>
               <h3 className="font-display text-lg font-bold text-zinc-900">
-                Apoio a Educacao Inclusiva e Acessibilidade
+                Apoio à Educação Inclusiva e Acessibilidade
               </h3>
             </div>
             <p className="text-sm text-zinc-600 leading-relaxed">
-              Adaptar conteudos para diferentes necessidades de aprendizagem.
+              Facilita a criação de apoios visuais simples, ícones e cartões contextualizados à realidade da escola para responder a diferentes ritmos e necessidades de aprendizagem.
             </p>
-            <dl className="divide-y divide-zinc-100 border-t border-zinc-200 text-xs sm:text-sm">
-              <div className="py-3 space-y-1">
-                <dt className="font-semibold text-zinc-900">Simplificacao Visual:</dt>
-                <dd className="text-zinc-600 leading-relaxed">
-                  Criar esquemas visuais simples para alunos com dificuldades de processamento de texto ou PHDA.
-                </dd>
-              </div>
-              <div className="pt-3 space-y-1">
-                <dt className="font-semibold text-zinc-900">Cartoes de Comunicacao (PECS):</dt>
-                <dd className="text-zinc-600 leading-relaxed">
-                  Gerar icones e imagens especificas para alunos com Espetro do Autismo, adaptadas ao contexto real da escola e nao apenas a desenhos genericos.
-                </dd>
-              </div>
-            </dl>
           </article>
 
           <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-4">
@@ -338,26 +341,12 @@ export const Page2FerramentasImagem: React.FC = () => {
                 <span>Benefício 04</span>
               </div>
               <h3 className="font-display text-lg font-bold text-zinc-900">
-                Reconstituicao de Cenarios Impossiveis
+                Reconstituição Visual de Cenários Complexos
               </h3>
             </div>
             <p className="text-sm text-zinc-600 leading-relaxed">
-              Levar os alunos onde as camaras fotograficas nao conseguem chegar.
+              Permite explorar visualmente contextos históricos, ambientais ou científicos inacessíveis, mantendo clara a distinção entre representação ilustrativa e fonte factual validada.
             </p>
-            <dl className="divide-y divide-zinc-100 border-t border-zinc-200 text-xs sm:text-sm">
-              <div className="py-3 space-y-1">
-                <dt className="font-semibold text-zinc-900">Historia e Ciencia:</dt>
-                <dd className="text-zinc-600 leading-relaxed">
-                  Visualizar o aspeto de uma cidade romana, a superficie de um exoplaneta ou o interior de uma celula humana com um realismo que um livro de texto nem sempre consegue transmitir.
-                </dd>
-              </div>
-              <div className="pt-3 space-y-1">
-                <dt className="font-semibold text-zinc-900">Simulacoes:</dt>
-                <dd className="text-zinc-600 leading-relaxed">
-                  "E se os dinossauros tivessem sobrevivido?" - usar a IA para criar hipoteses visuais que estimulem o debate cientifico.
-                </dd>
-              </div>
-            </dl>
           </article>
         </div>
       </section>

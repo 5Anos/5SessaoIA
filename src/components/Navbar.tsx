@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FileText, Menu, X } from 'lucide-react';
-import { PAGES_LIST } from '../data/moduloData.ts';
+import { PAGES_LIST, NavGroup } from '../data/moduloData.ts';
 
 interface NavbarProps {
   currentPage: number;
@@ -11,15 +11,18 @@ interface NavbarProps {
 }
 
 const TOP_NAV_ITEMS: {
-  id: 'inicio' | 'imagem' | 'prompts' | 'atividades' | 'bibliografia';
+  id: NavGroup;
   label: string;
   targetPage: number;
 }[] = [
   { id: 'inicio', label: 'Início', targetPage: 1 },
-  { id: 'imagem', label: 'Ferramentas', targetPage: 2 },
+  { id: 'imagem', label: 'Imagem', targetPage: 2 },
   { id: 'prompts', label: 'Prompts', targetPage: 3 },
   { id: 'atividades', label: 'Atividades', targetPage: 4 },
-  { id: 'bibliografia', label: 'Bibliografia', targetPage: 7 },
+  { id: 'audio', label: 'Áudio', targetPage: 5 },
+  { id: 'video', label: 'Vídeo', targetPage: 7 },
+  { id: 'etica', label: 'Ética', targetPage: 8 },
+  { id: 'bibliografia', label: 'Bibliografia', targetPage: 9 },
 ];
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -54,7 +57,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Zone 2: 5 concise single-line text navigation links */}
         <nav
           aria-label="Navegação principal"
-          className="hidden md:flex items-center gap-7"
+          className="hidden lg:flex items-center gap-5"
         >
           {TOP_NAV_ITEMS.map((item) => {
             const isActive = !isContinuousMode && activeInfo.navGroup === item.id;
@@ -100,7 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-expanded={mobileMenuOpen}
             aria-label={mobileMenuOpen ? 'Fechar menu de páginas' : 'Abrir menu de páginas'}
-            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-zinc-200 text-zinc-700 hover:bg-zinc-100 transition-colors shrink-0"
+            className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-zinc-200 text-zinc-700 hover:bg-zinc-100 transition-colors shrink-0"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -111,7 +114,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       {mobileMenuOpen && (
         <nav
           aria-label="Navegação móvel do módulo"
-          className="md:hidden border-t border-zinc-200 bg-white px-4 py-3 space-y-1"
+          className="lg:hidden border-t border-zinc-200 bg-white px-4 py-3 space-y-1"
         >
           {PAGES_LIST.map((page) => {
             const isActive = !isContinuousMode && currentPage === page.number;

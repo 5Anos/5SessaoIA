@@ -23,7 +23,9 @@ export const Page1VisaoGeral: React.FC<Page1Props> = ({
               <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-500 font-medium">
                 <span className="font-semibold text-blue-700">Módulo 3</span>
                 <span aria-hidden="true">·</span>
-                <span>23 de fevereiro de 2026</span>
+                <span>Fonte original: 23 de fevereiro de 2026</span>
+                <span aria-hidden="true">·</span>
+                <span>Última revisão editorial: 13 de novembro de 2026.</span>
                 <span aria-hidden="true">·</span>
                 <span>Autoria: Carla Oliveira</span>
               </div>
@@ -33,12 +35,17 @@ export const Page1VisaoGeral: React.FC<Page1Props> = ({
               </h1>
 
               <p className="text-sm text-zinc-600 leading-relaxed max-w-xl">
-                Fonte: Modulo3_FerramentasIA_2 | Genially | Autoria: Carla Oliveira (23 de fevereiro de 2026)
+                Fonte base original: Modulo3_FerramentasIA_2 | Genially | Autoria: Carla Oliveira (23 de fevereiro de 2026). Última revisão editorial: 13 de novembro de 2026.
               </p>
 
-              <div className="pt-4 border-t border-zinc-200 text-xs sm:text-sm text-zinc-700 leading-relaxed max-w-xl">
-                <strong className="font-semibold text-zinc-900">Nota: </strong>
-                Este documento contém exclusivamente o texto integral da plataforma Genially (Módulo 3), reproduzido de forma estrita e fidedigna sem qualquer adição ou interpolação externa.
+              <div className="pt-4 border-t border-zinc-200 space-y-2.5 text-xs sm:text-sm text-zinc-700 leading-relaxed max-w-xl">
+                <p>
+                  <strong className="font-semibold text-zinc-900">Enquadramento metodológico: </strong>
+                  Este módulo é um recurso de formação para docentes, organizado em torno da exploração crítica e prática de ferramentas de inteligência artificial aplicadas à educação. Inclui informação sobre plataformas, exemplos de prompts, resultados esperados, atividades pedagógicas e orientações para uma utilização responsável. Os conteúdos são sujeitos a atualização, uma vez que as funcionalidades e os planos das ferramentas podem mudar.
+                </p>
+                <p className="text-xs text-amber-950 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+                  As funcionalidades, os limites de utilização e os planos gratuitos das ferramentas podem sofrer alterações. Confirme sempre a informação nas páginas oficiais antes de utilizar ou recomendar uma plataforma.
+                </p>
               </div>
             </div>
 
@@ -74,19 +81,19 @@ export const Page1VisaoGeral: React.FC<Page1Props> = ({
         </div>
       </section>
 
-      {/* OBJETIVOS DO MODULO 3 */}
+      {/* OBJETIVOS DO MÓDULO 3 */}
       <section className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-zinc-200 pb-4">
           <div>
             <div className="text-xs font-medium text-zinc-500 mb-1">Enquadramento Pedagógico</div>
             <h2 className="font-display text-2xl font-bold text-zinc-900 tracking-tight">
-              OBJETIVOS DO MODULO 3
+              OBJETIVOS DO MÓDULO 3
             </h2>
           </div>
-          <span className="text-xs text-zinc-500 tabular-nums">3 metas de aprendizagem</span>
+          <span className="text-xs text-zinc-500 tabular-nums">5 metas de aprendizagem</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {MODULE_OBJECTIVES.map((obj, index) => (
             <div
               key={index}
@@ -101,9 +108,11 @@ export const Page1VisaoGeral: React.FC<Page1Props> = ({
                 </p>
               </div>
               <div className="pt-3 border-t border-zinc-100 text-xs text-zinc-500">
-                {index === 0 && 'Panorama de ferramentas educativas'}
-                {index === 1 && 'Experimentação prática guiada'}
-                {index === 2 && 'Produção de recursos letivos'}
+                {index === 0 && 'Identificação e comparação de ferramentas'}
+                {index === 1 && 'Seleção pedagógica crítica'}
+                {index === 2 && 'Construção e avaliação de prompts'}
+                {index === 3 && 'Criação de recursos multimédia'}
+                {index === 4 && 'Segurança, dados e direitos de autor'}
               </div>
             </div>
           ))}
