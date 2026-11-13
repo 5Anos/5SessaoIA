@@ -57,6 +57,126 @@ export const Page2FerramentasImagem: React.FC = () => {
         </div>
       </section>
 
+      {/* BENEFÍCIOS PARA OS PROFESSORES */}
+      <section className="space-y-6">
+        <div className="border-b border-zinc-200 pb-4 space-y-1">
+          <h2 className="font-display text-2xl font-bold text-zinc-900">
+            BENEFÍCIOS PARA OS PROFESSORES
+          </h2>
+          <p className="text-sm text-zinc-600">
+            Na ótica do professor, estas ferramentas apoiam a criação e adaptação de materiais visuais quando sujeitas a validação pedagógica e científica:
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-4">
+            <div className="space-y-1.5">
+              <div className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-teal-700">
+                <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <span>Benefício 01</span>
+              </div>
+              <h3 className="font-display text-lg font-bold text-zinc-900">
+                Criar materiais didáticos visuais
+              </h3>
+            </div>
+            <p className="text-sm text-zinc-600 leading-relaxed">
+              As ferramentas de IA podem transformar descrições textuais, conceitos abstratos e guiões de aula em ilustrações personalizadas, esquemas visuais e composições para apresentações ou fichas de trabalho, após revisão pelo docente.
+            </p>
+          </article>
+
+          <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-4">
+            <div className="space-y-1.5">
+              <div className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-teal-700">
+                <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <span>Benefício 02</span>
+              </div>
+              <h3 className="font-display text-lg font-bold text-zinc-900">
+                Estimular a Literacia Visual e a Criatividade
+              </h3>
+            </div>
+            <p className="text-sm text-zinc-600 leading-relaxed">
+              Apoia projetos de narrativa visual e análise crítica em turma, permitindo debater enviesamentos, erros anatómicos, incoerências visuais ou estereótipos gerados pelos modelos.
+            </p>
+          </article>
+
+          <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-4">
+            <div className="space-y-1.5">
+              <div className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-teal-700">
+                <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <span>Benefício 03</span>
+              </div>
+              <h3 className="font-display text-lg font-bold text-zinc-900">
+                Apoio à Educação Inclusiva e Acessibilidade
+              </h3>
+            </div>
+            <p className="text-sm text-zinc-600 leading-relaxed">
+              Facilita a criação de apoios visuais simples, ícones e cartões contextualizados à realidade da escola para responder a diferentes ritmos e necessidades de aprendizagem.
+            </p>
+          </article>
+
+          <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-4">
+            <div className="space-y-1.5">
+              <div className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-teal-700">
+                <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <span>Benefício 04</span>
+              </div>
+              <h3 className="font-display text-lg font-bold text-zinc-900">
+                Reconstituição Visual de Cenários Complexos
+              </h3>
+            </div>
+            <p className="text-sm text-zinc-600 leading-relaxed">
+              Permite explorar visualmente contextos históricos, ambientais ou científicos inacessíveis, mantendo clara a distinção entre representação ilustrativa e fonte factual validada.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      {/* COMO ESCOLHER A FERRAMENTA DE IMAGEM */}
+      <section className="space-y-5">
+        <div className="border-b border-zinc-200 pb-3">
+          <h2 className="font-display text-xl font-bold text-zinc-900">
+            COMO ESCOLHER A FERRAMENTA DE IMAGEM
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {[
+            {
+              title: 'Tipo de resultado:',
+              text: 'fotografia, ilustração, diagrama, cartaz ou edição de imagem.',
+            },
+            {
+              title: 'Controlo criativo:',
+              text: 'necessidade de controlar estilo, composição, proporções e elementos visuais.',
+            },
+            {
+              title: 'Texto na imagem:',
+              text: 'quando existir texto, considerar ferramentas com melhores capacidades tipográficas e rever sempre a ortografia.',
+            },
+            {
+              title: 'Condições de utilização:',
+              text: 'confirmar limites gratuitos, idade mínima, privacidade, licenças e direitos de utilização.',
+            },
+          ].map((item, idx) => (
+            <div key={idx} className="bg-white rounded-xl border border-zinc-200 p-5 space-y-2">
+              <div className="font-mono text-xs font-semibold text-zinc-400 tabular-nums">
+                0{idx + 1}
+              </div>
+              <h3 className="text-sm font-bold text-zinc-900">{item.title}</h3>
+              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">{item.text}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 flex items-start gap-3 text-xs sm:text-sm text-amber-950 leading-relaxed">
+          <ShieldAlert className="w-4 h-4 shrink-0 mt-0.5 text-amber-700" aria-hidden="true" />
+          <div>
+            <strong className="font-semibold">Verificação de direitos e licenças: </strong>
+            a geração de uma imagem por IA não garante, por si só, a inexistência de direitos de autor ou de outros direitos de terceiros. É necessário verificar as condições da ferramenta, os direitos sobre os materiais introduzidos, a utilização de marcas, personagens e imagens de pessoas, bem como as condições de utilização do resultado.
+          </div>
+        </div>
+      </section>
+
       <section className="space-y-6">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-zinc-200 pb-4">
           <div>
@@ -229,126 +349,6 @@ export const Page2FerramentasImagem: React.FC = () => {
             </table>
           </div>
         )}
-      </section>
-
-      {/* COMO ESCOLHER A FERRAMENTA DE IMAGEM */}
-      <section className="space-y-5">
-        <div className="border-b border-zinc-200 pb-3">
-          <h2 className="font-display text-xl font-bold text-zinc-900">
-            COMO ESCOLHER A FERRAMENTA DE IMAGEM
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {[
-            {
-              title: 'Tipo de resultado:',
-              text: 'fotografia, ilustração, diagrama, cartaz ou edição de imagem.',
-            },
-            {
-              title: 'Controlo criativo:',
-              text: 'necessidade de controlar estilo, composição, proporções e elementos visuais.',
-            },
-            {
-              title: 'Texto na imagem:',
-              text: 'quando existir texto, considerar ferramentas com melhores capacidades tipográficas e rever sempre a ortografia.',
-            },
-            {
-              title: 'Condições de utilização:',
-              text: 'confirmar limites gratuitos, idade mínima, privacidade, licenças e direitos de utilização.',
-            },
-          ].map((item, idx) => (
-            <div key={idx} className="bg-white rounded-xl border border-zinc-200 p-5 space-y-2">
-              <div className="font-mono text-xs font-semibold text-zinc-400 tabular-nums">
-                0{idx + 1}
-              </div>
-              <h3 className="text-sm font-bold text-zinc-900">{item.title}</h3>
-              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">{item.text}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 flex items-start gap-3 text-xs sm:text-sm text-amber-950 leading-relaxed">
-          <ShieldAlert className="w-4 h-4 shrink-0 mt-0.5 text-amber-700" aria-hidden="true" />
-          <div>
-            <strong className="font-semibold">Verificação de direitos e licenças: </strong>
-            a geração de uma imagem por IA não garante, por si só, a inexistência de direitos de autor ou de outros direitos de terceiros. É necessário verificar as condições da ferramenta, os direitos sobre os materiais introduzidos, a utilização de marcas, personagens e imagens de pessoas, bem como as condições de utilização do resultado.
-          </div>
-        </div>
-      </section>
-
-      {/* BENEFÍCIOS PARA OS PROFESSORES */}
-      <section className="space-y-6">
-        <div className="border-b border-zinc-200 pb-4 space-y-1">
-          <h2 className="font-display text-2xl font-bold text-zinc-900">
-            BENEFÍCIOS PARA OS PROFESSORES
-          </h2>
-          <p className="text-sm text-zinc-600">
-            Na ótica do professor, estas ferramentas apoiam a criação e adaptação de materiais visuais quando sujeitas a validação pedagógica e científica:
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-4">
-            <div className="space-y-1.5">
-              <div className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-teal-700">
-                <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
-                <span>Benefício 01</span>
-              </div>
-              <h3 className="font-display text-lg font-bold text-zinc-900">
-                Criar materiais didáticos visuais
-              </h3>
-            </div>
-            <p className="text-sm text-zinc-600 leading-relaxed">
-              As ferramentas de IA podem transformar descrições textuais, conceitos abstratos e guiões de aula em ilustrações personalizadas, esquemas visuais e composições para apresentações ou fichas de trabalho, após revisão pelo docente.
-            </p>
-          </article>
-
-          <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-4">
-            <div className="space-y-1.5">
-              <div className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-teal-700">
-                <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
-                <span>Benefício 02</span>
-              </div>
-              <h3 className="font-display text-lg font-bold text-zinc-900">
-                Estimular a Literacia Visual e a Criatividade
-              </h3>
-            </div>
-            <p className="text-sm text-zinc-600 leading-relaxed">
-              Apoia projetos de narrativa visual e análise crítica em turma, permitindo debater enviesamentos, erros anatómicos, incoerências visuais ou estereótipos gerados pelos modelos.
-            </p>
-          </article>
-
-          <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-4">
-            <div className="space-y-1.5">
-              <div className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-teal-700">
-                <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
-                <span>Benefício 03</span>
-              </div>
-              <h3 className="font-display text-lg font-bold text-zinc-900">
-                Apoio à Educação Inclusiva e Acessibilidade
-              </h3>
-            </div>
-            <p className="text-sm text-zinc-600 leading-relaxed">
-              Facilita a criação de apoios visuais simples, ícones e cartões contextualizados à realidade da escola para responder a diferentes ritmos e necessidades de aprendizagem.
-            </p>
-          </article>
-
-          <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-4">
-            <div className="space-y-1.5">
-              <div className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-teal-700">
-                <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
-                <span>Benefício 04</span>
-              </div>
-              <h3 className="font-display text-lg font-bold text-zinc-900">
-                Reconstituição Visual de Cenários Complexos
-              </h3>
-            </div>
-            <p className="text-sm text-zinc-600 leading-relaxed">
-              Permite explorar visualmente contextos históricos, ambientais ou científicos inacessíveis, mantendo clara a distinção entre representação ilustrativa e fonte factual validada.
-            </p>
-          </article>
-        </div>
       </section>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ExternalLink, Info } from 'lucide-react';
-import { AUDIO_TASK_CATEGORIES, AUDIO_TOOLS } from '../data/moduloData.ts';
+import { AUDIO_TOOLS } from '../data/moduloData.ts';
 
 const PEDAGOGICAL_BENEFITS = [
   {
@@ -40,37 +40,27 @@ export const Page5FerramentasAudio: React.FC = () => {
           FERRAMENTAS DE ÁUDIO
         </h1>
         <p className="text-sm sm:text-base text-zinc-600 max-w-2xl leading-relaxed">
-          Diferenciação clara de tarefas sonoras, catálogo de cinco ferramentas identificadas, planos gratuitos, limitações, alternativas e vantagens pedagógicas.
+          Vantagens pedagógicas do áudio e catálogo de cinco ferramentas identificadas, planos gratuitos, limitações e alternativas.
         </p>
       </header>
 
       <section className="space-y-5">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-zinc-200 pb-3">
-          <h2 className="font-display text-xl font-bold text-zinc-900">
-            TAREFAS E CAPACIDADES DE ÁUDIO (DISTINÇÃO FUNCIONAL)
+        <div className="border-b border-zinc-200 pb-3">
+          <h2 className="font-display text-2xl font-bold text-zinc-900">
+            VANTAGENS PEDAGÓGICAS DO ÁUDIO
           </h2>
-          <span className="text-xs text-zinc-500 tabular-nums">
-            {AUDIO_TASK_CATEGORIES.length} tarefas distintas
-          </span>
         </div>
 
-        <div className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8 space-y-4">
-          <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
-            Nem todas as plataformas realizam as mesmas tarefas. Deve distinguir-se entre síntese de texto em fala, síntese vocal, gravação, edição, melhoria de voz, transcrição, geração musical, criação de podcasts e publicação.
-          </p>
-          <ol className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {AUDIO_TASK_CATEGORIES.map((task, idx) => (
-              <li
-                key={idx}
-                className="flex items-baseline gap-2.5 text-sm text-zinc-800 bg-[#f8f8f6] px-3.5 py-2.5 rounded-lg border border-zinc-200/70"
-              >
-                <span className="font-mono text-xs font-semibold text-amber-700 tabular-nums shrink-0">
-                  {String(idx + 1).padStart(2, '0')}
-                </span>
-                <span>{task}</span>
-              </li>
-            ))}
-          </ol>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {PEDAGOGICAL_BENEFITS.map((item, idx) => (
+            <div key={idx} className="bg-white rounded-xl border border-zinc-200 p-5 space-y-2">
+              <div className="font-mono text-xs font-semibold text-zinc-400 tabular-nums">
+                0{idx + 1}
+              </div>
+              <h3 className="font-display text-base font-bold text-zinc-900">{item.title}</h3>
+              <p className="text-sm text-zinc-600 leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -133,26 +123,6 @@ export const Page5FerramentasAudio: React.FC = () => {
           <p>
             Ferramentas genéricas de música por IA ou extensões de transcrição de reuniões sem identificação oficial verificável foram removidas. Qualquer solução de transcrição de reuniões só deve ser adotada após validação institucional, verificação das plataformas suportadas, limites gratuitos e cumprimento das regras de privacidade e consentimento.
           </p>
-        </div>
-      </section>
-
-      <section className="space-y-5">
-        <div className="border-b border-zinc-200 pb-3">
-          <h2 className="font-display text-2xl font-bold text-zinc-900">
-            VANTAGENS PEDAGÓGICAS DO ÁUDIO
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {PEDAGOGICAL_BENEFITS.map((item, idx) => (
-            <div key={idx} className="bg-white rounded-xl border border-zinc-200 p-5 space-y-2">
-              <div className="font-mono text-xs font-semibold text-zinc-400 tabular-nums">
-                0{idx + 1}
-              </div>
-              <h3 className="font-display text-base font-bold text-zinc-900">{item.title}</h3>
-              <p className="text-sm text-zinc-600 leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
         </div>
       </section>
     </div>
