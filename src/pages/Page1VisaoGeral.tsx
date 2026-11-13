@@ -1,0 +1,114 @@
+import React from 'react';
+import { ArrowRight, FileText } from 'lucide-react';
+import { MODULE_OBJECTIVES } from '../data/moduloData.ts';
+import { HERO_STUDIO_IMAGE } from '../data/mediaAssets.ts';
+import { VisualFrame } from '../components/VisualFrame.tsx';
+
+interface Page1Props {
+  onNavigateToPage: (pageNumber: number) => void;
+  onOpenPdf: () => void;
+}
+
+export const Page1VisaoGeral: React.FC<Page1Props> = ({
+  onNavigateToPage,
+  onOpenPdf,
+}) => {
+  return (
+    <div className="space-y-12">
+      {/* Editorial Split Hero */}
+      <section className="bg-white rounded-2xl border border-zinc-200 overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+          <div className="lg:col-span-7 p-6 sm:p-10 lg:p-12 flex flex-col justify-between gap-8">
+            <div className="space-y-5">
+              <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-500 font-medium">
+                <span className="font-semibold text-blue-700">Módulo 3</span>
+                <span aria-hidden="true">·</span>
+                <span>23 de fevereiro de 2026</span>
+                <span aria-hidden="true">·</span>
+                <span>Autoria: Carla Oliveira</span>
+              </div>
+
+              <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 leading-[1.12] max-w-2xl">
+                Ferramentas de IA na Educação
+              </h1>
+
+              <p className="text-sm text-zinc-600 leading-relaxed max-w-xl">
+                Fonte: Modulo3_FerramentasIA_2 | Genially | Autoria: Carla Oliveira (23 de fevereiro de 2026)
+              </p>
+
+              <div className="pt-4 border-t border-zinc-200 text-xs sm:text-sm text-zinc-700 leading-relaxed max-w-xl">
+                <strong className="font-semibold text-zinc-900">Nota: </strong>
+                Este documento contém exclusivamente o texto integral da plataforma Genially (Módulo 3), reproduzido de forma estrita e fidedigna sem qualquer adição ou interpolação externa.
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={() => onNavigateToPage(2)}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-semibold text-sm transition-colors min-h-[44px]"
+              >
+                <span>Explorar Ferramentas de Imagem</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <button
+                type="button"
+                onClick={onOpenPdf}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white hover:bg-zinc-50 text-zinc-800 font-medium text-sm border border-zinc-300 transition-colors min-h-[44px]"
+              >
+                <FileText className="w-4 h-4 text-zinc-500" />
+                <span>Ver PDF Original</span>
+              </button>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5 bg-zinc-100 border-t lg:border-t-0 lg:border-l border-zinc-200 flex flex-col">
+            <VisualFrame
+              src={HERO_STUDIO_IMAGE}
+              alt="Espaço de trabalho docente com ilustrações botânicas digitais e plano de aula"
+              aspectClass="aspect-[16/10] lg:aspect-auto lg:h-full"
+              allowZoom={false}
+              className="h-full [&>div]:rounded-none [&>div]:border-0 [&>div]:h-full"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* OBJETIVOS DO MODULO 3 */}
+      <section className="space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-zinc-200 pb-4">
+          <div>
+            <div className="text-xs font-medium text-zinc-500 mb-1">Enquadramento Pedagógico</div>
+            <h2 className="font-display text-2xl font-bold text-zinc-900 tracking-tight">
+              OBJETIVOS DO MODULO 3
+            </h2>
+          </div>
+          <span className="text-xs text-zinc-500 tabular-nums">3 metas de aprendizagem</span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {MODULE_OBJECTIVES.map((obj, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-xl border border-zinc-200 p-6 flex flex-col justify-between gap-4"
+            >
+              <div className="space-y-3">
+                <div className="font-mono text-xs font-semibold text-blue-700 tabular-nums">
+                  {String(index + 1).padStart(2, '0')}.
+                </div>
+                <p className="text-sm sm:text-base font-medium text-zinc-900 leading-relaxed">
+                  {obj}
+                </p>
+              </div>
+              <div className="pt-3 border-t border-zinc-100 text-xs text-zinc-500">
+                {index === 0 && 'Panorama de ferramentas educativas'}
+                {index === 1 && 'Experimentação prática guiada'}
+                {index === 2 && 'Produção de recursos letivos'}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+};

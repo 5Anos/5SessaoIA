@@ -1,0 +1,6 @@
+{
+  "name": "Ferramentas de IA na Educação - Módulo 3",
+  "description": "Recurso educativo digital interativo com a transcrição integral e estruturada do Módulo 3: Ferramentas de IA na Educação (Imagem e Áudio), autoria de Carla Oliveira.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
