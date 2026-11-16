@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LayoutGrid, Table2, CheckCircle2, ExternalLink, ShieldAlert } from 'lucide-react';
+import { LayoutGrid, Table2, ExternalLink, ShieldAlert } from 'lucide-react';
 import {
   IMAGE_CAPABILITIES,
   filterImageTools,
@@ -12,7 +12,7 @@ export const Page2FerramentasImagem: React.FC = () => {
   const tools = filterImageTools(focusFilter);
 
   const filterTabs = [
-    { id: 'todas', label: 'Todas (5)' },
+    { id: 'todas', label: 'Todas' },
     { id: 'iniciacao', label: 'Iniciação & Design' },
     { id: 'controlo-estilo', label: 'Controlo & Estilo' },
     { id: 'edicao-texto', label: 'Edição & Tipografia' },
@@ -21,9 +21,6 @@ export const Page2FerramentasImagem: React.FC = () => {
   return (
     <div className="space-y-12">
       <header className="border-b border-zinc-200 pb-6 space-y-2">
-        <div className="text-xs font-medium text-zinc-500">
-          Página 2 de 8 · Criação Visual com IA
-        </div>
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
           FERRAMENTAS DE IMAGEM
         </h1>
@@ -33,11 +30,10 @@ export const Page2FerramentasImagem: React.FC = () => {
       </header>
 
       <section className="space-y-5">
-        <div className="flex items-end justify-between border-b border-zinc-200 pb-3">
+        <div className="border-b border-zinc-200 pb-3">
           <h2 className="font-display text-xl font-bold text-zinc-900">
             ESTAS FERRAMENTAS PERMITEM:
           </h2>
-          <span className="text-xs text-zinc-500 tabular-nums">7 capacidades</span>
         </div>
 
         <div className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8">
@@ -69,61 +65,37 @@ export const Page2FerramentasImagem: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-4">
-            <div className="space-y-1.5">
-              <div className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-teal-700">
-                <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
-                <span>Benefício 01</span>
-              </div>
-              <h3 className="font-display text-lg font-bold text-zinc-900">
-                Criar materiais didáticos visuais
-              </h3>
-            </div>
+          <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-2.5">
+            <h3 className="font-display text-lg font-bold text-zinc-900">
+              Criar materiais didáticos visuais
+            </h3>
             <p className="text-sm text-zinc-600 leading-relaxed">
               As ferramentas de IA podem transformar descrições textuais, conceitos abstratos e guiões de aula em ilustrações personalizadas, esquemas visuais e composições para apresentações ou fichas de trabalho, após revisão pelo docente.
             </p>
           </article>
 
-          <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-4">
-            <div className="space-y-1.5">
-              <div className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-teal-700">
-                <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
-                <span>Benefício 02</span>
-              </div>
-              <h3 className="font-display text-lg font-bold text-zinc-900">
-                Estimular a Literacia Visual e a Criatividade
-              </h3>
-            </div>
+          <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-2.5">
+            <h3 className="font-display text-lg font-bold text-zinc-900">
+              Estimular a Literacia Visual e a Criatividade
+            </h3>
             <p className="text-sm text-zinc-600 leading-relaxed">
               Apoia projetos de narrativa visual e análise crítica em turma, permitindo debater enviesamentos, erros anatómicos, incoerências visuais ou estereótipos gerados pelos modelos.
             </p>
           </article>
 
-          <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-4">
-            <div className="space-y-1.5">
-              <div className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-teal-700">
-                <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
-                <span>Benefício 03</span>
-              </div>
-              <h3 className="font-display text-lg font-bold text-zinc-900">
-                Apoio à Educação Inclusiva e Acessibilidade
-              </h3>
-            </div>
+          <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-2.5">
+            <h3 className="font-display text-lg font-bold text-zinc-900">
+              Apoio à Educação Inclusiva e Acessibilidade
+            </h3>
             <p className="text-sm text-zinc-600 leading-relaxed">
               Facilita a criação de apoios visuais simples, ícones e cartões contextualizados à realidade da escola para responder a diferentes ritmos e necessidades de aprendizagem.
             </p>
           </article>
 
-          <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-4">
-            <div className="space-y-1.5">
-              <div className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-teal-700">
-                <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
-                <span>Benefício 04</span>
-              </div>
-              <h3 className="font-display text-lg font-bold text-zinc-900">
-                Reconstituição Visual de Cenários Complexos
-              </h3>
-            </div>
+          <article className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 space-y-2.5">
+            <h3 className="font-display text-lg font-bold text-zinc-900">
+              Reconstituição Visual de Cenários Complexos
+            </h3>
             <p className="text-sm text-zinc-600 leading-relaxed">
               Permite explorar visualmente contextos históricos, ambientais ou científicos inacessíveis, mantendo clara a distinção entre representação ilustrativa e fonte factual validada.
             </p>
@@ -246,7 +218,9 @@ export const Page2FerramentasImagem: React.FC = () => {
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between gap-3">
-                    <span className="text-xs font-medium text-blue-700">{tool.shortTag}</span>
+                    <h3 className="font-display text-xl font-bold text-zinc-900">
+                      {tool.name}
+                    </h3>
                     <a
                       href={tool.officialUrl}
                       target="_blank"
@@ -258,9 +232,6 @@ export const Page2FerramentasImagem: React.FC = () => {
                       <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
                     </a>
                   </div>
-                  <h3 className="font-display text-xl font-bold text-zinc-900">
-                    {tool.name}
-                  </h3>
                   <p className="text-sm text-zinc-700 leading-relaxed">{tool.description}</p>
                 </div>
 

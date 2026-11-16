@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { Copy, Check } from 'lucide-react';
-import {
-  IMAGE_PROMPTS,
-  PROMPT_TEST_STATUS_LABELS,
-  filterPromptsByCategory,
-} from '../data/moduloData.ts';
+import { filterPromptsByCategory } from '../data/moduloData.ts';
 import { PROMPT_SAMPLE_IMAGES } from '../data/mediaAssets.ts';
 import { VisualFrame } from '../components/VisualFrame.tsx';
 
@@ -55,20 +51,17 @@ export const Page3PromptsImagem: React.FC = () => {
   return (
     <div className="space-y-10">
       <header className="border-b border-zinc-200 pb-6 space-y-2">
-        <div className="text-xs font-medium text-zinc-500">
-          Página 3 de 8 · Engenharia de Prompts Educativos
-        </div>
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
           PROMPTS PARA CRIAR IMAGENS — 12 EXEMPLOS COMPLETOS
         </h1>
         <p className="text-sm sm:text-base text-zinc-600 max-w-2xl leading-relaxed">
-          Cada exemplo apresenta o objetivo pedagógico, a ferramenta recomendada, o prompt completo, o resultado esperado com área visual associada, a alternativa gratuita e o estado de validação.
+          Cada exemplo apresenta o objetivo pedagógico, a ferramenta recomendada, o prompt completo, o resultado esperado com área visual associada e a alternativa gratuita.
         </p>
       </header>
 
       <section className="space-y-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-zinc-200 pb-4">
-          <div className="flex items-center gap-1 p-1 bg-zinc-100 rounded-lg overflow-x-auto max-w-full">
+        <div className="border-b border-zinc-200 pb-4">
+          <div className="inline-flex items-center gap-1 p-1 bg-zinc-100 rounded-lg overflow-x-auto max-w-full">
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -84,9 +77,6 @@ export const Page3PromptsImagem: React.FC = () => {
               </button>
             ))}
           </div>
-          <div className="text-xs text-zinc-500 tabular-nums shrink-0">
-            A mostrar {prompts.length} de {IMAGE_PROMPTS.length} prompts
-          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -99,19 +89,6 @@ export const Page3PromptsImagem: React.FC = () => {
                 className="bg-white rounded-2xl border border-zinc-200 p-6 flex flex-col justify-between gap-5"
               >
                 <div className="space-y-4">
-                  <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-500">
-                    <div className="flex items-center gap-2">
-                      <span className="font-mono font-semibold text-blue-700 tabular-nums">
-                        {String(p.id).padStart(2, '0')}
-                      </span>
-                      <span aria-hidden="true">·</span>
-                      <span>{p.category}</span>
-                    </div>
-                    <span className="px-2.5 py-1 rounded-md bg-zinc-100 text-zinc-700 font-medium text-[11px]">
-                      {PROMPT_TEST_STATUS_LABELS[p.testStatus]}
-                    </span>
-                  </div>
-
                   <h2 className="font-display text-xl font-bold text-zinc-900">
                     {p.id}. {p.title}
                   </h2>
@@ -170,7 +147,6 @@ export const Page3PromptsImagem: React.FC = () => {
                       <VisualFrame
                         src={sampleSrc}
                         alt={`Referência visual ilustrativa para o prompt ${p.id}: ${p.title}`}
-                        caption="Imagem de referência ilustrativa — proveniência da ferramenta recomendada por confirmar"
                         aspectClass="aspect-[16/9]"
                         allowZoom={true}
                       />

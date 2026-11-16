@@ -27,7 +27,11 @@ test('PAGES_LIST contains 8 pages with valid navigation groups', () => {
   assert.equal(getPageByNumber(7)?.id, 'etica-seguranca');
   assert.equal(getPageByNumber(8)?.id, 'bibliografia');
   assert.equal(getPageById('prompts-imagem')?.number, 3);
-  assert.equal(MODULE_OBJECTIVES.length, 5);
+  assert.deepEqual(MODULE_OBJECTIVES, [
+    'Conhecer diferentes ferramentas de IA úteis na educação.',
+    'Experimentar ferramentas de IA para texto, imagem, áudio e vídeo.',
+    'Criar recursos educativos com apoio da IA (planos de aula, apresentações, atividades e vídeos).',
+  ]);
 });
 
 test('IMAGE_TOOLS contains 5 identified tools without generic placeholders', () => {

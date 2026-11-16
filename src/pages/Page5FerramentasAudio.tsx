@@ -33,9 +33,6 @@ export const Page5FerramentasAudio: React.FC = () => {
   return (
     <div className="space-y-12">
       <header className="border-b border-zinc-200 pb-6 space-y-2">
-        <div className="text-xs font-medium text-zinc-500">
-          Página 5 de 8 · Som, Narração, Edição e Podcasts
-        </div>
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
           FERRAMENTAS DE ÁUDIO
         </h1>
@@ -82,7 +79,7 @@ export const Page5FerramentasAudio: React.FC = () => {
             >
               <div className="space-y-2.5">
                 <div className="flex items-center justify-between gap-3">
-                  <span className="text-xs font-semibold text-amber-800">{tool.category}</span>
+                  <h3 className="font-display text-xl font-bold text-zinc-900">{tool.name}</h3>
                   <a
                     href={tool.officialUrl}
                     target="_blank"
@@ -93,7 +90,6 @@ export const Page5FerramentasAudio: React.FC = () => {
                     <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
                   </a>
                 </div>
-                <h3 className="font-display text-xl font-bold text-zinc-900">{tool.name}</h3>
                 <p className="text-sm text-zinc-700 leading-relaxed">{tool.recommendedFor}</p>
               </div>
 

@@ -82,7 +82,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             <div className="py-10 text-center text-zinc-500">
               <BookOpen className="w-8 h-8 mx-auto mb-2.5 text-zinc-300 stroke-1" />
               <p className="text-sm font-medium text-zinc-700">
-                Pesquise em todas as 8 páginas do Módulo 3
+                Pesquise no Módulo 3
               </p>
               <p className="text-xs text-zinc-400 mt-1">
                 Experimente: Designer, Canva, ElevenLabs, Audacity, RGPD, AI Act
@@ -99,9 +99,6 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             </div>
           ) : (
             <div className="divide-y divide-zinc-100">
-              <div className="text-xs font-medium text-zinc-500 pb-2 px-2 tabular-nums">
-                {results.length} {results.length === 1 ? 'resultado' : 'resultados'} no documento
-              </div>
               {results.map((res, idx) => (
                 <button
                   key={`${res.pageId}-${idx}`}

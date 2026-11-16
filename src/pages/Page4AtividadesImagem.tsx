@@ -71,9 +71,6 @@ export const Page4AtividadesImagem: React.FC = () => {
   return (
     <div className="space-y-10">
       <header className="border-b border-zinc-200 pb-6 space-y-2">
-        <div className="text-xs font-medium text-zinc-500">
-          Página 4 de 8 · Prática Letiva com Imagem
-        </div>
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
           ATIVIDADES EM SALA DE AULA COM FERRAMENTAS DE IMAGEM
         </h1>
@@ -84,14 +81,12 @@ export const Page4AtividadesImagem: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <aside className="lg:col-span-4 bg-white rounded-2xl border border-zinc-200 divide-y divide-zinc-200 overflow-hidden">
-          <div className="px-5 py-3.5 bg-zinc-50 text-xs font-semibold text-zinc-700 flex items-center justify-between">
-            <span>Planos de Atividade</span>
-            <span className="font-mono text-zinc-500 tabular-nums">5 propostas</span>
+          <div className="px-5 py-3.5 bg-zinc-50 text-xs font-semibold text-zinc-700">
+            Planos de Atividade
           </div>
           {IMAGE_ACTIVITIES.map((act, index) => {
             const isSelected = act.id === selectedActivityId;
             const cleanTitle = act.title.replace(/^ATIVIDADE:\s*/, '');
-            const done = getCompletedCount(act.id);
             return (
               <button
                 key={act.id}
@@ -104,16 +99,13 @@ export const Page4AtividadesImagem: React.FC = () => {
                   isSelected ? 'bg-blue-50/70' : 'hover:bg-zinc-50'
                 }`}
               >
-                <div className="flex items-center justify-between gap-2 text-xs">
+                <div className="text-xs">
                   <span
                     className={`font-mono font-semibold tabular-nums ${
                       isSelected ? 'text-blue-700' : 'text-zinc-400'
                     }`}
                   >
                     Atividade {index + 1}
-                  </span>
-                  <span className="font-mono text-[11px] text-zinc-500 tabular-nums">
-                    {done}/5 preparados
                   </span>
                 </div>
                 <div
@@ -132,10 +124,11 @@ export const Page4AtividadesImagem: React.FC = () => {
         <article className="lg:col-span-8 bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8 space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b border-zinc-200 pb-6">
             <div className="space-y-1.5">
-              <div className="text-xs font-medium text-blue-700">
-                Plano Pedagógico Revisto
-                {activeActivity.subject ? ` · ${activeActivity.subject}` : ''}
-              </div>
+              {activeActivity.subject && (
+                <div className="text-xs font-medium text-blue-700">
+                  {activeActivity.subject}
+                </div>
+              )}
               <h2 className="font-display text-2xl font-bold text-zinc-900">
                 {activeActivity.title}
               </h2>
@@ -191,7 +184,7 @@ export const Page4AtividadesImagem: React.FC = () => {
             </p>
             <div className="rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-4 space-y-1">
               <div className="text-xs font-semibold text-zinc-900">
-                Resultado esperado (imagem pendente de geração/validação na ferramenta recomendada)
+                Resultado esperado
               </div>
               <p className="text-xs sm:text-sm text-zinc-700">{activeActivity.expectedResult}</p>
             </div>

@@ -118,9 +118,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }`}
               >
                 <span className="truncate">
-                  {String(page.number).padStart(2, '0')}. {page.shortTitle}
+                  {page.shortTitle}
                 </span>
-                <span className="text-xs text-zinc-400 shrink-0 ml-2">{page.category}</span>
               </button>
             );
           })}

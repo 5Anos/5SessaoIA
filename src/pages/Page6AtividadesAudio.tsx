@@ -72,9 +72,6 @@ export const Page6AtividadesAudio: React.FC = () => {
   return (
     <div className="space-y-10">
       <header className="border-b border-zinc-200 pb-6 space-y-2">
-        <div className="text-xs font-medium text-zinc-500">
-          Página 6 de 8 · Prática Letiva com Áudio
-        </div>
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
           ATIVIDADES EM SALA DE AULA COM FERRAMENTAS DE ÁUDIO
         </h1>
@@ -85,16 +82,12 @@ export const Page6AtividadesAudio: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <aside className="lg:col-span-4 bg-white rounded-2xl border border-zinc-200 divide-y divide-zinc-200 overflow-hidden">
-          <div className="px-5 py-3.5 bg-zinc-50 text-xs font-semibold text-zinc-700 flex items-center justify-between">
-            <span>Planos de Áudio</span>
-            <span className="font-mono text-zinc-500 tabular-nums">
-              {AUDIO_ACTIVITIES.length} propostas
-            </span>
+          <div className="px-5 py-3.5 bg-zinc-50 text-xs font-semibold text-zinc-700">
+            Planos de Áudio
           </div>
           {AUDIO_ACTIVITIES.map((act, index) => {
             const isSelected = act.id === selectedActivityId;
             const cleanTitle = act.title.replace(/^ATIVIDADE:\s*/, '');
-            const done = getCompletedCount(act.id);
             return (
               <button
                 key={act.id}
@@ -107,16 +100,13 @@ export const Page6AtividadesAudio: React.FC = () => {
                   isSelected ? 'bg-amber-50/70' : 'hover:bg-zinc-50'
                 }`}
               >
-                <div className="flex items-center justify-between gap-2 text-xs">
+                <div className="text-xs">
                   <span
                     className={`font-mono font-semibold tabular-nums ${
                       isSelected ? 'text-amber-800' : 'text-zinc-400'
                     }`}
                   >
                     Atividade {index + 1}
-                  </span>
-                  <span className="font-mono text-[11px] text-zinc-500 tabular-nums">
-                    {done}/5 preparados
                   </span>
                 </div>
                 <div
@@ -133,14 +123,9 @@ export const Page6AtividadesAudio: React.FC = () => {
 
         <article className="lg:col-span-8 bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8 space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b border-zinc-200 pb-6">
-            <div className="space-y-1.5">
-              <div className="text-xs font-medium text-amber-800">
-                Plano de Aula de Áudio
-              </div>
-              <h2 className="font-display text-2xl font-bold text-zinc-900">
-                {activeActivity.title}
-              </h2>
-            </div>
+            <h2 className="font-display text-2xl font-bold text-zinc-900">
+              {activeActivity.title}
+            </h2>
 
             {getCompletedCount(activeActivity.id) > 0 && (
               <button

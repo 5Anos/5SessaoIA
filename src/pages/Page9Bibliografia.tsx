@@ -39,9 +39,6 @@ export const Page9Bibliografia: React.FC = () => {
   return (
     <div className="space-y-12">
       <header className="border-b border-zinc-200 pb-6 space-y-2">
-        <div className="text-xs font-medium text-zinc-500">
-          Página 8 de 8 · Referências Oficiais e Académicas
-        </div>
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
           BIBLIOGRAFIA E RECURSOS OFICIAIS
         </h1>
@@ -51,13 +48,10 @@ export const Page9Bibliografia: React.FC = () => {
       </header>
 
       <section className="space-y-5">
-        <div className="flex items-end justify-between border-b border-zinc-200 pb-3">
+        <div className="border-b border-zinc-200 pb-3">
           <h2 className="font-display text-xl font-bold text-zinc-900">
             Referências Bibliográficas e Normativas (APA 7)
           </h2>
-          <span className="text-xs text-zinc-500 tabular-nums">
-            {BIBLIOGRAPHY.length} referências
-          </span>
         </div>
 
         <div className="bg-white rounded-2xl border border-zinc-200 divide-y divide-zinc-200">
@@ -128,7 +122,7 @@ export const Page9Bibliografia: React.FC = () => {
           </h2>
         </div>
 
-        <dl className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
+        <dl className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
           <div className="space-y-1">
             <dt className="text-xs font-medium text-zinc-500">Autoria Original</dt>
             <dd className="font-display text-base font-bold text-zinc-900">Carla Oliveira</dd>
@@ -138,11 +132,6 @@ export const Page9Bibliografia: React.FC = () => {
             <dt className="text-xs font-medium text-zinc-500">Datas de Edição</dt>
             <dd className="font-display text-base font-bold text-zinc-900">23 de fevereiro de 2026</dd>
             <dd className="text-xs text-zinc-500">Última revisão editorial: 13 de novembro de 2026</dd>
-          </div>
-          <div className="space-y-1">
-            <dt className="text-xs font-medium text-zinc-500">Estrutura Atual</dt>
-            <dd className="font-mono text-sm font-semibold text-zinc-900">8 páginas formativas</dd>
-            <dd className="text-xs text-zinc-500">Imagem, Áudio, Ética e Recursos</dd>
           </div>
         </dl>
 

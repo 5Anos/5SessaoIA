@@ -31,7 +31,7 @@ export const PAGES_LIST: PageInfo[] = [
     shortTitle: 'Visão Geral',
     navGroup: 'inicio',
     category: 'Geral',
-    description: 'Introdução ao módulo de formação docente, enquadramento metodológico e cinco objetivos de aprendizagem.',
+    description: 'Introdução ao módulo de formação docente, enquadramento metodológico e três objetivos de aprendizagem.',
   },
   {
     id: 'ferramentas-imagem',
@@ -99,11 +99,9 @@ export const PAGES_LIST: PageInfo[] = [
 ];
 
 export const MODULE_OBJECTIVES: string[] = [
-  'Identificar e comparar ferramentas de inteligência artificial para a criação de imagens e áudio.',
-  'Selecionar a ferramenta mais adequada em função do objetivo pedagógico, da qualidade pretendida e das suas limitações.',
-  'Construir, testar e aperfeiçoar prompts, avaliando criticamente os resultados produzidos.',
-  'Criar recursos educativos multimédia adequados a diferentes disciplinas, níveis de ensino e necessidades de aprendizagem.',
-  'Aplicar princípios de segurança, proteção de dados, direitos de autor, acessibilidade e utilização responsável da inteligência artificial.',
+  'Conhecer diferentes ferramentas de IA úteis na educação.',
+  'Experimentar ferramentas de IA para texto, imagem, áudio e vídeo.',
+  'Criar recursos educativos com apoio da IA (planos de aula, apresentações, atividades e vídeos).',
 ];
 
 export const IMAGE_CAPABILITIES: string[] = [

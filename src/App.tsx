@@ -82,9 +82,7 @@ export default function App() {
 
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
         <div>
-          {currentPage === 1 && (
-            <Page1VisaoGeral onNavigateToPage={handleSelectPage} />
-          )}
+          {currentPage === 1 && <Page1VisaoGeral />}
           {currentPage === 2 && <Page2FerramentasImagem />}
           {currentPage === 3 && <Page3PromptsImagem />}
           {currentPage === 4 && <Page4AtividadesImagem />}
