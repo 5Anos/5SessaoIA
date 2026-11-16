@@ -40,7 +40,7 @@ export const Page9Bibliografia: React.FC = () => {
     <div className="space-y-12">
       <header className="border-b border-zinc-200 pb-6 space-y-2">
         <div className="text-xs font-medium text-zinc-500">
-          Página 9 de 9 · Referências Oficiais e Académicas
+          Página 8 de 8 · Referências Oficiais e Académicas
         </div>
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
           BIBLIOGRAFIA E RECURSOS OFICIAIS
@@ -141,8 +141,8 @@ export const Page9Bibliografia: React.FC = () => {
           </div>
           <div className="space-y-1">
             <dt className="text-xs font-medium text-zinc-500">Estrutura Atual</dt>
-            <dd className="font-mono text-sm font-semibold text-zinc-900">9 páginas formativas</dd>
-            <dd className="text-xs text-zinc-500">Imagem, Áudio, Vídeo, Ética e Recursos</dd>
+            <dd className="font-mono text-sm font-semibold text-zinc-900">8 páginas formativas</dd>
+            <dd className="text-xs text-zinc-500">Imagem, Áudio, Ética e Recursos</dd>
           </div>
         </dl>
 

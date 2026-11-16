@@ -1,6 +1,6 @@
 # Ferramentas de IA na Educação — Módulo 3
 
-Plataforma educativa interativa em **português europeu (PT-PT)** dedicada à formação de docentes na criação e utilização pedagógica de **imagem, áudio, vídeo, ética, proteção de dados (RGPD) e legislação (Regulamento Europeu de IA)**.
+Plataforma educativa interativa em **português europeu (PT-PT)** dedicada à formação de docentes na criação e utilização pedagógica de **imagem, áudio, ética, proteção de dados (RGPD) e legislação (Regulamento Europeu de IA)**.
 
 ## Publicar no GitHub Pages (automático)
 

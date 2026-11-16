@@ -18,9 +18,8 @@ const TOP_NAV_ITEMS: {
   { pageNumber: 4, label: 'Ativ. Imagem' },
   { pageNumber: 5, label: 'Áudio' },
   { pageNumber: 6, label: 'Ativ. Áudio' },
-  { pageNumber: 7, label: 'Vídeo' },
-  { pageNumber: 8, label: 'Ética' },
-  { pageNumber: 9, label: 'Bibliografia' },
+  { pageNumber: 7, label: 'Ética' },
+  { pageNumber: 8, label: 'Bibliografia' },
 ];
 
 export const Navbar: React.FC<NavbarProps> = ({

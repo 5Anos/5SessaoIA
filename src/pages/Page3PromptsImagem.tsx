@@ -56,7 +56,7 @@ export const Page3PromptsImagem: React.FC = () => {
     <div className="space-y-10">
       <header className="border-b border-zinc-200 pb-6 space-y-2">
         <div className="text-xs font-medium text-zinc-500">
-          Página 3 de 9 · Engenharia de Prompts Educativos
+          Página 3 de 8 · Engenharia de Prompts Educativos
         </div>
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
           PROMPTS PARA CRIAR IMAGENS — 12 EXEMPLOS COMPLETOS

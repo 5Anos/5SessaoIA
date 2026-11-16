@@ -10,7 +10,6 @@ export type NavGroup =
   | 'prompts'
   | 'atividades'
   | 'audio'
-  | 'video'
   | 'etica'
   | 'bibliografia';
 
@@ -20,7 +19,7 @@ export interface PageInfo {
   title: string;
   shortTitle: string;
   navGroup: NavGroup;
-  category: 'Geral' | 'Imagem' | 'Áudio' | 'Vídeo' | 'Ética & Legislação' | 'Referências';
+  category: 'Geral' | 'Imagem' | 'Áudio' | 'Ética & Legislação' | 'Referências';
   description: string;
 }
 
@@ -80,17 +79,8 @@ export const PAGES_LIST: PageInfo[] = [
     description: 'Duas atividades completas (Vozes do Património e Podcast Cidade 2050) com guião, ferramentas, alternativa gratuita e representação visual.',
   },
   {
-    id: 'ferramentas-video',
-    number: 7,
-    title: 'Ferramentas e Atividades de Vídeo',
-    shortTitle: 'Vídeo',
-    navGroup: 'video',
-    category: 'Vídeo',
-    description: 'Geração de vídeo com IA, avatares e tradução, edição de vídeo, três prompts exemplificativos e a atividade O Dobrador Poliglota.',
-  },
-  {
     id: 'etica-seguranca',
-    number: 8,
+    number: 7,
     title: 'Ética, Segurança e Legislação',
     shortTitle: 'Ética e Segurança',
     navGroup: 'etica',
@@ -99,7 +89,7 @@ export const PAGES_LIST: PageInfo[] = [
   },
   {
     id: 'bibliografia',
-    number: 9,
+    number: 8,
     title: 'Bibliografia e Recursos',
     shortTitle: 'Bibliografia',
     navGroup: 'bibliografia',
@@ -109,7 +99,7 @@ export const PAGES_LIST: PageInfo[] = [
 ];
 
 export const MODULE_OBJECTIVES: string[] = [
-  'Identificar e comparar ferramentas de inteligência artificial para a criação de imagens, áudio e vídeo.',
+  'Identificar e comparar ferramentas de inteligência artificial para a criação de imagens e áudio.',
   'Selecionar a ferramenta mais adequada em função do objetivo pedagógico, da qualidade pretendida e das suas limitações.',
   'Construir, testar e aperfeiçoar prompts, avaliando criticamente os resultados produzidos.',
   'Criar recursos educativos multimédia adequados a diferentes disciplinas, níveis de ensino e necessidades de aprendizagem.',
@@ -863,149 +853,6 @@ export const AUDIO_ACTIVITIES: AudioActivity[] = [
   },
 ];
 
-export interface VideoTool {
-  id: string;
-  category: 'Geração de vídeo com IA' | 'Avatares de IA e tradução de vídeo' | 'Edição de vídeo';
-  name: string;
-  recommendedFor: string;
-  freePlan: string;
-  limitations: string;
-  officialUrl: string;
-  freeAlternative: string;
-}
-
-export const VIDEO_TOOLS: VideoTool[] = [
-  {
-    id: 'runway',
-    category: 'Geração de vídeo com IA',
-    name: 'Runway',
-    recommendedFor: 'Sequências curtas de texto para vídeo e imagem para vídeo.',
-    freePlan: '125 créditos únicos na criação da conta; não são renováveis.',
-    limitations: 'Seleção limitada de modelos e ferramentas; marca de água nos resultados gerados no plano gratuito.',
-    officialUrl: 'https://runwayml.com/',
-    freeAlternative: 'Criar animações simples e transições manualmente no CapCut.',
-  },
-  {
-    id: 'heygen',
-    category: 'Avatares de IA e tradução de vídeo',
-    name: 'HeyGen',
-    recommendedFor: 'Apresentadores digitais com IA, dobragem e tradução de vídeo.',
-    freePlan: 'Até 3 vídeos por mês, até 1 minuto cada, com marca de água e resolução limitada.',
-    limitations: 'As cotas e funcionalidades podem mudar; não prometer nem assumir tradução ilimitada de vídeo.',
-    officialUrl: 'https://www.heygen.com/',
-    freeAlternative: 'CapCut para legendas, edição e narração gravada manualmente (não é uma solução equivalente de sincronização labial automática).',
-  },
-  {
-    id: 'capcut',
-    category: 'Edição de vídeo',
-    name: 'CapCut',
-    recommendedFor: 'Editar clipes, adicionar legendas, organizar cenas, narração e som.',
-    freePlan: 'Ferramentas básicas de edição disponíveis gratuitamente.',
-    limitations: 'Funcionalidades de IA, opções de exportação e efeitos premium podem exigir plano pago.',
-    officialUrl: 'https://www.capcut.com/',
-    freeAlternative: 'Edição básica no próprio CapCut ou noutro editor gratuito, consoante a tarefa.',
-  },
-];
-
-export interface VideoPrompt {
-  id: number;
-  title: string;
-  objective: string;
-  recommendedTool: string;
-  prompt: string;
-  expectedResult: string;
-  freeAlternative: string;
-}
-
-export const VIDEO_PROMPTS: VideoPrompt[] = [
-  {
-    id: 1,
-    title: 'Ciclo da Água',
-    objective: 'Explicar as principais fases do ciclo da água.',
-    recommendedTool: 'Runway',
-    prompt: 'Create a short educational animated sequence showing the water cycle in a natural landscape. Show sunlight heating a lake, water evaporating into the atmosphere, clouds forming through condensation, rain falling over mountains and water flowing back into rivers and lakes. Use a clean educational animation style, stable camera, simple visual transitions and scientifically coherent movement. Do not include written labels, subtitles, logos or watermarks. Landscape 16:9.',
-    expectedResult: 'Vídeo curto com sequência visual clara de evaporação, condensação, precipitação e recolha.',
-    freeAlternative: 'Criar uma animação simples com imagens, transições e setas no CapCut.',
-  },
-  {
-    id: 2,
-    title: 'Apresentador Digital',
-    objective: 'Produzir uma breve apresentação oral de um conteúdo curricular.',
-    recommendedTool: 'HeyGen',
-    prompt: 'Create a short educational presenter video using a professional, friendly and natural-looking adult presenter. The presenter speaks in European Portuguese, with clear pronunciation, a calm pace and an appropriate educational tone. Use the following script exactly, without adding unsupported facts: [INSERT VERIFIED SCRIPT]. Use a clean classroom-style background, medium framing and natural facial expressions. Do not add logos or distracting visual effects.',
-    expectedResult: 'Vídeo curto com apresentador digital, discurso claro e enquadramento profissional.',
-    freeAlternative: 'Gravar o professor ou formador e editar o vídeo no CapCut.',
-  },
-  {
-    id: 3,
-    title: 'Dobrador Poliglota',
-    objective: 'Desenvolver competência linguística e avaliar criticamente traduções e dobragens automáticas.',
-    recommendedTool: 'HeyGen',
-    prompt: 'Translate the supplied short video from European Portuguese into English. Preserve the original meaning, tone and intention. Use natural English, maintain technical terms and proper names, and do not introduce new information. Generate accurate subtitles and, where supported by the selected plan, a translated voice track with synchronised speech. Do not imitate a student\'s voice or likeness without the required authorisation. The final translation must be reviewed by a language teacher.',
-    expectedResult: 'Vídeo traduzido, com legendas e faixa de voz em inglês, quando a funcionalidade estiver disponível no plano utilizado.',
-    freeAlternative: 'CapCut, com legendas e narração gravada manualmente.',
-  },
-];
-
-export interface VideoActivity {
-  id: string;
-  title: string;
-  objetivos: string[];
-  recommendedTool: string;
-  expectedResult: string;
-  freeAlternative: string;
-  implementacao: {
-    etapa: string;
-    titulo: string;
-    descricao: string;
-  }[];
-  avaliacao: {
-    entrega: string;
-    itens: string[];
-  };
-  safeguard: string;
-}
-
-export const VIDEO_ACTIVITIES: VideoActivity[] = [
-  {
-    id: 'dobrador-poliglota',
-    title: 'ATIVIDADE: O DOBRADOR POLIGLOTA',
-    objetivos: [
-      'Desenvolver competência linguística na língua estrangeira.',
-      'Avaliar criticamente traduções, legendagens e dobragens automáticas.',
-      'Identificar erros semânticos, expressões idiomáticas e diferenças de registo.',
-    ],
-    recommendedTool: 'HeyGen (plano gratuito limitado) ou CapCut.',
-    expectedResult: 'Vídeo traduzido com legendas revistas e lista comparativa das inadequações detetadas.',
-    freeAlternative: 'CapCut, com legendas e narração gravada manualmente.',
-    implementacao: [
-      {
-        etapa: 'Etapa 1',
-        titulo: 'Seleção do Vídeo',
-        descricao: 'Escolha de um vídeo curto, com direitos de utilização adequados.',
-      },
-      {
-        etapa: 'Etapa 2',
-        titulo: 'Tradução, Legendagem e Dobragem',
-        descricao: 'Tradução, legendagem e eventual dobragem com IA.',
-      },
-      {
-        etapa: 'Etapa 3',
-        titulo: 'Análise Comparativa',
-        descricao: 'Comparação entre original e tradução, identificando erros, expressões idiomáticas e diferenças de registo.',
-      },
-    ],
-    avaliacao: {
-      entrega: 'Vídeo original licenciado, vídeo traduzido/legendado e registo crítico das correções propostas.',
-      itens: [
-        'Correção linguística e gramatical das alterações propostas.',
-        'Capacidade de identificar inadequações em expressões idiomáticas e registo.',
-      ],
-    },
-    safeguard: 'Não utilizar vídeos de alunos, imagens identificáveis ou gravações de voz pessoais em serviços externos sem validação institucional e cumprimento das regras de proteção de dados.',
-  },
-];
-
 export interface EthicsSection {
   id: string;
   number: string;
@@ -1329,53 +1176,6 @@ export function searchModuloContent(query: string): SearchResult[] {
     }
   }
 
-  for (const tool of VIDEO_TOOLS) {
-    if (
-      tool.name.toLowerCase().includes(q) ||
-      tool.category.toLowerCase().includes(q) ||
-      tool.recommendedFor.toLowerCase().includes(q) ||
-      tool.freePlan.toLowerCase().includes(q)
-    ) {
-      results.push({
-        pageId: 'ferramentas-video',
-        pageNumber: 7,
-        pageTitle: `Ferramenta de Vídeo: ${tool.name}`,
-        snippet: tool.recommendedFor,
-      });
-    }
-  }
-
-  for (const vp of VIDEO_PROMPTS) {
-    if (
-      vp.title.toLowerCase().includes(q) ||
-      vp.objective.toLowerCase().includes(q) ||
-      vp.prompt.toLowerCase().includes(q) ||
-      vp.recommendedTool.toLowerCase().includes(q)
-    ) {
-      results.push({
-        pageId: 'ferramentas-video',
-        pageNumber: 7,
-        pageTitle: `Prompt de Vídeo: ${vp.title}`,
-        snippet: vp.objective,
-      });
-    }
-  }
-
-  for (const act of VIDEO_ACTIVITIES) {
-    if (
-      act.title.toLowerCase().includes(q) ||
-      act.objetivos.some((o) => o.toLowerCase().includes(q)) ||
-      act.implementacao.some((i) => i.descricao.toLowerCase().includes(q))
-    ) {
-      results.push({
-        pageId: 'ferramentas-video',
-        pageNumber: 7,
-        pageTitle: act.title,
-        snippet: act.objetivos.join(' · '),
-      });
-    }
-  }
-
   for (const sec of ETHICS_SECTIONS) {
     if (
       sec.title.toLowerCase().includes(q) ||
@@ -1383,7 +1183,7 @@ export function searchModuloContent(query: string): SearchResult[] {
     ) {
       results.push({
         pageId: 'etica-seguranca',
-        pageNumber: 8,
+        pageNumber: 7,
         pageTitle: `Ética e Legislação: ${sec.title}`,
         snippet: sec.paragraphs[0],
       });
@@ -1394,7 +1194,7 @@ export function searchModuloContent(query: string): SearchResult[] {
     if (b.citation.toLowerCase().includes(q)) {
       results.push({
         pageId: 'bibliografia',
-        pageNumber: 9,
+        pageNumber: 8,
         pageTitle: `Bibliografia: ${b.author}`,
         snippet: b.citation,
       });

@@ -8,9 +8,6 @@ import {
   IMAGE_ACTIVITIES,
   AUDIO_TOOLS,
   AUDIO_ACTIVITIES,
-  VIDEO_TOOLS,
-  VIDEO_PROMPTS,
-  VIDEO_ACTIVITIES,
   ETHICS_SECTIONS,
   ETHICS_CHECKLIST,
   ETHICS_OFFICIAL_LINKS,
@@ -23,13 +20,12 @@ import {
   searchModuloContent,
 } from './moduloData.ts';
 
-test('PAGES_LIST contains 9 pages with valid navigation groups', () => {
-  assert.equal(PAGES_LIST.length, 9);
+test('PAGES_LIST contains 8 pages with valid navigation groups', () => {
+  assert.equal(PAGES_LIST.length, 8);
   assert.equal(getPageByNumber(1)?.id, 'visao-geral');
   assert.equal(getPageByNumber(5)?.navGroup, 'audio');
-  assert.equal(getPageByNumber(7)?.id, 'ferramentas-video');
-  assert.equal(getPageByNumber(8)?.id, 'etica-seguranca');
-  assert.equal(getPageByNumber(9)?.id, 'bibliografia');
+  assert.equal(getPageByNumber(7)?.id, 'etica-seguranca');
+  assert.equal(getPageByNumber(8)?.id, 'bibliografia');
   assert.equal(getPageById('prompts-imagem')?.number, 3);
   assert.equal(MODULE_OBJECTIVES.length, 5);
 });
@@ -55,10 +51,10 @@ test('IMAGE_PROMPTS contains 12 complete prompts with required fields and proven
   assert.equal(filterPromptsByCategory('Ciência & Anatomia').length, 5);
 });
 
-test('calculateModuleProgress computes percentage for 9 pages', () => {
+test('calculateModuleProgress computes percentage for 8 pages', () => {
   assert.equal(calculateModuleProgress([]), 0);
-  assert.equal(calculateModuleProgress([1, 2, 3, 4, 5, 6, 7, 8, 9]), 100);
-  assert.equal(calculateModuleProgress([0, 99, 1]), 11);
+  assert.equal(calculateModuleProgress([1, 2, 3, 4, 5, 6, 7, 8]), 100);
+  assert.equal(calculateModuleProgress([0, 99, 1]), 13);
 });
 
 test('IMAGE_ACTIVITIES contains 5 revised activities including biomechanical safeguard', () => {
@@ -72,15 +68,6 @@ test('IMAGE_ACTIVITIES contains 5 revised activities including biomechanical saf
 test('AUDIO_TOOLS and AUDIO_ACTIVITIES reflect 5 named tools and 2 activities', () => {
   assert.equal(AUDIO_TOOLS.length, 5);
   assert.equal(AUDIO_ACTIVITIES.length, 2);
-  assert.ok(!AUDIO_ACTIVITIES.some((a) => a.id === 'dobrador-poliglota'));
-});
-
-test('VIDEO data covers 3 tools, 3 prompts, 1 activity and omits Sora', () => {
-  assert.equal(VIDEO_TOOLS.length, 3);
-  assert.ok(!VIDEO_TOOLS.some((t) => t.name.toLowerCase().includes('sora')));
-  assert.equal(VIDEO_PROMPTS.length, 3);
-  assert.equal(VIDEO_ACTIVITIES.length, 1);
-  assert.equal(VIDEO_ACTIVITIES[0].id, 'dobrador-poliglota');
 });
 
 test('ETHICS and BIBLIOGRAPHY contain required sections, checklist and official APA 7 references', () => {
@@ -92,10 +79,10 @@ test('ETHICS and BIBLIOGRAPHY contain required sections, checklist and official 
   assert.ok(BIBLIOGRAPHY.some((b) => b.author === 'UNESCO' && b.year === '2024'));
 });
 
-test('searchModuloContent covers image, audio, video, ethics and bibliography', () => {
+test('searchModuloContent covers image, audio, ethics and bibliography', () => {
   assert.ok(searchModuloContent('ElevenLabs').some((r) => r.pageNumber === 5));
-  assert.ok(searchModuloContent('Runway').some((r) => r.pageNumber === 7));
-  assert.ok(searchModuloContent('RGPD').some((r) => r.pageNumber === 8));
-  assert.ok(searchModuloContent('2024/1689').some((r) => r.pageNumber === 9));
+  assert.ok(searchModuloContent('RGPD').some((r) => r.pageNumber === 7));
+  assert.ok(searchModuloContent('2024/1689').some((r) => r.pageNumber === 8));
+  assert.equal(searchModuloContent('Runway').length, 0);
   assert.equal(searchModuloContent('   ').length, 0);
 });

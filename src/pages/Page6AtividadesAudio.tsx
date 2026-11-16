@@ -73,13 +73,13 @@ export const Page6AtividadesAudio: React.FC = () => {
     <div className="space-y-10">
       <header className="border-b border-zinc-200 pb-6 space-y-2">
         <div className="text-xs font-medium text-zinc-500">
-          Página 6 de 9 · Prática Letiva com Áudio
+          Página 6 de 8 · Prática Letiva com Áudio
         </div>
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
           ATIVIDADES EM SALA DE AULA COM FERRAMENTAS DE ÁUDIO
         </h1>
         <p className="text-sm sm:text-base text-zinc-600 max-w-2xl leading-relaxed">
-          Duas propostas didáticas completas para narração histórica e produção de podcast escolar (a atividade "O Dobrador Poliglota" integra agora a Página 7 — Vídeo).
+          Duas propostas didáticas completas para narração histórica e produção de podcast escolar.
         </p>
       </header>
 

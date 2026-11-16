@@ -34,7 +34,7 @@ export const Page5FerramentasAudio: React.FC = () => {
     <div className="space-y-12">
       <header className="border-b border-zinc-200 pb-6 space-y-2">
         <div className="text-xs font-medium text-zinc-500">
-          Página 5 de 9 · Som, Narração, Edição e Podcasts
+          Página 5 de 8 · Som, Narração, Edição e Podcasts
         </div>
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
           FERRAMENTAS DE ÁUDIO

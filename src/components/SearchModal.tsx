@@ -82,10 +82,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             <div className="py-10 text-center text-zinc-500">
               <BookOpen className="w-8 h-8 mx-auto mb-2.5 text-zinc-300 stroke-1" />
               <p className="text-sm font-medium text-zinc-700">
-                Pesquise em todas as 9 páginas do Módulo 3
+                Pesquise em todas as 8 páginas do Módulo 3
               </p>
               <p className="text-xs text-zinc-400 mt-1">
-                Experimente: Designer, Canva, ElevenLabs, Runway, HeyGen, RGPD, AI Act
+                Experimente: Designer, Canva, ElevenLabs, Audacity, RGPD, AI Act
               </p>
             </div>
           ) : results.length === 0 ? (
@@ -94,7 +94,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 Nenhum resultado encontrado para "{query}"
               </p>
               <p className="text-xs text-zinc-400 mt-1">
-                Tente termos como "Firefly", "Audacity", "Runway", "RGPD" ou "Coração".
+                Tente termos como "Firefly", "Audacity", "ElevenLabs", "RGPD" ou "Coração".
               </p>
             </div>
           ) : (

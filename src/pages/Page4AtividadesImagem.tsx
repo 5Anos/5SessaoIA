@@ -72,7 +72,7 @@ export const Page4AtividadesImagem: React.FC = () => {
     <div className="space-y-10">
       <header className="border-b border-zinc-200 pb-6 space-y-2">
         <div className="text-xs font-medium text-zinc-500">
-          Página 4 de 9 · Prática Letiva com Imagem
+          Página 4 de 8 · Prática Letiva com Imagem
         </div>
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
           ATIVIDADES EM SALA DE AULA COM FERRAMENTAS DE IMAGEM

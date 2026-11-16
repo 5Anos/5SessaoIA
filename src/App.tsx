@@ -8,7 +8,6 @@ import { Page3PromptsImagem } from './pages/Page3PromptsImagem.tsx';
 import { Page4AtividadesImagem } from './pages/Page4AtividadesImagem.tsx';
 import { Page5FerramentasAudio } from './pages/Page5FerramentasAudio.tsx';
 import { Page6AtividadesAudio } from './pages/Page6AtividadesAudio.tsx';
-import { Page7FerramentasVideo } from './pages/Page7FerramentasVideo.tsx';
 import { Page8EticaSeguranca } from './pages/Page8EticaSeguranca.tsx';
 import { Page9Bibliografia } from './pages/Page9Bibliografia.tsx';
 
@@ -18,7 +17,7 @@ export default function App() {
     const match = hash.match(/#pagina-(\d+)/);
     if (match) {
       const pageNum = parseInt(match[1], 10);
-      if (pageNum >= 1 && pageNum <= 9) return pageNum;
+      if (pageNum >= 1 && pageNum <= 8) return pageNum;
     }
     return 1;
   });
@@ -35,7 +34,7 @@ export default function App() {
       const match = window.location.hash.match(/#pagina-(\d+)/);
       if (match) {
         const pageNum = parseInt(match[1], 10);
-        if (pageNum >= 1 && pageNum <= 9) {
+        if (pageNum >= 1 && pageNum <= 8) {
           setCurrentPage(pageNum);
         }
       }
@@ -56,7 +55,7 @@ export default function App() {
         setIsSearchOpen((prev) => !prev);
         return;
       }
-      if (e.key === 'ArrowRight' && currentPage < 9) {
+      if (e.key === 'ArrowRight' && currentPage < 8) {
         setCurrentPage((prev) => prev + 1);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (e.key === 'ArrowLeft' && currentPage > 1) {
@@ -91,9 +90,8 @@ export default function App() {
           {currentPage === 4 && <Page4AtividadesImagem />}
           {currentPage === 5 && <Page5FerramentasAudio />}
           {currentPage === 6 && <Page6AtividadesAudio />}
-          {currentPage === 7 && <Page7FerramentasVideo />}
-          {currentPage === 8 && <Page8EticaSeguranca />}
-          {currentPage === 9 && <Page9Bibliografia />}
+          {currentPage === 7 && <Page8EticaSeguranca />}
+          {currentPage === 8 && <Page9Bibliografia />}
         </div>
       </main>
 

@@ -17,7 +17,7 @@ export const Page8EticaSeguranca: React.FC = () => {
     <div className="space-y-12">
       <header className="border-b border-zinc-200 pb-6 space-y-2">
         <div className="text-xs font-medium text-zinc-500">
-          Página 8 de 9 · RGPD, Direitos de Autor e AI Act
+          Página 7 de 8 · RGPD, Direitos de Autor e AI Act
         </div>
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
           ÉTICA, SEGURANÇA E LEGISLAÇÃO

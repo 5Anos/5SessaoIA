@@ -22,7 +22,7 @@ export const Page2FerramentasImagem: React.FC = () => {
     <div className="space-y-12">
       <header className="border-b border-zinc-200 pb-6 space-y-2">
         <div className="text-xs font-medium text-zinc-500">
-          Página 2 de 9 · Criação Visual com IA
+          Página 2 de 8 · Criação Visual com IA
         </div>
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
           FERRAMENTAS DE IMAGEM
