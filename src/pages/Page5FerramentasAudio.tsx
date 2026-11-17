@@ -1,6 +1,7 @@
 import React from 'react';
 import { ExternalLink, Info } from 'lucide-react';
 import { AUDIO_TOOLS } from '../data/moduloData.ts';
+import { ToolBrandMark } from '../components/ToolBrandMark.tsx';
 
 const PEDAGOGICAL_BENEFITS = [
   {
@@ -32,13 +33,10 @@ const PEDAGOGICAL_BENEFITS = [
 export const Page5FerramentasAudio: React.FC = () => {
   return (
     <div className="space-y-12">
-      <header className="border-b border-zinc-200 pb-6 space-y-2">
+      <header className="border-b border-zinc-200 pb-6">
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
           FERRAMENTAS DE ÁUDIO
         </h1>
-        <p className="text-sm sm:text-base text-zinc-600 max-w-2xl leading-relaxed">
-          Vantagens pedagógicas do áudio e catálogo de cinco ferramentas identificadas, planos gratuitos, limitações e alternativas.
-        </p>
       </header>
 
       <section className="space-y-5">
@@ -62,28 +60,31 @@ export const Page5FerramentasAudio: React.FC = () => {
       </section>
 
       <section className="space-y-6">
-        <div className="border-b border-zinc-200 pb-4 space-y-1">
+        <div className="border-b border-zinc-200 pb-4">
           <h2 className="font-display text-2xl font-bold text-zinc-900">
             CATÁLOGO DE FERRAMENTAS IDENTIFICADAS
           </h2>
-          <p className="text-sm text-zinc-600">
-            Cinco plataformas com função claramente delimitada, condições gratuitas e alternativas sem custos.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {AUDIO_TOOLS.map((tool) => (
             <article
               key={tool.id}
-              className="bg-white rounded-2xl border border-zinc-200 p-6 flex flex-col justify-between gap-4"
+              className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 flex flex-col gap-5"
             >
-              <div className="space-y-2.5">
+              <div className="space-y-3">
                 <div className="flex items-center justify-between gap-3">
-                  <h3 className="font-display text-xl font-bold text-zinc-900">{tool.name}</h3>
+                  <div className="flex items-center gap-3 min-w-0">
+                    <ToolBrandMark toolId={tool.id} toolName={tool.name} />
+                    <h3 className="font-display text-xl font-bold text-zinc-900 truncate">
+                      {tool.name}
+                    </h3>
+                  </div>
                   <a
                     href={tool.officialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`Experimentar ${tool.name} no site oficial`}
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-blue-700 text-white text-xs font-semibold transition-colors shrink-0 min-h-[36px]"
                   >
                     <span>Experimentar</span>
@@ -94,21 +95,46 @@ export const Page5FerramentasAudio: React.FC = () => {
               </div>
 
               <dl className="divide-y divide-zinc-100 border-t border-zinc-200 text-xs sm:text-sm">
-                <div className="py-2.5 space-y-0.5">
-                  <dt className="font-semibold text-zinc-900">Plano gratuito</dt>
-                  <dd className="text-zinc-600 leading-relaxed">{tool.freePlan}</dd>
+                <div className="py-3 space-y-1">
+                  <dt className="font-semibold text-zinc-900">Principais funcionalidades</dt>
+                  <dd className="text-zinc-600 leading-relaxed">
+                    <ul className="list-disc pl-4 space-y-1">
+                      {tool.capabilities.map((cap, idx) => (
+                        <li key={idx}>{cap}</li>
+                      ))}
+                    </ul>
+                  </dd>
                 </div>
-                <div className="py-2.5 space-y-0.5">
-                  <dt className="font-semibold text-zinc-900">Limitações e âmbito</dt>
-                  <dd className="text-zinc-600 leading-relaxed">{tool.limitations}</dd>
+                <div className="py-3 space-y-1">
+                  <dt className="font-semibold text-zinc-900">Aplicações em sala de aula</dt>
+                  <dd className="text-zinc-600 leading-relaxed">{tool.classroomApplications}</dd>
                 </div>
-                <div className="py-2.5 space-y-0.5">
+                <div className="py-3 space-y-1">
+                  <dt className="font-semibold text-zinc-900">Plano gratuito e limitações</dt>
+                  <dd className="text-zinc-600 leading-relaxed">
+                    <strong className="font-medium text-zinc-800">{tool.freePlan}</strong>{' '}
+                    {tool.limitations}
+                  </dd>
+                </div>
+                <div className="py-3 space-y-1">
+                  <dt className="font-semibold text-zinc-900">Idade e condições de utilização</dt>
+                  <dd className="text-zinc-600 leading-relaxed">{tool.privacyOrAge}</dd>
+                </div>
+                <div className="py-3 space-y-1">
                   <dt className="font-semibold text-zinc-900">Alternativa gratuita</dt>
                   <dd className="text-zinc-600 leading-relaxed">{tool.freeAlternative}</dd>
                 </div>
-                {tool.clarification && (
-                  <div className="py-2.5 text-xs text-teal-800">{tool.clarification}</div>
-                )}
+                <div className="pt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-500">
+                  <span>Fonte oficial: {tool.officialSource}</span>
+                  <a
+                    href={tool.officialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-700 hover:underline font-medium break-all"
+                  >
+                    {tool.officialUrl}
+                  </a>
+                </div>
               </dl>
             </article>
           ))}

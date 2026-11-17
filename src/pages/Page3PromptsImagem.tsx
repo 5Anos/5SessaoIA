@@ -1,21 +1,11 @@
 import React, { useState } from 'react';
-import { Copy, Check } from 'lucide-react';
-import { filterPromptsByCategory } from '../data/moduloData.ts';
+import { Copy, Check, ExternalLink } from 'lucide-react';
+import { IMAGE_PROMPTS, getRecommendedToolUrl } from '../data/moduloData.ts';
 import { PROMPT_SAMPLE_IMAGES } from '../data/mediaAssets.ts';
 import { VisualFrame } from '../components/VisualFrame.tsx';
 
 export const Page3PromptsImagem: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
   const [copiedId, setCopiedId] = useState<number | null>(null);
-
-  const categories = [
-    'Todos',
-    'Ficção & Futuro',
-    'Sociedade & Sustentabilidade',
-    'Ciência & Anatomia',
-  ];
-
-  const prompts = filterPromptsByCategory(selectedCategory);
 
   const fallbackCopy = (text: string, id: number) => {
     try {
@@ -59,30 +49,12 @@ export const Page3PromptsImagem: React.FC = () => {
         </p>
       </header>
 
-      <section className="space-y-6">
-        <div className="border-b border-zinc-200 pb-4">
-          <div className="inline-flex items-center gap-1 p-1 bg-zinc-100 rounded-lg overflow-x-auto max-w-full">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors whitespace-nowrap shrink-0 ${
-                  selectedCategory === cat
-                    ? 'bg-white text-zinc-900 shadow-xs font-semibold'
-                    : 'text-zinc-600 hover:text-zinc-900'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-
+      <section>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {prompts.map((p) => {
+          {IMAGE_PROMPTS.map((p) => {
             const isCopied = copiedId === p.id;
             const sampleSrc = p.imageKey ? PROMPT_SAMPLE_IMAGES[p.imageKey] : null;
+            const recommendedUrl = getRecommendedToolUrl(p.recommendedTool);
             return (
               <article
                 key={p.id}
@@ -93,14 +65,28 @@ export const Page3PromptsImagem: React.FC = () => {
                     {p.id}. {p.title}
                   </h2>
 
-                  <dl className="space-y-2.5 text-xs sm:text-sm">
+                  <dl className="space-y-3 text-xs sm:text-sm">
                     <div>
                       <dt className="font-semibold text-zinc-900">Objetivo pedagógico</dt>
                       <dd className="text-zinc-700 leading-relaxed">{p.objective}</dd>
                     </div>
-                    <div>
-                      <dt className="font-semibold text-zinc-900">Ferramenta recomendada</dt>
-                      <dd className="text-zinc-700 leading-relaxed">{p.recommendedTool}</dd>
+                    <div className="space-y-2">
+                      <div>
+                        <dt className="font-semibold text-zinc-900">Ferramenta recomendada</dt>
+                        <dd className="text-zinc-700 leading-relaxed">{p.recommendedTool}</dd>
+                      </div>
+                      {recommendedUrl && (
+                        <a
+                          href={recommendedUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Abrir ferramenta recomendada para ${p.title} num novo separador`}
+                          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-blue-700 bg-blue-50/70 text-blue-700 hover:bg-blue-700 hover:text-white text-xs font-semibold transition-colors min-h-[38px]"
+                        >
+                          <span>Abrir ferramenta recomendada</span>
+                          <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                        </a>
+                      )}
                     </div>
                   </dl>
 
