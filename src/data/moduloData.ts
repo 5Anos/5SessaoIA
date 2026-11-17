@@ -526,670 +526,296 @@ export const IMAGE_PROMPTS: ImagePrompt[] = [
   },
 ];
 
+export interface ImageActivityTool {
+  name: string;
+  url: string;
+}
+
+export interface ImageActivityStage {
+  etapa: string;
+  titulo: string;
+  descricao: string;
+  pontos?: string[];
+  exemplosTitle?: string;
+  exemplos?: string[];
+  ferramentas?: ImageActivityTool[];
+  nota?: string;
+}
+
 export interface ImageActivity {
   id: string;
   title: string;
-  subject: string;
-  schoolYear: string;
-  targetAudience: string;
+  subtitle?: string;
   estimatedDuration: string;
-  recommendedTool: string;
   materials: string[];
   prompt: string;
   promptTip: string;
-  expectedResult: string;
-  freeAlternative: string;
+  promptAdaptation: string;
   objetivos: string[];
-  implementacao: {
-    etapa: string;
-    titulo: string;
-    descricao: string;
-  }[];
+  implementacao: ImageActivityStage[];
   avaliacao: {
-    entrega?: string;
+    entrega?: string[];
     itens: string[];
   };
-  safeguards: string;
 }
 
 export const IMAGE_ACTIVITIES: ImageActivity[] = [
   {
     id: 'estacoes-do-ano',
     title: 'ATIVIDADE: AS ESTAÇÕES DO ANO COM IA',
-    subject: 'Estudo do Meio / Ciências Naturais',
-    schoolYear: '1.º Ciclo (3.º e 4.º anos) — adaptável',
-    targetAudience: 'Adaptável a diferentes anos de escolaridade consoante o grau de autonomia na observação.',
+    subtitle: 'Estudo do Meio / Ciências Naturais · 1.º Ciclo (3.º e 4.º anos) — adaptável',
     estimatedDuration: '45 a 60 minutos',
-    recommendedTool: 'Adobe Firefly (edição generativa sobre imagem de referência).',
     materials: [
       'Fotografia base de uma árvore ou paisagem sem pessoas identificáveis (com licença livre ou captada pelo docente).',
-      'Computadores ou tablets com ligação à internet e conta elegível no Adobe Firefly.',
+      'Computadores ou tablets com ligação à internet e ferramenta de imagem com IA elegível.',
       'Grelha de observação impressa ou digital para registar diferenças entre estações.',
     ],
     prompt: 'Utiliza a imagem fornecida como referência. Mantém a mesma árvore, o mesmo enquadramento, a mesma perspetiva e o mesmo cenário. Altera apenas os elementos sazonais para representar o outono: folhas amarelas e castanhas, algumas folhas no chão e luz natural própria desta estação. Não acrescentes objetos, pessoas, texto ou elementos que não pertençam à paisagem.',
     promptTip: 'Especifique a iluminação própria de cada estação (ex.: luz dourada suave no outono, sol intenso no verão, céu nublado e geada no inverno), o estado exato da folhagem (rebentos, copa densa, folhas caídas ou ramos despidos) e o tipo de solo correspondente para reforçar a coerência sazonal.',
-    expectedResult: 'Sequência comparável de quatro imagens da mesma árvore nas quatro estações, acompanhada de quadro de observação validado.',
-    freeAlternative: 'Microsoft Designer, quando a edição por referência estiver disponível na conta.',
+    promptAdaptation: 'Adapte o pedido à estação e ao meio envolvente trabalhados na aula (ex.: alterar de «outono com folhas castanhas» para «primavera com flores nos ramos» ou «inverno com neve»), mantendo fixa a referência à mesma árvore para facilitar a comparação das mudanças na natureza.',
     objetivos: [
-      'Identificar as estações do ano e as suas características sazonais.',
-      'Reconhecer mudanças observáveis na vegetação e no ambiente.',
-      'Distinguir alterações sazonais plausíveis de elementos inventados pela IA.',
-      'Utilizar ferramentas digitais com orientação do docente.',
+      'Identificar as estações do ano.',
+      'Reconhecer mudanças na natureza.',
+      'Relacionar clima com o meio envolvente.',
+      'Utilizar ferramentas digitais com orientação.',
     ],
     implementacao: [
       {
         etapa: 'Etapa 1',
-        titulo: 'Observação da Imagem Base',
-        descricao: 'Apresentar uma imagem de uma árvore ou paisagem e pedir aos alunos que identifiquem os elementos observáveis: folhas, flores, temperatura aparente, presença de neve e estado da vegetação.',
+        titulo: 'Observação',
+        descricao: 'O professor mostra imagens das estações do ano (Primavera, Verão, Outono, Inverno). Os alunos identificam:',
+        pontos: [
+          'Como está o tempo (calor, frio, chuva...)',
+          'O que acontece na natureza (folhas, flores, neve...)',
+        ],
       },
       {
         etapa: 'Etapa 2',
-        titulo: 'Transformação Sazonal com IA',
-        descricao: 'Utilizar a mesma imagem de referência no Adobe Firefly para criar quatro versões sazonais. Manter o mesmo enquadramento e os mesmos elementos principais, alterando apenas os aspetos associados à estação do ano.',
+        titulo: 'Transformação com IA',
+        descricao: 'O professor apresenta uma imagem simples (ex.: uma árvore ou paisagem). Com uma ferramenta de imagem com IA, os alunos ajudam a criar versões da mesma imagem em diferentes estações.',
+        exemplosTitle: 'Exemplos de pedidos:',
+        exemplos: [
+          '«A mesma árvore no inverno com neve»',
+          '«A mesma árvore no outono com folhas castanhas no chão»',
+        ],
+        nota: 'Nota pedagógica: explicar aos alunos que as imagens geradas por IA são interpretações visuais e não necessariamente representações cientificamente rigorosas.',
       },
       {
         etapa: 'Etapa 3',
-        titulo: 'Comparação e Validação Crítica',
-        descricao: 'Comparar as quatro imagens, identificar as alterações e justificar as respostas com base nas características observadas. Distinguir as alterações sazonais plausíveis de eventuais elementos inventados pela IA.',
+        titulo: 'Comparação e explicação',
+        descricao: 'Os alunos observam as imagens (antes e depois), mantendo como foco a comparação entre estações e a observação das mudanças naturais. Explicam:',
+        pontos: [
+          'O que mudou',
+          'Qual é a estação',
+          'Como sabem',
+        ],
       },
     ],
     avaliacao: {
-      entrega: 'Painel comparativo com as quatro imagens sazonais e registo escrito das observações validadas.',
       itens: [
-        'Reconhecimento rigoroso das características próprias de cada estação.',
-        'Capacidade de observação e comparação fundamentada.',
-        'Identificação de eventuais incoerências ou elementos acrescentados pela ferramenta.',
+        'Reconhecimento das características de cada estação.',
+        'Capacidade de observação.',
+        'Comunicação simples e clara.',
       ],
     },
-    safeguards: 'Utilizar uma imagem de referência sem pessoas identificáveis e confirmar previamente os limites de utilização do plano gratuito.',
   },
   {
     id: 'patrimonio-futuro',
     title: 'ATIVIDADE: PATRIMÓNIO E FUTURO',
-    subject: 'Geografia / História / Cidadania e Desenvolvimento',
-    schoolYear: '2.º e 3.º Ciclos (6.º a 9.º anos) — adaptável',
-    targetAudience: 'Adaptável consoante o aprofundamento da análise urbanística e ambiental.',
+    subtitle: 'Geografia / História / Cidadania',
     estimatedDuration: '60 a 90 minutos',
-    recommendedTool: 'Adobe Firefly (edição generativa da fotografia de referência).',
     materials: [
       'Fotografia de um espaço público local sem pessoas identificáveis, matrículas ou moradas particulares (ou imagem com licença aberta).',
-      'Dispositivos com acesso ao Adobe Firefly e guião de critérios de sustentabilidade urbana.',
-      'Suporte de apresentação (diapositivos ou ficha digital) para o confronto "Antes e Depois".',
+      'Dispositivos com acesso ao Adobe Firefly ou Leonardo.ai e guião de critérios de sustentabilidade urbana.',
+      'Suporte de apresentação (diapositivos ou ficha digital) para o confronto «Antes e Depois».',
     ],
     prompt: 'Utiliza a fotografia fornecida como referência. Mantém a estrutura principal do espaço e a perspetiva original. Transforma a área selecionada num espaço público sustentável, com vegetação autóctone, zonas de sombra, percursos pedonais acessíveis e mobiliário urbano funcional. A proposta deve ser visualmente plausível e respeitar a identidade arquitetónica do local. Não acrescentes pessoas identificáveis, texto ou logótipos.',
     promptTip: 'Indique materiais construtivos típicos da região (ex.: calçada portuguesa, pedra natural ou madeira tratada), espécies vegetais autóctones (ex.: oliveira, sobreiro ou alfazema) e a escala real de bancos, sombras e passeios para obter uma proposta urbanística credível.',
-    expectedResult: 'Díptico visual "Antes e Depois" mantendo a identidade do espaço original, acompanhado de breve memória justificativa.',
-    freeAlternative: 'Microsoft Designer, quando a edição pretendida estiver disponível.',
+    promptAdaptation: 'Ajuste a descrição do prompt ao diagnóstico local feito pela turma: peça explicitamente soluções viáveis para o problema identificado (ex.: «transformar o parque de estacionamento num jardim vertical» ou «criar percursos pedonais sombreados»), mantendo intacta a estrutura do espaço real.',
     objetivos: [
-      'Promover a consciência cívica e a reflexão sobre sustentabilidade urbana.',
-      'Utilizar ferramentas de edição generativa preservando a identidade arquitetónica.',
-      'Desenvolver o pensamento crítico sobre acessibilidade e espaço público.',
+      'Promover a consciência cívica e o desenvolvimento sustentável.',
+      'Dominar ferramentas de edição generativa.',
+      'Desenvolver o pensamento crítico sobre o espaço urbano.',
     ],
     implementacao: [
       {
         etapa: 'Etapa 1',
         titulo: 'Diagnóstico Local',
-        descricao: 'Os alunos escolhem um espaço público ou um edifício da localidade a partir de fotografias sem pessoas identificáveis, matrículas ou outros dados pessoais, levantando problemas de acessibilidade, sombra ou conforto.',
+        descricao: 'O professor pede aos alunos que escolham um local degradado ou um espaço público da sua cidade/vila que precise de intervenção. Os alunos fotografam o local (sem pessoas identificáveis ou matrículas) ou procuram uma imagem real.',
       },
       {
         etapa: 'Etapa 2',
-        titulo: 'Proposta de Requalificação com IA',
-        descricao: 'Aplicar a edição generativa no Adobe Firefly sobre a fotografia de referência para propor soluções sustentáveis, acessíveis e visualmente coerentes com o espaço real.',
+        titulo: 'Reabilitação Utópica',
+        descricao: 'Utilizando o Adobe Firefly (através da funcionalidade de Preenchimento Generativo sobre zonas selecionadas da fotografia real) ou o Leonardo.ai (através de geração e edição de imagem assistida por IA, com fluxos de trabalho distintos dos do Firefly), os alunos devem projetar uma solução sustentável para esse espaço (ex.: transformar um parque de estacionamento num jardim vertical).',
+        ferramentas: [
+          { name: 'Adobe Firefly', url: 'https://firefly.adobe.com/' },
+          { name: 'Leonardo.ai', url: 'https://leonardo.ai/' },
+        ],
       },
       {
         etapa: 'Etapa 3',
-        titulo: 'Apresentação e Análise Crítica',
-        descricao: 'Apresentar o "Antes" e o "Depois", justificando as opções urbanísticas, a viabilidade técnica da proposta e identificando os elementos que a IA alterou ou preservou.',
+        titulo: 'Exposição de Impacto',
+        descricao: 'Os alunos apresentam o «Antes» e o «Depois», justificando as escolhas urbanísticas, o impacto ambiental e se a intervenção proposta é realista e sustentável para o local.',
       },
     ],
     avaliacao: {
-      entrega: 'Fotografia original (ou imagem licenciada), imagem editada com IA e memória descritiva.',
+      entrega: [
+        'A fotografia original.',
+        'A imagem gerada pela IA.',
+        'Uma breve memória descritiva.',
+      ],
       itens: [
-        'Respeito pela identidade do espaço e viabilidade real da proposta.',
-        'Adequação das escolhas de sustentabilidade ambiental e acessibilidade.',
-        'Clareza na argumentação comparativa e análise crítica do resultado da IA.',
+        'Realismo e viabilidade da proposta.',
+        'Domínio técnico da ferramenta.',
+        'Capacidade de argumentação.',
       ],
     },
-    safeguards: 'Não carregar fotografias com rostos identificáveis, matrículas de veículos, moradas particulares ou menores. Verificar a licença das imagens recolhidas externamente.',
   },
   {
-    id: 'visualizing-idioms',
-    title: 'ATIVIDADE: VISUALIZING IDIOMS',
-    subject: 'Inglês / Línguas Estrangeiras',
-    schoolYear: '2.º e 3.º Ciclos (5.º a 9.º anos) — adaptável',
-    targetAudience: 'Adaptável a vários níveis de proficiência linguística (A2 a B2).',
+    id: 'expressoes-idiomaticas',
+    title: 'ATIVIDADE: EXPRESSÕES IDIOMÁTICAS EM IMAGENS',
+    subtitle: 'Inglês / Línguas Estrangeiras · 2.º e 3.º Ciclos (5.º a 9.º anos) — adaptável',
     estimatedDuration: '45 a 60 minutos',
-    recommendedTool: 'Microsoft Designer.',
     materials: [
-      'Lista de expressões idiomáticas selecionada pelo docente (ex.: "break a leg", "piece of cake", "spill the beans").',
+      'Lista de expressões idiomáticas selecionada pelo docente (ex.: «It\'s raining cats and dogs», «Piece of cake», «Break a leg»).',
       'Acesso ao Microsoft Designer com conta institucional ou elegível.',
       'Dicionário bilingue ou monolingue de consulta para validação do significado idiomático.',
     ],
     prompt: 'Cria duas imagens independentes para a expressão inglesa [INSERIR EXPRESSÃO]. A primeira deve representar o significado literal das palavras. A segunda deve representar visualmente o significado figurado da expressão na cultura inglesa. Mantém um estilo de ilustração coerente nas duas imagens. Não incluas texto ou legendas. As imagens devem permitir que os alunos comparem a interpretação literal com a interpretação idiomática.',
     promptTip: 'Defina um estilo artístico idêntico para ambas as imagens (ex.: ilustração editorial em linhas limpas), especifique a paleta de cores, a expressão facial das personagens e peça explicitamente "sem texto nem balões de diálogo" para não revelar a resposta antes da apresentação.',
-    expectedResult: 'Par de cartões visuais contrastantes (sentido literal vs. sentido figurado) sem texto interno, prontos para apresentação oral.',
-    freeAlternative: 'Leonardo.Ai.',
+    promptAdaptation: 'Substitua [INSERIR EXPRESSÃO] pela expressão selecionada e adapte a segunda imagem ao contexto real de utilização validado em dicionário (ex.: em «Break a leg», um ator nos bastidores antes de entrar em cena), apoiando a explicação oral em Inglês.',
     objetivos: [
-      'Expandir o vocabulário e o domínio de expressões idiomáticas em língua inglesa.',
-      'Diferenciar linguagem literal de linguagem figurada através da comparação visual.',
-      'Praticar a expressão oral na língua estrangeira com apoio visual.',
+      'Expandir o vocabulário e o domínio de expressões idiomáticas.',
+      'Praticar a expressão oral em língua inglesa.',
+      'Diferenciar linguagem literal de linguagem figurada.',
     ],
     implementacao: [
       {
         etapa: 'Etapa 1',
-        titulo: 'Escolha e Investigação da Expressão',
-        descricao: 'O professor apresenta uma lista de expressões idiomáticas e cada aluno ou par investiga o significado literal e o significado figurado em dicionário de referência.',
+        titulo: 'Escolha da Expressão',
+        descricao: 'O professor apresenta uma lista de expressões idiomáticas em inglês (ex.: «It\'s raining cats and dogs», «Piece of cake», «Break a leg»). Cada aluno ou grupo escolhe uma expressão e valida o seu significado real e contexto de utilização.',
       },
       {
         etapa: 'Etapa 2',
-        titulo: 'Criação Literal vs. Figurada',
-        descricao: 'No Microsoft Designer, gerar duas imagens independentes (uma literal e outra figurada) garantindo coerência de estilo e ausência de texto inserido.',
+        titulo: 'Criação Literal vs. Figurativa',
+        descricao: 'Os alunos utilizam o Microsoft Designer para gerar duas imagens: uma que represente o sentido literal da frase e outra que ilustre o contexto real de utilização.',
+        ferramentas: [
+          { name: 'Microsoft Designer', url: 'https://designer.microsoft.com/' },
+        ],
       },
       {
         etapa: 'Etapa 3',
-        titulo: 'Apresentação Oral e Análise',
-        descricao: 'Os alunos exibem as duas imagens contrastantes à turma, explicam em inglês o significado idiomático, criam uma frase de exemplo e avaliam se a IA representou adequadamente o sentido figurado.',
+        titulo: 'Apresentação Oral',
+        descricao: 'Os alunos mostram as imagens para comparar o sentido literal com o figurado e explicam, em Inglês, o significado da expressão e em que situações do dia a dia a utilizariam.',
       },
     ],
     avaliacao: {
-      entrega: 'Par de imagens (literal e figurada) e guião breve da apresentação oral em inglês.',
+      entrega: [
+        'As duas imagens geradas.',
+        'O guião da explicação oral.',
+      ],
       itens: [
-        'Correção linguística e pronúncia na língua inglesa.',
-        'Clareza na distinção entre sentido literal e sentido figurado.',
-        'Adequação visual das imagens ao significado cultural da expressão.',
+        'Correção linguística no uso do idioma.',
+        'Criatividade na interpretação visual.',
+        'Clareza da exposição oral.',
       ],
     },
-    safeguards: 'Rever os resultados antes da projeção em turma para evitar estereótipos culturais ou interpretações inadequadas ao contexto escolar.',
   },
   {
     id: 'alegoria-caverna',
     title: 'ATIVIDADE: A ALEGORIA DA CAVERNA MODERNA',
-    subject: 'Filosofia / Cidadania / Português',
-    schoolYear: 'Ensino Secundário (10.º e 11.º anos) — adaptável',
-    targetAudience: 'Adaptável a níveis de ensino compatíveis com a abordagem filosófica proposta.',
+    subtitle: 'Filosofia / Cidadania / Português · Ensino Secundário (10.º e 11.º anos) — adaptável',
     estimatedDuration: '60 minutos',
-    recommendedTool: 'Leonardo.Ai.',
     materials: [
       'Excerto impresso ou digital do Livro VII da República de Platão (Alegoria da Caverna).',
-      'Computadores com acesso ao Leonardo.Ai (com atenção aos tokens diários do plano gratuito).',
+      'Computadores com acesso ao Leonardo.ai (com atenção aos tokens diários do plano gratuito).',
       'Guião de mapeamento simbólico (sombras, correntes, fogo, saída para a luz).',
     ],
     prompt: 'Cria uma ilustração conceptual contemporânea inspirada na Alegoria da Caverna de Platão. Representa um grupo de pessoas numa sala escura, viradas para projeções luminosas de ecrãs que mostram imagens simplificadas do mundo. Uma figura começa a afastar-se dos ecrãs e dirige-se para uma abertura iluminada que simboliza o conhecimento e a descoberta da realidade. Inclui referências subtis a redes sociais e desinformação, sem apresentar marcas ou logótipos. A imagem deve permitir discutir simbolismo, perceção e pensamento crítico.',
     promptTip: 'Explore o contraste de iluminação (sombras profundas e luz azulada fria dos ecrãs versus luz natural quente à saída), indique o enquadramento em plano amplo e inclua metáforas visuais subtis em vez de texto explicativo.',
-    expectedResult: 'Ilustração simbólica contemporânea acompanhada de ensaio breve fundamentado (150 a 200 palavras) sobre perceção e desinformação.',
-    freeAlternative: 'Microsoft Designer.',
+    promptAdaptation: 'Adapte os elementos do prompt ao ângulo filosófico discutido na aula: associe símbolos visuais concretos às «correntes» (ex.: dependência de notificações), às «sombras» (imagens filtradas nos ecrãs) e à «libertação» (a saída iluminada), para fundamentar a reflexão escrita e o debate.',
     objetivos: [
-      'Relacionar o pensamento clássico de Platão com desafios contemporâneos da informação.',
-      'Desenvolver a capacidade de abstração, simbolismo e conceptualização visual.',
-      'Estimular o debate crítico sobre ecrãs, desinformação e autonomia intelectual.',
+      'Relacionar o pensamento clássico com problemas contemporâneos.',
+      'Desenvolver a capacidade de abstração e conceptualização.',
+      'Estimular a reflexão crítica sobre o impacto da tecnologia.',
     ],
     implementacao: [
       {
         etapa: 'Etapa 1',
-        titulo: 'Estudo do Conceito Filosófico',
-        descricao: 'Após a leitura da Alegoria da Caverna, o professor convida a turma a identificar o que representam hoje as "sombras", as "correntes" e a "saída para a luz".',
+        titulo: 'Estudo do Conceito',
+        descricao: 'Após a leitura do texto de Platão, o professor desafia os alunos a pensarem: «Quais são as "sombras" e as "cavernas" da sociedade atual (redes sociais, desinformação, bolhas digitais)?»',
       },
       {
         etapa: 'Etapa 2',
-        titulo: 'Reinterpretação Visual com IA',
-        descricao: 'Os alunos elaboram uma ilustração conceptual contemporânea no Leonardo.Ai recorrendo a elementos simbólicos digitais sem marcas comerciais nem dados pessoais.',
+        titulo: 'Reinterpretação Visual',
+        descricao: 'Os alunos utilizam o Leonardo.ai para criar uma versão contemporânea e visual da Alegoria da Caverna. Devem construir prompts ligados às ideias filosóficas de Platão (ilusão, prisão cognitiva e saída para o conhecimento), recorrendo a elementos como ecrãs, tecnologia e distopia.',
+        ferramentas: [
+          { name: 'Leonardo.ai', url: 'https://leonardo.ai/' },
+        ],
       },
       {
         etapa: 'Etapa 3',
-        titulo: 'Debate Filosófico e Autoavaliação',
-        descricao: 'As composições são analisadas em turma para fundamentar como os elementos visuais traduzem perceção, ilusão e pensamento crítico, questionando também eventuais lugares-comuns visuais produzidos pela IA.',
+        titulo: 'Debate Filosófico',
+        descricao: 'As imagens são projetadas e os alunos explicam a relação entre as suas escolhas visuais e as ideias filosóficas originais de Platão, defendendo porque é que os elementos escolhidos representam a «prisão» ou a «libertação» do pensamento no século XXI.',
       },
     ],
     avaliacao: {
-      entrega: 'Ilustração conceptual gerada e reflexão escrita fundamentada (máx. 200 palavras).',
+      entrega: [
+        'A imagem gerada.',
+        'Uma breve reflexão escrita (máx. 200 palavras) sobre o simbolismo da imagem.',
+      ],
       itens: [
-        'Rigor na ligação simbólica ao texto filosófico de Platão.',
-        'Profundidade da reflexão crítica sobre informação, algoritmos e tecnologia.',
-        'Coerência argumentativa entre a imagem criada e o texto explicativo.',
+        'Profundidade da análise filosófica.',
+        'Coerência entre a imagem e o conceito de Platão.',
       ],
     },
-    safeguards: 'No plano gratuito do Leonardo.Ai, as criações ficam públicas; orientar os alunos para não incluírem nomes, fotografias ou dados pessoais nos prompts.',
   },
   {
-    id: 'biomecanica-movimento',
-    title: 'ATIVIDADE: BIOMECÂNICA DO MOVIMENTO',
-    subject: 'Educação Física',
-    schoolYear: '3.º Ciclo e Ensino Secundário (7.º a 12.º anos)',
-    targetAudience: 'Adaptável sob orientação direta do docente de Educação Física.',
+    id: 'gesto-tecnico-desportivo',
+    title: 'ATIVIDADE: ANÁLISE DO GESTO TÉCNICO DESPORTIVO',
+    subtitle: 'Educação Física · 3.º Ciclo e Ensino Secundário (7.º a 12.º anos)',
     estimatedDuration: '60 minutos',
-    recommendedTool: 'Leonardo.Ai ou Microsoft Designer (apenas para storyboard ilustrativo).',
     materials: [
       'Vídeo ou prancha técnica validada por federação desportiva ou manual da disciplina.',
-      'Acesso ao Leonardo.Ai ou Microsoft Designer para criar o storyboard esquemático.',
-      'Ficha de decomposição das fases do gesto técnico (preparação, execução e recuperação).',
+      'Acesso a ferramenta de imagem com IA para criar o storyboard esquemático de 3 fases.',
+      'Ficha de decomposição das fases do gesto técnico (preparação, execução e recuperação) e vídeos dos alunos para autocorreção.',
     ],
     prompt: 'Cria um storyboard ilustrativo simples em três vinhetas horizontais, em estilo esquemático didático sobre fundo neutro, mostrando de forma sequencial as fases gerais de preparação, execução e recuperação de um gesto desportivo (ex.: serviço no voleibol), de acordo com a descrição técnica validada pelo docente. Usa silhuetas ou figuras estilizadas não identificáveis. Não incluas texto nem assumas rigor biomecânico clínico.',
     promptTip: 'Indique o ângulo de câmara mais esclarecedor (ex.: vista lateral em perfil ou plano frontal), peça silhuetas neutras sobre fundo branco simples e especifique a separação clara em três vinhetas horizontais para evitar sobreposições.',
-    expectedResult: 'Storyboard ilustrativo de três fases anotado pelos alunos com correções técnicas em confronto com a demonstração oficial.',
-    freeAlternative: 'Ferramentas de apresentação (LibreOffice Impress / Google Slides) ou desenho manual com base em imagens técnicas validadas.',
+    promptAdaptation: 'Altere o gesto e o ângulo no prompt consoante a modalidade trabalhada (ex.: «batimento de pernas no crawl em vista lateral» ou «serviço no voleibol em três fases»), garantindo que o storyboard destaca postura, braços e pés para confronto com a demonstração fiável e com o vídeo do próprio aluno.',
     objetivos: [
-      'Compreender as fases gerais de um gesto técnico desportivo a partir de referência validada.',
-      'Utilizar apoios visuais ilustrativos sem substituir fontes técnicas reconhecidas.',
-      'Desenvolver a observação orientada pelo docente ou por profissional qualificado.',
+      'Compreender a biomecânica e a técnica correta das modalidades.',
+      'Desenvolver a capacidade de autoanálise e correção motora.',
+      'Utilizar referências visuais para aprimorar a performance física.',
     ],
     implementacao: [
       {
         etapa: 'Etapa 1',
-        titulo: 'Referência Técnica Validada',
-        descricao: 'O professor seleciona um movimento desportivo e apresenta uma demonstração validada por um profissional qualificado ou por uma fonte técnica reconhecida, como uma federação desportiva.',
+        titulo: 'Análise do Gesto Técnico',
+        descricao: 'O professor foca-se num movimento específico (ex.: o serviço no voleibol ou o batimento de pernas no crawl). Com base em demonstrações fiáveis e orientação docente, os alunos estudam as fases do movimento (preparação, execução e recuperação).',
       },
       {
         etapa: 'Etapa 2',
-        titulo: 'Apoio Visual Esquemático',
-        descricao: 'Utilizar o Leonardo.Ai ou o Microsoft Designer para gerar um storyboard ilustrativo das três fases gerais do movimento, assinalando expressamente que se trata de uma ilustração esquemática e não de um modelo biomecânico rigoroso.',
+        titulo: 'Storyboard Generativo',
+        descricao: 'Os alunos utilizam a IA para gerar uma sequência de 3 imagens ilustrativas do movimento (preparação, execução e recuperação), observando postura, ângulos dos braços e posição dos pés.',
+        nota: 'Nota pedagógica: as imagens geradas por IA funcionam apenas como referências visuais auxiliares e não constituem modelos biomecânicos cientificamente validados nem instruções técnicas definitivas.',
       },
       {
         etapa: 'Etapa 3',
-        titulo: 'Análise Pedagógica e Deteção de Erros',
-        descricao: 'Os alunos identificam as fases do movimento, detetam eventuais imprecisões anatómicas ou posturais da imagem gerada por IA e comparam-nas com a demonstração técnica validada pelo docente.',
+        titulo: 'Autocorreção',
+        descricao: 'Os alunos confrontam a sequência gerada com demonstrações fiáveis e orientação do professor, e comparam essas referências com vídeos de si próprios a realizar o exercício, identificando pontos de melhoria na sua técnica.',
       },
     ],
     avaliacao: {
-      entrega: 'Storyboard ilustrativo acompanhado de ficha comentada das fases do gesto técnico e dos desvios identificados face ao modelo oficial.',
+      entrega: [
+        'O conjunto de imagens ilustrativas da sequência do gesto.',
+        'Uma lista de 3 correções a fazer no seu próprio movimento.',
+      ],
       itens: [
-        'Identificação correta das fases do movimento (preparação, execução e recuperação).',
-        'Capacidade de distinguir um apoio ilustrativo de uma referência técnica validada.',
-        'Rigor na deteção de erros posturais produzidos pela IA.',
+        'Identificação correta das fases do gesto técnico.',
+        'Rigor na análise comparativa.',
       ],
     },
-    safeguards: 'Não utilizar imagens geradas por IA como única referência para ensinar ou corrigir técnicas desportivas. Não carregar vídeos ou fotografias identificáveis de alunos em plataformas externas.',
-  },
-  {
-    id: 'cartaz-campanha-ideogram',
-    title: 'ATIVIDADE: CARTAZ DE CAMPANHA ESCOLAR COM TIPOGRAFIA',
-    subject: 'Português / Cidadania e Desenvolvimento / Educação Visual',
-    schoolYear: '2.º e 3.º Ciclos (5.º a 9.º anos)',
-    targetAudience: 'Alunos do 2.º e 3.º Ciclos em trabalho individual ou em pequenos grupos.',
-    estimatedDuration: '60 minutos',
-    recommendedTool: 'Ideogram (especializado em integração de texto e composição tipográfica).',
-    materials: [
-      'Temas definidos para a campanha da escola (ex.: leitura na biblioteca, redução de plástico, convivência digital saudável).',
-      'Acesso ao Ideogram (tendo em conta o limite de 30 créditos semanais gratuitos por conta).',
-      'Lista de verificação ortográfica e de regras de comunicação visual (hierarquia, contraste e clareza da mensagem).',
-    ],
-    prompt: 'Cria um cartaz educativo escolar em formato vertical com estilo de design gráfico moderno e cores acessíveis sobre fundo claro. Inclui em destaque o título exato em português europeu: "LER ABRE MUNDOS" e o subtítulo "Semana da Leitura na Biblioteca Escolar". Ilustra livros abertos, elementos geométricos suaves e um ambiente acolhedor de estudo, sem marcas comerciais nem rostos realistas. Mantém tipografia limpa, bem alinhada e de fácil leitura.',
-    promptTip: 'Coloque o texto exato entre aspas duplas e mantenha frases muito curtas (2 a 5 palavras); especifique a hierarquia visual (título grande no topo, subtítulo menor abaixo), a orientação vertical do cartaz e um fundo de alto contraste para facilitar a leitura.',
-    expectedResult: 'Cartaz de campanha escolar com mensagem apelativa e tipografia verificada, pronto para impressão ou divulgação na intranet da escola.',
-    freeAlternative: 'Canva Free (com revisão e inserção manual do texto em português).',
-    objetivos: [
-      'Planear mensagens cívicas ou culturais adequadas a um público escolar.',
-      'Explorar a relação entre hierarquia tipográfica, imagem e eficácia comunicativa.',
-      'Rever criticamente o texto gerado por inteligência artificial corrigindo erros ortográficos ou de composição.',
-    ],
-    implementacao: [
-      {
-        etapa: 'Etapa 1',
-        titulo: 'Definição da Mensagem e Rascunho',
-        descricao: 'Em grupo, os alunos escolhem o tema da campanha, redigem um slogan curto (máximo de 6 palavras) e um subtítulo informativo em português europeu, definindo o público-alvo.',
-      },
-      {
-        etapa: 'Etapa 2',
-        titulo: 'Geração Tipográfica no Ideogram',
-        descricao: 'Os alunos testam o prompt no Ideogram colocando o título e o subtítulo exatos entre aspas, observando como a ferramenta integra a tipografia na composição visual.',
-      },
-      {
-        etapa: 'Etapa 3',
-        titulo: 'Auditoria Ortográfica e Validação Gráfica',
-        descricao: 'A turma analisa os cartazes produzidos para verificar acentuação, ortografia, legibilidade e contraste. Se subsistir algum erro tipográfico da IA, os alunos registam a falha e corrigem-na ou recriam o texto manualmente.',
-      },
-    ],
-    avaliacao: {
-      entrega: 'Cartaz final da campanha e breve registo da revisão tipográfica realizada após a geração.',
-      itens: [
-        'Clareza comunicativa e adequação da mensagem ao público escolar.',
-        'Rigor ortográfico e legibilidade da tipografia em português europeu.',
-        'Capacidade de identificar e corrigir imperfeições textuais geradas pela IA.',
-      ],
-    },
-    safeguards: 'Rever sempre a ortografia, os acentos e os sinais gráficos gerados pela ferramenta antes de expor o cartaz. Respeitar os limites de créditos gratuitos semanais planeando os prompts em papel antes de gerar.',
-  },
-  {
-    id: 'guia-visual-canva',
-    title: 'ATIVIDADE: GUIA VISUAL ILUSTRADO EM EQUIPA',
-    subject: 'Ciências Naturais / História / Educação Tecnológica',
-    schoolYear: '2.º e 3.º Ciclos (6.º a 9.º anos)',
-    targetAudience: 'Equipas de 2 a 3 alunos com papéis distribuídos (investigação, ilustração e paginação).',
-    estimatedDuration: '90 minutos (ou duas aulas de 45 minutos)',
-    recommendedTool: 'Canva (composição, paginação e integração controlada de elementos visuais com texto).',
-    materials: [
-      'Manual escolar ou ficha de conteúdos validados pelo docente sobre o tema (ex.: cadeia alimentar, ciclo da água ou vida quotidiana medieval).',
-      'Contas no Canva (plano gratuito ou Canva for Education) com modelo de folha A4 preparado.',
-      'Lista de verificação de acessibilidade visual (tamanho mínimo de letra, contraste e legendas rigorosas).',
-    ],
-    prompt: 'Ilustração educativa em estilo vetorial limpo sobre fundo branco, sem texto nem legendas embutidas, representando [INSERIR CONCEITO, ex.: os três níveis de uma cadeia alimentar terrestre em floresta mediterrânica: plantas produtoras, herbívoros e carnívoros]. Cores naturais suaves, traço claro para facilitar a inserção posterior de legendas e setas explicativas no Canva.',
-    promptTip: 'Peça ilustrações em estilo vetorial simples com fundo branco liso e bastante espaço livre à volta dos elementos ("sem texto nem setas"), reservando a colocação de legendas, setas e caixas explicativas para a paginação manual no Canva.',
-    expectedResult: 'Folha didática ou guia visual de 1 página paginado no Canva, integrando imagens limpas, setas, títulos e legendas científicas redigidas pelos alunos.',
-    freeAlternative: 'LibreOffice Impress ou Google Slides combinando imagens livres de direitos (Wikimedia Commons) com caixas de texto manuais.',
-    objetivos: [
-      'Sintetizar conteúdos curriculares numa peça visual organizada e legível.',
-      'Combinar ilustrações de apoio com diagramas, setas e legendas rigorosas redigidas pelos próprios alunos.',
-      'Aplicar princípios básicos de paginação, contraste e acessibilidade na produção de materiais de estudo.',
-    ],
-    implementacao: [
-      {
-        etapa: 'Etapa 1',
-        titulo: 'Recolha de Conteúdo e Esboço em Papel',
-        descricao: 'Cada equipa seleciona os 4 a 5 conceitos essenciais do manual escolar e desenha um esquema rápido em papel indicando onde ficará a imagem principal, as setas e as legendas.',
-      },
-      {
-        etapa: 'Etapa 2',
-        titulo: 'Criação e Paginação no Canva',
-        descricao: 'No Canva, os alunos utilizam um modelo A4 limpo, geram ou selecionam a ilustração base sem texto interno (respeitando a cota gratuita de IA da plataforma) e acrescentam manualmente títulos, setas e legendas validadas.',
-      },
-      {
-        etapa: 'Etapa 3',
-        titulo: 'Revisão Cruzada entre Pares',
-        descricao: 'As equipas trocam os guias entre si para validar a exatidão científica/histórica das legendas, a ausência de erros ortográficos e a facilidade de leitura.',
-      },
-    ],
-    avaliacao: {
-      entrega: 'Guia visual exportado em PDF e grelha de revisão preenchida por outra equipa.',
-      itens: [
-        'Exatidão científica ou histórica das legendas redigidas pelos alunos.',
-        'Qualidade da paginação, hierarquia visual e legibilidade.',
-        'Cooperação na equipa e indicação transparente dos recursos gerados com IA.',
-      ],
-    },
-    safeguards: 'As ferramentas de IA no plano gratuito do Canva têm cota limitada; os alunos devem planear o esboço antes de gerar imagens e nunca inserir texto científico confiado apenas à geração automática.',
-  },
-  {
-    id: 'cenarios-historicos-seaart',
-    title: 'ATIVIDADE: CENÁRIOS HISTÓRICOS E NARRATIVA VISUAL',
-    subject: 'História / Português',
-    schoolYear: '3.º Ciclo (7.º a 9.º anos)',
-    targetAudience: 'Alunos do 3.º Ciclo em análise de época histórica ou obra literária do currículo.',
-    estimatedDuration: '60 a 75 minutos',
-    recommendedTool: 'SeaArt AI (seleção de estilos artísticos e geração de cenários a partir de descrições).',
-    materials: [
-      'Fontes históricas ou excertos literários descritivos (ex.: Lisboa setecentista, caravela quinhentista ou cenário de conto literário).',
-      'Computadores com acesso ao SeaArt AI e ficha de deteção de anacronismos visuais.',
-      'Reprodutor de slides para montar a sequência narrativa final.',
-    ],
-    prompt: 'Ilustração histórica realista em estilo de pintura a óleo narrativa, representando uma praça portuária portuguesa do século XVI com edifícios de pedra calcária, mercadores com vestuário quinhentista fiel à época e embarcações à vela ao fundo. Luz natural de fim de tarde, composição ampla sem elementos modernos, sem postes elétricos, sem carros, sem texto nem marcas comerciais.',
-    promptTip: 'Acrescente referências históricas concretas do século e do local (materiais de construção, vestuário, embarcações e objetos da época), o momento do dia e restrições explícitas como "sem postes elétricos, sem asfalto nem edifícios modernos".',
-    expectedResult: 'Sequência de três ilustrações de época anotadas com legenda histórica e relatório de verificação de anacronismos detetados.',
-    freeAlternative: 'Leonardo.Ai ou Microsoft Designer.',
-    objetivos: [
-      'Traduzir descrições históricas ou literárias em instruções visuais precisas.',
-      'Identificar anacronismos e incoerências visuais produzidos por modelos generativos.',
-      'Articular imagem e texto explicativo numa sequência narrativa coerente.',
-    ],
-    implementacao: [
-      {
-        etapa: 'Etapa 1',
-        titulo: 'Levantamento de Pormenores de Época',
-        descricao: 'A partir do manual ou texto literário, os alunos listam arquitetura, vestuário, transportes e objetos característicos do período em estudo, bem como elementos modernos a evitar.',
-      },
-      {
-        etapa: 'Etapa 2',
-        titulo: 'Geração de Três Cenas no SeaArt AI',
-        descricao: 'Os alunos escolhem um estilo coerente no SeaArt AI (gerindo os créditos diários gratuitos) e geram três momentos sequenciais mantendo coerência cromática e de cenário.',
-      },
-      {
-        etapa: 'Etapa 3',
-        titulo: 'Caça aos Anacronismos e Legenda Histórica',
-        descricao: 'Cada grupo projeta ou imprime as três imagens e assinala eventuais anacronismos gerados pela IA (roupas erradas, arquitetura impossível ou objetos modernos), escrevendo legendas historicamente rigorosas.',
-      },
-    ],
-    avaliacao: {
-      entrega: 'Sequência de 3 cenários ilustrados com legendas e lista comentada de anacronismos verificados.',
-      itens: [
-        'Fidelidade das descrições do prompt ao período histórico ou texto literário.',
-        'Capacidade crítica de identificar erros e anacronismos nas imagens geradas.',
-        'Coesão visual e narrativa entre as três cenas apresentadas.',
-      ],
-    },
-    safeguards: 'Confirmar os requisitos de idade da plataforma antes da atividade (se necessário, o docente gera em projeção guiada). Ter em conta que imagens geradas no plano gratuito podem ficar visíveis publicamente na comunidade.',
-  },
-  {
-    id: 'laboratorio-prompts-craiyon',
-    title: 'ATIVIDADE: LABORATÓRIO CRÍTICO DE PROMPTS DESCRITIVOS',
-    subject: 'Português / Educação Visual / TIC',
-    schoolYear: '1.º e 2.º Ciclos (4.º a 6.º anos)',
-    targetAudience: 'Turmas de 4.º a 6.º ano em trabalho guiado de escrita descritiva e literacia visual.',
-    estimatedDuration: '45 a 60 minutos',
-    recommendedTool: 'Craiyon (acesso direto no navegador para experimentação rápida e comparação de variantes).',
-    materials: [
-      'Quadro comparativo "Prompt Vago vs. Prompt Detalhado" (ficha impressa ou partilhada).',
-      'Computadores ou tablets com navegador web aberto em craiyon.com (preferencialmente sem criação de contas individuais por menores).',
-      'Cartões com adjetivos, planos fotográficos e estilos artísticos para enriquecer as descrições.',
-    ],
-    prompt: 'Versão A (vaga): "Um animal na floresta."\nVersão B (detalhada): "Ilustração em aguarela suave de uma raposa-vermelha portuguesa parada junto a um riacho numa floresta de carvalhos ao amanhecer, com folhas secas no chão e raios de sol entre as árvores, sem texto."',
-    promptTip: 'Experimente acrescentar um elemento descritivo de cada vez — sujeito específico, ação concreta, cenário detalhado, tipo de iluminação e técnica artística (ex.: aguarela, fotografia macro ou lápis de cor) — para observar o impacto de cada palavra no resultado.',
-    expectedResult: 'Quadro comparativo com capturas das imagens da Versão A e da Versão B, acompanhado de uma regra prática de escrita de prompts elaborada pelo aluno.',
-    freeAlternative: 'Microsoft Designer ou desenho manual em pares a partir de descrições orais.',
-    objetivos: [
-      'Enriquecer o vocabulário descritivo (substantivos concretos, adjetivos e indicadores espaciais).',
-      'Compreender na prática como a clareza e o detalhe da escrita alteram o resultado visual da IA.',
-      'Desenvolver sentido crítico face a limitações técnicas, distorções e marcas de água em ferramentas gratuitas.',
-    ],
-    implementacao: [
-      {
-        etapa: 'Etapa 1',
-        titulo: 'Teste do Prompt Vago',
-        descricao: 'Os alunos escrevem uma frase muito curta (ex.: "Um animal na floresta") no Craiyon e observam a variedade e imprevisibilidade das imagens geradas.',
-      },
-      {
-        etapa: 'Etapa 2',
-        titulo: 'Reescrita Descritiva e Nova Geração',
-        descricao: 'Usando o banco de vocabulário (sujeito, ação, ambiente, iluminação e estilo), cada aluno reescreve o prompt com detalhe e volta a testar no Craiyon.',
-      },
-      {
-        etapa: 'Etapa 3',
-        titulo: 'Análise de Resultados e Limitações',
-        descricao: 'Em conjunto, comparam os resultados antes e depois da reescrita, apontando melhorias, distorções anatómicas ou visuais da ferramenta e explicando porque é que o rigor linguístico faz diferença.',
-      },
-    ],
-    avaliacao: {
-      entrega: 'Ficha comparativa com os dois prompts, os resultados obtidos e uma conclusão escrita em 3 linhas.',
-      itens: [
-        'Evolução linguística entre o primeiro prompt e a versão detalhada.',
-        'Capacidade de observar e descrever diferenças concretas entre as imagens geradas.',
-        'Reconhecimento das limitações técnicas da ferramenta gratuita (resolução, distorções, marcas de água).',
-      ],
-    },
-    safeguards: 'No Craiyon, a versão gratuita apresenta anúncios, marcas de água e criações públicas; para alunos mais novos, privilegiar a utilização supervisionada em projeção ou pares e nunca introduzir dados ou fotografias pessoais.',
-  },
-  {
-    id: 'esquema-iterativo-chatgpt',
-    title: 'ATIVIDADE: ESQUEMA EXPLICATIVO ITERATIVO POR CONVERSA',
-    subject: 'Físico-Química / Ciências Naturais / Matemática',
-    schoolYear: '3.º Ciclo e Ensino Secundário (7.º a 10.º anos)',
-    targetAudience: 'Alunos do 3.º Ciclo ou Secundário em aprendizagem de conceitos abstratos ou processos científicos.',
-    estimatedDuration: '60 minutos',
-    recommendedTool: 'ChatGPT (geração e edição conversacional passo a passo de imagens educativas).',
-    materials: [
-      'Manual escolar com o esquema científico oficial do tema (ex.: estados físicos da matéria ou ciclo do carbono).',
-      'Acesso ao ChatGPT (em conta elegível ou mediante demonstração guiada pelo docente).',
-      'Diário de iteração para registar o que estava errado no 1.º rascunho e que instrução corrigiu o esquema.',
-    ],
-    prompt: 'Cria um esquema educativo simples e limpo sobre fundo branco para explicar as mudanças de estado físico da água (sólido, líquido e gasoso). Mostra três recipientes transparentes lado a lado com a organização das partículas em cada estado, ligados por setas simples. Não incluas texto nem palavras nas setas nesta primeira versão para que eu possa validar a disposição científica primeiro.',
-    promptTip: 'Peça primeiro uma estrutura visual limpa sem palavras nas setas ("apenas símbolos e recipientes sobre fundo branco"); na mensagem seguinte, dê instruções cirúrgicas indicando exatamente o que corrigir (ex.: "aproxima as partículas do sólido numa rede regular").',
-    expectedResult: 'Esquema científico final corrigido por iteração e diário de validação documentando as alterações pedidas entre a versão inicial e a final.',
-    freeAlternative: 'Canva Free ou desenho vetorial no LibreOffice Draw com base no manual escolar.',
-    objetivos: [
-      'Representar visualmente processos científicos ou abstratos com apoio de diálogo iterativo.',
-      'Praticar a revisão científica confrontando cada rascunho da IA com o manual da disciplina.',
-      'Formular instruções corretivas precisas quando a imagem inicial apresenta erros conceptuais.',
-    ],
-    implementacao: [
-      {
-        etapa: 'Etapa 1',
-        titulo: 'Geração da Primeira Versão',
-        descricao: 'Os alunos pedem ao ChatGPT um esquema visual inicial sem legendas (ou com estrutura simples) e guardam essa primeira imagem como "Versão 1".',
-      },
-      {
-        etapa: 'Etapa 2',
-        titulo: 'Verificação Científica e Refinamento Conversacional',
-        descricao: 'Confrontando a Versão 1 com o manual, identificam erros (ex.: espaçamento incorreto entre partículas no estado sólido ou setas trocadas) e escrevem uma instrução conversacional específica para corrigir apenas esses pontos.',
-      },
-      {
-        etapa: 'Etapa 3',
-        titulo: 'Registo do Processo de Validação',
-        descricao: 'Os alunos comparam a Versão 1 e a versão final validada, explicando à turma quais foram as falhas iniciais da IA e se a versão final está apta para estudar.',
-      },
-    ],
-    avaliacao: {
-      entrega: 'Comparação "Versão 1 vs. Versão Final" com diário de correções científicas.',
-      itens: [
-        'Exatidão científica da versão final após verificação no manual.',
-        'Qualidade e precisão das instruções de correção dadas no diálogo.',
-        'Rigor na justificação dos erros detetados no rascunho inicial.',
-      ],
-    },
-    safeguards: 'A cota gratuita de geração de imagens no ChatGPT é limitada; planear previamente os critérios científicos antes de gerar e nunca aceitar esquemas científicos da IA sem validação pelo docente e pelo manual.',
-  },
-  {
-    id: 'narrativa-multicultural-gemini',
-    title: 'ATIVIDADE: SEQUÊNCIA NARRATIVA MULTICULTURAL',
-    subject: 'Português / História e Geografia de Portugal / Cidadania',
-    schoolYear: '2.º e 3.º Ciclos (5.º a 9.º anos)',
-    targetAudience: 'Turmas do 2.º e 3.º Ciclos em projetos de leitura, biografia ou diversidade cultural.',
-    estimatedDuration: '60 a 75 minutos',
-    recommendedTool: 'Gemini (geração sequencial de imagens e edição assistida por instruções em português).',
-    materials: [
-      'Guião de micro-história ou biografia de 3 momentos (início, desafio e desfecho) validado previamente.',
-      'Acesso ao Gemini com conta elegível (observando as regras escolares aplicáveis).',
-      'Ficha de auditoria de representação (verificação de estereótipos, coerência de personagens e rigor cultural).',
-    ],
-    prompt: 'Ilustração narrativa em estilo de banda desenhada europeia colorida, representando a cena 1 de 3: uma jovem investigadora portuguesa do século XIX numa biblioteca antiga com mapas náuticos e instrumentos de astronomia em cima de uma mesa de madeira. Ambiente luminoso e respeitoso, sem exageros nem estereótipos visuais, sem balões de fala nem texto.',
-    promptTip: 'Repita nas três cenas os mesmos traços identificadores da personagem (idade, vestuário, cor de cabelo, acessórios) e o mesmo estilo gráfico ("banda desenhada europeia em cores suaves"), descrevendo sempre uma única ação clara por vinheta.',
-    expectedResult: 'Banda desenhada muda de 3 vinhetas acompanhada de legendas literárias ou históricas escritas pelos alunos e ficha de auditoria cultural.',
-    freeAlternative: 'Microsoft Designer ou Canva Free.',
-    objetivos: [
-      'Construir uma sequência narrativa coerente articulando texto autoral e ilustração de apoio.',
-      'Manter consistência visual entre cenas através de instruções sequenciais.',
-      'Analisar criticamente eventuais enviesamentos ou estereótipos culturais nas imagens geradas por IA.',
-    ],
-    implementacao: [
-      {
-        etapa: 'Etapa 1',
-        titulo: 'Guião dos Três Momentos',
-        descricao: 'Os alunos redigem um breve guião de três cenas (introdução, ponto de viragem e conclusão), definindo características constantes da personagem e do espaço.',
-      },
-      {
-        etapa: 'Etapa 2',
-        titulo: 'Criação Sequencial no Gemini',
-        descricao: 'Geram a primeira cena no Gemini e utilizam instruções seguintes para manter o estilo e ajustar a ação e o cenário para as cenas 2 e 3.',
-      },
-      {
-        etapa: 'Etapa 3',
-        titulo: 'Auditoria de Enviesamentos e Redação Final',
-        descricao: 'A turma analisa as sequências quanto à fidelidade histórica/cultural, corrige ou sinaliza eventuais estereótipos produzidos pelo modelo e acrescenta as legendas literárias finais.',
-      },
-    ],
-    avaliacao: {
-      entrega: 'Sequência narrativa de 3 vinhetas legendadas e breve comentário de auditoria visual.',
-      itens: [
-        'Coerência narrativa e adequação linguística das legendas escritas pelos alunos.',
-        'Continuidade visual conseguida ao longo das três cenas.',
-        'Espírito crítico na análise de representações culturais e eventuais enviesamentos da IA.',
-      ],
-    },
-    safeguards: 'Confirmar as políticas aplicáveis ao Google Workspace for Education e os requisitos etários da escola antes de utilizar com alunos. Não inserir nomes reais ou dados pessoais nos prompts.',
-  },
-  {
-    id: 'cartoes-estudo-copilot',
-    title: 'ATIVIDADE: CARTÕES VISUAIS DE ESTUDO E APOIO À APRESENTAÇÃO',
-    subject: 'Geografia / Economia / Biologia',
-    schoolYear: '3.º Ciclo e Ensino Secundário (8.º a 11.º anos)',
-    targetAudience: 'Alunos do 3.º Ciclo e Secundário a preparar apresentações orais temáticas.',
-    estimatedDuration: '60 minutos',
-    recommendedTool: 'Microsoft Copilot (geração no chat com ligação opcional ao Microsoft Designer para recorte e acabamento).',
-    materials: [
-      'Guião de tópicos de apresentação oral (ex.: energias renováveis, alterações climáticas ou setores económicos).',
-      'Acesso ao Microsoft Copilot (e Microsoft Designer, se necessário) com conta escolar ou elegível.',
-      'Grelha de avaliação da apresentação oral (clareza visual + domínio do conteúdo sem ler texto excessivo).',
-    ],
-    prompt: 'Cria uma imagem ilustrativa em estilo editorial limpo para apoiar uma apresentação escolar sobre energia eólica offshore. Mostra turbinas eólicas no mar ao amanhecer, vistas de perspetiva ampla com céu sereno e composição simples que deixe espaço livre no topo esquerdo para colocar um título curto no diapositivo. Não incluas texto, números nem logótipos.',
-    promptTip: 'Indique a proporção horizontal (16:9), o ponto focal principal alinhado num dos lados e peça explicitamente "zona calma e despejada no canto superior esquerdo para título", garantindo espaço negativo legível no diapositivo.',
-    expectedResult: 'Conjunto de 3 cartões visuais ou diapositivos de apoio à apresentação oral, sem texto automático confuso e acompanhados de notas de orador.',
-    freeAlternative: 'Banco de imagens livres de direitos (Unsplash / Pixabay) com paginação em LibreOffice Impress.',
-    objetivos: [
-      'Substituir diapositivos sobrecarregados de texto por apoios visuais claros e funcionais.',
-      'Formular pedidos de composição visual pensados para enquadramento de apresentação (espaço negativo, foco claro).',
-      'Verificar a plausibilidade técnica das imagens usadas como suporte à exposição oral.',
-    ],
-    implementacao: [
-      {
-        etapa: 'Etapa 1',
-        titulo: 'Planificação Visual da Apresentação',
-        descricao: 'Para 3 momentos-chave da sua exposição oral, cada aluno define qual a ideia visual central e onde precisa de espaço livre na imagem para o título.',
-      },
-      {
-        etapa: 'Etapa 2',
-        titulo: 'Geração no Microsoft Copilot e Acabamento',
-        descricao: 'Os alunos geram as imagens no chat do Microsoft Copilot sem texto embutido e, caso precisem de ajustar proporções ou recortar elementos, continuam a edição no Microsoft Designer.',
-      },
-      {
-        etapa: 'Etapa 3',
-        titulo: 'Ensaio Oral e Validação Técnica',
-        descricao: 'Apresentam durante 2 minutos apoiando-se exclusivamente nas imagens e nas notas de orador, enquanto os colegas validam se a imagem ilustra corretamente o conceito sem erros técnicos.',
-      },
-    ],
-    avaliacao: {
-      entrega: 'Conjunto de 3 diapositivos/cartões visuais e notas de apresentação oral.',
-      itens: [
-        'Qualidade da composição visual ao serviço da comunicação oral (clareza e ausência de poluição visual).',
-        'Coerência entre o discurso oral fundamentado e a imagem apresentada.',
-        'Validação técnica dos elementos visuais gerados (ausência de erros grosseiros na representação).',
-      ],
-    },
-    safeguards: 'Confirmar as condições aplicáveis a contas escolares Microsoft 365 Education. Evitar gerar gráficos numéricos ou mapas estatísticos inventados; usar esta abordagem apenas para ilustrações de apoio conceptual.',
-  },
-  {
-    id: 'infografico-fontes-notebooklm',
-    title: 'ATIVIDADE: INFOGRÁFICO FUNDAMENTADO EM FONTES CURRICULARES',
-    subject: 'História / Biologia e Geologia / Geografia',
-    schoolYear: '3.º Ciclo e Ensino Secundário (8.º a 12.º anos)',
-    targetAudience: 'Alunos do 3.º Ciclo e Secundário em trabalho de síntese documental rigorosa.',
-    estimatedDuration: '60 a 75 minutos',
-    recommendedTool: 'NotebookLM (análise de fontes fornecidas e criação de infográfico no painel Studio) e Canva (opcional, para paginação complementar).',
-    materials: [
-      'Conjunto de 2 a 4 documentos fiáveis fornecidos pelo docente (PDFs do manual, artigos científicos adaptados ou fichas curriculares).',
-      'Acesso ao NotebookLM com conta Google elegível (ou utilização orientada pelo docente em sala).',
-      'Lista de verificação factual para confirmar cada dado do infográfico face aos documentos originais.',
-    ],
-    prompt: 'Com base exclusivamente nas fontes documentais carregadas neste caderno sobre [INSERIR TEMA CURRICULAR], organiza os elementos para um infográfico educativo de estudo dirigido a alunos do [ANO]. Destaca: 1) título objetivo; 2) 3 a 4 ideias-chave com definição rigorosa; 3) datas, etapas ou factos comprovados nos documentos; 4) uma referência à fonte consultada. Não inventes dados externos e assinala qualquer lacuna de informação.',
-    promptTip: 'No painel Studio do NotebookLM, indique claramente o público-alvo (ano de escolaridade), o nível de detalhe pretendido (síntese ou aprofundamento), a orientação (retrato ou paisagem) e o idioma em português europeu, delimitando o foco às ideias-chave das fontes selecionadas.',
-    expectedResult: 'Infográfico educativo gerado no painel Studio do NotebookLM (com eventual acabamento no Canva), acompanhado de tabela de verificação face às fontes originais.',
-    freeAlternative: 'Leitura anotada dos documentos em papel e construção manual do infográfico no Canva Free ou LibreOffice Impress.',
-    objetivos: [
-      'Distinguir ferramentas fundamentadas em fontes (como o NotebookLM) de geradores abertos de fotografia ou arte.',
-      'Sintetizar informação curricular complexa num infográfico estruturado e fiel aos documentos.',
-      'Praticar a auditoria factual cruzando cada afirmação visual com os textos de origem.',
-    ],
-    implementacao: [
-      {
-        etapa: 'Etapa 1',
-        titulo: 'Seleção e Carregamento de Fontes Validadas',
-        descricao: 'O docente ou os alunos sob supervisão carregam no NotebookLM apenas os documentos curriculares validados para o tema (sem incluir dados pessoais).',
-      },
-      {
-        etapa: 'Etapa 2',
-        titulo: 'Geração do Infográfico no Painel Studio',
-        descricao: 'Utilizar as fontes carregadas no NotebookLM para estruturar os pontos principais e criar um infográfico no painel Studio, selecionando idioma (português), nível de detalhe e orientação adequados ao público.',
-      },
-      {
-        etapa: 'Etapa 3',
-        titulo: 'Auditoria Factual e Partilha',
-        descricao: 'Os alunos conferem linha a linha se todos os conceitos, datas e relações do infográfico constam exatamente das fontes carregadas, corrigindo eventuais simplificações excessivas (no Canva, se necessário) antes da partilha.',
-      },
-    ],
-    avaliacao: {
-      entrega: 'Infográfico validado e lista de verificação factual ligando cada bloco do infográfico à respetiva fonte.',
-      itens: [
-        'Fidelidade rigorosa aos documentos curriculares fornecidos (ausência de factos inventados).',
-        'Clareza na organização hierárquica da informação e legibilidade para estudo.',
-        'Rigor na revisão crítica do resultado produzido pelo painel Studio.',
-      ],
-    },
-    safeguards: 'O NotebookLM não é um gerador aberto de imagens artísticas nem substitui a leitura das fontes pelo aluno. Confirmar a elegibilidade etária e as políticas do Google Workspace for Education antes de carregar ficheiros; nunca carregar trabalhos com dados pessoais de alunos.',
   },
 ];
 
@@ -1871,10 +1497,20 @@ export function searchModuloContent(query: string): SearchResult[] {
   for (const act of IMAGE_ACTIVITIES) {
     if (
       act.title.toLowerCase().includes(q) ||
+      (act.subtitle?.toLowerCase().includes(q) ?? false) ||
+      act.prompt.toLowerCase().includes(q) ||
+      act.promptTip.toLowerCase().includes(q) ||
+      act.promptAdaptation.toLowerCase().includes(q) ||
+      act.materials.some((m) => m.toLowerCase().includes(q)) ||
       act.objetivos.some((o) => o.toLowerCase().includes(q)) ||
-      act.implementacao.some((i) => i.descricao.toLowerCase().includes(q)) ||
-      act.recommendedTool.toLowerCase().includes(q) ||
-      act.safeguards.toLowerCase().includes(q)
+      act.implementacao.some(
+        (i) =>
+          i.descricao.toLowerCase().includes(q) ||
+          (i.pontos?.some((pt) => pt.toLowerCase().includes(q)) ?? false) ||
+          (i.exemplos?.some((ex) => ex.toLowerCase().includes(q)) ?? false) ||
+          (i.nota?.toLowerCase().includes(q) ?? false) ||
+          (i.ferramentas?.some((f) => f.name.toLowerCase().includes(q)) ?? false),
+      )
     ) {
       results.push({
         pageId: 'atividades-imagem',

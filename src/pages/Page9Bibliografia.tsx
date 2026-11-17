@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Copy, Check, ExternalLink } from 'lucide-react';
-import { BIBLIOGRAPHY } from '../data/moduloData.ts';
+import { BIBLIOGRAPHY, ETHICS_OFFICIAL_LINKS } from '../data/moduloData.ts';
 
 export const Page9Bibliografia: React.FC = () => {
   const [copiedIdx, setCopiedIdx] = useState<number | null>(null);
@@ -112,6 +112,37 @@ export const Page9Bibliografia: React.FC = () => {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <div className="border-b border-zinc-200 pb-3">
+          <h2 className="font-display text-xl font-bold text-zinc-900">
+            Ligações e Documentos Oficiais
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {ETHICS_OFFICIAL_LINKS.map((ref, idx) => (
+            <a
+              key={idx}
+              href={ref.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-xl border border-zinc-200 p-4 flex items-start justify-between gap-3 hover:border-blue-700 transition-colors group"
+            >
+              <div className="space-y-1 min-w-0">
+                <div className="text-xs font-semibold text-blue-700">{ref.entity}</div>
+                <div className="text-sm font-medium text-zinc-900 group-hover:text-blue-700 leading-snug">
+                  {ref.title}
+                </div>
+              </div>
+              <ExternalLink
+                className="w-4 h-4 text-zinc-400 group-hover:text-blue-700 shrink-0 mt-1"
+                aria-hidden="true"
+              />
+            </a>
+          ))}
         </div>
       </section>
 

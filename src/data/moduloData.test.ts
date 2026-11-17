@@ -87,52 +87,56 @@ test('calculateModuleProgress computes percentage for 8 pages', () => {
   assert.equal(calculateModuleProgress([0, 99, 1]), 13);
 });
 
-test('IMAGE_ACTIVITIES covers all 11 required image tools with complete pedagogical fields', () => {
-  assert.equal(IMAGE_ACTIVITIES.length, 13);
-  const requiredTools = [
-    'Microsoft Designer',
-    'Leonardo.Ai',
-    'Adobe Firefly',
-    'Ideogram',
-    'Canva',
-    'SeaArt AI',
-    'Craiyon',
-    'ChatGPT',
-    'Gemini',
-    'Microsoft Copilot',
-    'NotebookLM',
-  ];
-
-  for (const toolName of requiredTools) {
-    assert.ok(
-      IMAGE_ACTIVITIES.some((act) => act.recommendedTool.includes(toolName)),
-      `Missing activity for ${toolName}`,
-    );
-  }
+test('IMAGE_ACTIVITIES preserves the five original activities with justified refinements and tool URLs', () => {
+  assert.equal(IMAGE_ACTIVITIES.length, 5);
+  assert.deepEqual(
+    IMAGE_ACTIVITIES.map((a) => a.id),
+    [
+      'estacoes-do-ano',
+      'patrimonio-futuro',
+      'expressoes-idiomaticas',
+      'alegoria-caverna',
+      'gesto-tecnico-desportivo',
+    ],
+  );
 
   for (const act of IMAGE_ACTIVITIES) {
-    assert.ok(act.subject.length > 0);
-    assert.ok(act.schoolYear.length > 0);
-    assert.ok(act.estimatedDuration.length > 0);
-    assert.ok(act.materials.length >= 2);
-    assert.ok(act.promptTip.length > 20);
     assert.ok(act.objetivos.length >= 3);
-    assert.ok(act.implementacao.length >= 3);
-    assert.ok(act.expectedResult.length > 0);
+    assert.equal(act.implementacao.length, 3);
     assert.ok(act.avaliacao.itens.length >= 2);
-    assert.ok(act.safeguards.length > 0);
+    assert.ok(act.prompt.length > 40);
+    assert.ok(act.promptTip.length > 20);
+    assert.ok(act.promptAdaptation.length > 20);
+    assert.ok(act.materials.length >= 2);
+    assert.ok(act.estimatedDuration.length > 0);
   }
 
-  const notebookAct = IMAGE_ACTIVITIES.find((a) => a.id === 'infografico-fontes-notebooklm');
-  assert.ok(notebookAct);
-  assert.ok(notebookAct.recommendedTool.includes('NotebookLM'));
-  assert.ok(notebookAct.recommendedTool.toLowerCase().includes('infográfico'));
-  assert.ok(notebookAct.safeguards.includes('não é um gerador aberto'));
+  assert.equal(
+    IMAGE_ACTIVITIES[2].title,
+    'ATIVIDADE: EXPRESSÕES IDIOMÁTICAS EM IMAGENS',
+  );
 
-  const bio = IMAGE_ACTIVITIES.find((a) => a.id === 'biomecanica-movimento');
-  assert.ok(bio);
-  assert.ok(!bio.implementacao.some((s) => s.descricao.includes('forma perfeita')));
-  assert.ok(bio.safeguards.includes('Não utilizar imagens geradas por IA como única referência'));
+  const pat = IMAGE_ACTIVITIES[1];
+  assert.equal(pat.subtitle, 'Geografia / História / Cidadania');
+  assert.deepEqual(pat.implementacao[1].ferramentas, [
+    { name: 'Adobe Firefly', url: 'https://firefly.adobe.com/' },
+    { name: 'Leonardo.ai', url: 'https://leonardo.ai/' },
+  ]);
+  assert.ok(pat.implementacao[1].descricao.includes('Preenchimento Generativo'));
+
+  const expr = IMAGE_ACTIVITIES[2];
+  assert.deepEqual(expr.implementacao[1].ferramentas, [
+    { name: 'Microsoft Designer', url: 'https://designer.microsoft.com/' },
+  ]);
+
+  const caverna = IMAGE_ACTIVITIES[3];
+  assert.deepEqual(caverna.implementacao[1].ferramentas, [
+    { name: 'Leonardo.ai', url: 'https://leonardo.ai/' },
+  ]);
+
+  const sport = IMAGE_ACTIVITIES[4];
+  assert.ok(!sport.implementacao.some((s) => s.descricao.includes('forma perfeita')));
+  assert.ok(sport.implementacao[1].nota?.includes('não constituem modelos biomecânicos'));
 });
 
 test('AUDIO_TOOLS and AUDIO_ACTIVITIES reflect 9 unique audio tools and 3 activities without removed fields', () => {
@@ -218,6 +222,8 @@ test('ETHICS and BIBLIOGRAPHY contain required sections, checklist and official 
 });
 
 test('searchModuloContent covers image, audio, ethics and bibliography', () => {
+  assert.ok(searchModuloContent('Estações do Ano').some((r) => r.pageNumber === 4));
+  assert.ok(searchModuloContent('Expressões Idiomáticas').some((r) => r.pageNumber === 4));
   assert.ok(searchModuloContent('ElevenLabs').some((r) => r.pageNumber === 5));
   assert.ok(searchModuloContent('TTSMaker').some((r) => r.pageNumber === 5));
   assert.ok(searchModuloContent('Clipchamp').some((r) => r.pageNumber === 5));
@@ -231,7 +237,7 @@ test('searchModuloContent covers image, audio, ethics and bibliography', () => {
   assert.ok(searchModuloContent('2024/1689').some((r) => r.pageNumber === 8));
   assert.equal(searchModuloContent('Runway').length, 0);
   const craiyonHits = searchModuloContent('Craiyon');
-  assert.ok(craiyonHits.some((r) => r.pageNumber === 4));
   assert.ok(!craiyonHits.some((r) => r.pageNumber === 2));
+  assert.ok(!craiyonHits.some((r) => r.pageNumber === 4));
   assert.equal(searchModuloContent('   ').length, 0);
 });
