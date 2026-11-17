@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Copy, Check, ExternalLink } from 'lucide-react';
+import { Copy, Check, ExternalLink, PenLine, Target, Wrench } from 'lucide-react';
 import { IMAGE_PROMPTS, getRecommendedToolUrl } from '../data/moduloData.ts';
 import { PROMPT_SAMPLE_IMAGES } from '../data/mediaAssets.ts';
 import { VisualFrame } from '../components/VisualFrame.tsx';
+import { PageHeader } from '../components/PageHeader.tsx';
 
 export const Page3PromptsImagem: React.FC = () => {
   const [copiedId, setCopiedId] = useState<number | null>(null);
@@ -39,18 +40,15 @@ export const Page3PromptsImagem: React.FC = () => {
   };
 
   return (
-    <div className="space-y-10">
-      <header className="border-b border-zinc-200 pb-6 space-y-2">
-        <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
-          PROMPTS PARA CRIAR IMAGENS — 12 EXEMPLOS COMPLETOS
-        </h1>
-        <p className="text-sm sm:text-base text-zinc-600 max-w-2xl leading-relaxed">
-          Cada exemplo apresenta o objetivo pedagógico, a ferramenta recomendada, o prompt completo, o resultado esperado com área visual associada e a alternativa gratuita.
-        </p>
-      </header>
+    <div className="space-y-12">
+      <PageHeader
+        title="PROMPTS PARA CRIAR IMAGENS — 12 EXEMPLOS COMPLETOS"
+        description="Cada exemplo apresenta o objetivo pedagógico, a ferramenta recomendada, o prompt completo, o resultado esperado com área visual associada e a alternativa gratuita."
+        Icon={PenLine}
+      />
 
       <section>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
           {IMAGE_PROMPTS.map((p) => {
             const isCopied = copiedId === p.id;
             const sampleSrc = p.imageKey ? PROMPT_SAMPLE_IMAGES[p.imageKey] : null;
@@ -58,22 +56,36 @@ export const Page3PromptsImagem: React.FC = () => {
             return (
               <article
                 key={p.id}
-                className="bg-white rounded-2xl border border-zinc-200 p-6 flex flex-col justify-between gap-5"
+                className="bg-white rounded-2xl border border-indigo-100/90 shadow-[0_4px_20px_rgba(79,70,229,0.04)] p-6 sm:p-7 flex flex-col justify-between gap-5"
               >
-                <div className="space-y-4">
-                  <h2 className="font-display text-xl font-bold text-zinc-900">
-                    {p.id}. {p.title}
-                  </h2>
+                <div className="space-y-5">
+                  <div className="flex items-baseline gap-3 border-b border-indigo-100 pb-4">
+                    <span className="font-mono text-sm font-bold text-[#4f46e5] tabular-nums shrink-0">
+                      {String(p.id).padStart(2, '0')}.
+                    </span>
+                    <h2 className="font-display text-xl font-bold text-[#0d153e] leading-snug">
+                      {p.title}
+                    </h2>
+                  </div>
 
-                  <dl className="space-y-3 text-xs sm:text-sm">
-                    <div>
-                      <dt className="font-semibold text-zinc-900">Objetivo pedagógico</dt>
-                      <dd className="text-zinc-700 leading-relaxed">{p.objective}</dd>
+                  <dl className="divide-y divide-indigo-100/70 text-xs sm:text-sm">
+                    <div className="pb-3.5 space-y-1">
+                      <dt className="inline-flex items-center gap-1.5 font-semibold text-[#0d153e]">
+                        <Target className="w-3.5 h-3.5 text-[#4f46e5] shrink-0" aria-hidden="true" />
+                        <span>Objetivo pedagógico</span>
+                      </dt>
+                      <dd className="text-[#3d4663] leading-relaxed">{p.objective}</dd>
                     </div>
-                    <div className="space-y-2">
-                      <div>
-                        <dt className="font-semibold text-zinc-900">Ferramenta recomendada</dt>
-                        <dd className="text-zinc-700 leading-relaxed">{p.recommendedTool}</dd>
+
+                    <div className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div className="space-y-0.5 min-w-0">
+                        <dt className="inline-flex items-center gap-1.5 font-semibold text-[#4338ca] text-xs">
+                          <Wrench className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                          <span>Ferramenta recomendada</span>
+                        </dt>
+                        <dd className="font-display font-bold text-[#0d153e] text-sm leading-snug">
+                          {p.recommendedTool}
+                        </dd>
                       </div>
                       {recommendedUrl && (
                         <a
@@ -81,7 +93,7 @@ export const Page3PromptsImagem: React.FC = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={`Abrir ferramenta recomendada para ${p.title} num novo separador`}
-                          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-blue-700 bg-blue-50/70 text-blue-700 hover:bg-blue-700 hover:text-white text-xs font-semibold transition-colors min-h-[38px]"
+                          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-indigo-200 bg-[#f8f7fc] text-[#4338ca] hover:bg-[#4f46e5] hover:border-[#4f46e5] hover:text-white text-xs font-semibold transition-colors min-h-[38px] whitespace-nowrap shrink-0 self-start sm:self-center"
                         >
                           <span>Abrir ferramenta recomendada</span>
                           <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
@@ -90,17 +102,19 @@ export const Page3PromptsImagem: React.FC = () => {
                     </div>
                   </dl>
 
-                  <div className="space-y-1.5">
+                  <div className="space-y-2.5">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-semibold text-zinc-900">Prompt completo</span>
+                      <span className="text-xs font-semibold text-[#0d153e]">
+                        Prompt completo
+                      </span>
                       <button
                         type="button"
                         onClick={() => handleCopy(p.id, p.prompt)}
                         aria-label={`Copiar prompt de ${p.title}`}
-                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors min-h-[36px] ${
+                        className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all min-h-[36px] whitespace-nowrap shrink-0 ${
                           isCopied
                             ? 'bg-teal-700 text-white'
-                            : 'bg-zinc-900 hover:bg-blue-700 text-white'
+                            : 'bg-gradient-to-r from-[#4f46e5] to-[#6366f1] hover:from-[#4338ca] hover:to-[#4f46e5] text-white shadow-sm shadow-indigo-500/20'
                         }`}
                       >
                         {isCopied ? (
@@ -116,16 +130,16 @@ export const Page3PromptsImagem: React.FC = () => {
                         )}
                       </button>
                     </div>
-                    <p className="font-mono text-xs text-zinc-800 leading-relaxed bg-[#f8f8f6] p-4 rounded-xl border border-zinc-200/80 select-all">
+                    <p className="font-mono text-xs text-[#1e243d] leading-relaxed bg-[#f4f3fb] p-4 rounded-xl border border-indigo-200/70 select-all">
                       {p.prompt}
                     </p>
                   </div>
 
-                  <div className="space-y-2 pt-2 border-t border-zinc-100">
-                    <div className="text-xs font-semibold text-zinc-900">
+                  <div className="space-y-3 pt-4 border-t border-indigo-100/80">
+                    <div className="text-xs font-semibold text-[#0d153e]">
                       Resultado esperado
                     </div>
-                    <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#3d4663] leading-relaxed">
                       {p.expectedResult}
                     </p>
 
@@ -137,11 +151,11 @@ export const Page3PromptsImagem: React.FC = () => {
                         allowZoom={true}
                       />
                     ) : (
-                      <div className="aspect-[16/9] rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-4 flex flex-col items-center justify-center text-center gap-1.5">
-                        <span className="text-xs font-semibold text-zinc-700">
+                      <div className="aspect-[16/9] rounded-xl border border-dashed border-indigo-200 bg-[#f8f7fc] p-4 flex flex-col items-center justify-center text-center gap-1.5">
+                        <span className="text-xs font-semibold text-[#0d153e]">
                           Imagem do resultado pendente de geração/validação na ferramenta recomendada
                         </span>
-                        <span className="text-xs text-zinc-500 max-w-md leading-relaxed">
+                        <span className="text-xs text-[#525b7a] max-w-md leading-relaxed">
                           Descrição esperada: {p.expectedResult}
                         </span>
                       </div>
@@ -149,8 +163,8 @@ export const Page3PromptsImagem: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-zinc-100 text-xs text-zinc-700">
-                  <strong className="font-semibold text-zinc-900">Alternativa gratuita: </strong>
+                <div className="pt-3.5 border-t border-indigo-100/80 text-xs text-[#3d4663]">
+                  <strong className="font-semibold text-[#0d153e]">Alternativa gratuita: </strong>
                   {p.freeAlternative}
                 </div>
               </article>

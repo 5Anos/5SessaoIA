@@ -9,8 +9,11 @@ import {
   Lightbulb,
   SlidersHorizontal,
   Package,
+  Presentation,
+  Clock,
 } from 'lucide-react';
 import { IMAGE_ACTIVITIES, type ImageActivityTool } from '../data/moduloData.ts';
+import { PageHeader } from '../components/PageHeader.tsx';
 
 function renderDescriptionWithToolLinks(text: string, ferramentas?: ImageActivityTool[]) {
   if (!ferramentas || ferramentas.length === 0) {
@@ -32,7 +35,7 @@ function renderDescriptionWithToolLinks(text: string, ferramentas?: ImageActivit
         href={matchedTool.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-0.5 font-semibold text-blue-700 hover:text-blue-800 underline underline-offset-2"
+        className="inline-flex items-center gap-0.5 font-semibold text-[#4f46e5] hover:text-[#4338ca] underline underline-offset-2"
       >
         <span>{matchedTool.name}</span>
         <ExternalLink className="w-3 h-3 shrink-0" aria-hidden="true" />
@@ -93,12 +96,11 @@ export const Page4AtividadesImagem: React.FC = () => {
   };
 
   return (
-    <div className="space-y-8">
-      <header className="border-b border-zinc-200 pb-5">
-        <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
-          ATIVIDADES EM SALA DE AULA COM FERRAMENTAS DE IMAGEM
-        </h1>
-      </header>
+    <div className="space-y-10">
+      <PageHeader
+        title="ATIVIDADES EM SALA DE AULA COM FERRAMENTAS DE IMAGEM"
+        Icon={Presentation}
+      />
 
       <nav
         aria-label="Selecionar atividade com imagem"
@@ -112,20 +114,24 @@ export const Page4AtividadesImagem: React.FC = () => {
               key={act.id}
               type="button"
               onClick={() => handleSelectActivity(act.id)}
-              className={`text-left px-4 py-3.5 rounded-xl border transition-colors flex flex-col gap-1 ${
+              className={`text-left px-4 py-3.5 rounded-xl border transition-all flex flex-col gap-1 ${
                 isSelected
-                  ? 'bg-amber-50 border-amber-300 text-amber-950'
-                  : 'bg-white border-zinc-200 hover:bg-zinc-50 text-zinc-900'
+                  ? 'bg-gradient-to-r from-[#4f46e5] to-[#6366f1] border-[#4f46e5] text-white shadow-sm shadow-indigo-500/20'
+                  : 'bg-white border-indigo-100 hover:border-indigo-300 hover:bg-indigo-50/40 text-[#0d153e]'
               }`}
             >
               <span
-                className={`font-mono text-xs font-semibold tabular-nums ${
-                  isSelected ? 'text-amber-800' : 'text-zinc-400'
+                className={`font-mono text-xs font-bold tabular-nums ${
+                  isSelected ? 'text-indigo-100' : 'text-[#4f46e5]'
                 }`}
               >
                 Atividade {index + 1}
               </span>
-              <span className="font-display text-sm font-bold leading-snug">
+              <span
+                className={`font-display text-sm font-bold leading-snug ${
+                  isSelected ? 'text-white' : 'text-[#0d153e]'
+                }`}
+              >
                 {cleanTitle}
               </span>
             </button>
@@ -135,54 +141,57 @@ export const Page4AtividadesImagem: React.FC = () => {
 
       <article
         ref={articleRef}
-        className="bg-white rounded-2xl border border-zinc-200 overflow-clip scroll-mt-24"
+        className="bg-white rounded-2xl border border-indigo-100/90 shadow-[0_4px_24px_rgba(79,70,229,0.045)] overflow-clip scroll-mt-24"
       >
-        <div className="bg-amber-100/85 border-b border-amber-200 px-6 sm:px-8 py-4 sm:py-5 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
+        <div className="bg-gradient-to-r from-[#ede9fe] via-[#eef2ff] to-[#f5f3ff] border-b border-indigo-200/75 px-6 sm:px-8 py-5 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <h2 className="font-display text-xl sm:text-2xl font-bold text-zinc-900">
+            <h2 className="font-display text-xl sm:text-2xl font-bold text-[#0d153e]">
               {activeActivity.title}
             </h2>
             {activeActivity.subtitle && (
-              <span className="text-sm font-medium text-amber-950/80">
+              <span className="text-sm font-semibold text-[#4338ca]">
                 ({activeActivity.subtitle})
               </span>
             )}
           </div>
-          <span className="text-xs font-medium text-amber-950/80 whitespace-nowrap shrink-0">
-            Duração estimada: {activeActivity.estimatedDuration}
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#4338ca] whitespace-nowrap shrink-0">
+            <Clock className="w-3.5 h-3.5" aria-hidden="true" />
+            <span>Duração estimada: {activeActivity.estimatedDuration}</span>
           </span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 p-6 sm:p-8 items-start">
-          <section className="lg:col-span-7 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 p-6 sm:p-8 items-start">
+          <section className="lg:col-span-7 space-y-7">
             <div className="space-y-4">
-              <h3 className="inline-flex items-center gap-2 text-base font-bold text-zinc-900">
-                <ListChecks className="w-4 h-4 text-amber-800 shrink-0" aria-hidden="true" />
+              <h3 className="inline-flex items-center gap-2 text-base font-bold text-[#0d153e]">
+                <ListChecks className="w-4 h-4 text-[#4f46e5] shrink-0" aria-hidden="true" />
                 <span>Como o Professor Implementa</span>
               </h3>
 
-              <div className="divide-y divide-zinc-200">
+              <div className="divide-y divide-indigo-100/80">
                 {activeActivity.implementacao.map((item, i) => (
                   <div key={i} className="py-5 first:pt-2 last:pb-0 space-y-2.5">
                     <div className="flex items-center gap-2.5">
-                      <span className="font-mono text-xs font-semibold text-amber-800">
+                      <span className="font-mono text-xs font-bold text-[#4f46e5]">
                         {item.etapa}
                       </span>
-                      <span aria-hidden="true" className="text-zinc-300">·</span>
-                      <h4 className="font-display text-base font-bold text-zinc-900">
+                      <span aria-hidden="true" className="text-indigo-200">
+                        ·
+                      </span>
+                      <h4 className="font-display text-base font-bold text-[#0d153e]">
                         {item.titulo}
                       </h4>
                     </div>
 
-                    <p className="text-sm text-zinc-700 leading-relaxed">
+                    <p className="text-sm text-[#1e243d] leading-relaxed">
                       {renderDescriptionWithToolLinks(item.descricao, item.ferramentas)}
                     </p>
 
                     {item.pontos && item.pontos.length > 0 && (
-                      <ul className="space-y-1.5 pl-1 text-sm text-zinc-700">
+                      <ul className="space-y-1.5 pl-1 text-sm text-[#3d4663]">
                         {item.pontos.map((ponto, pIdx) => (
-                          <li key={pIdx} className="flex items-baseline gap-2 leading-relaxed">
-                            <span className="font-mono text-xs text-zinc-400">·</span>
+                          <li key={pIdx} className="flex items-baseline gap-2.5 leading-relaxed">
+                            <span className="font-mono text-xs text-[#4f46e5]">·</span>
                             <span>{ponto}</span>
                           </li>
                         ))}
@@ -190,16 +199,16 @@ export const Page4AtividadesImagem: React.FC = () => {
                     )}
 
                     {item.exemplos && item.exemplos.length > 0 && (
-                      <div className="bg-[#f8f8f6] rounded-xl border border-zinc-200/80 p-3.5 space-y-1.5">
+                      <div className="pt-2 pl-4 border-l border-indigo-200/80 space-y-1.5">
                         {item.exemplosTitle && (
-                          <div className="text-xs font-semibold text-zinc-700">
+                          <div className="text-xs font-semibold text-[#0d153e]">
                             {item.exemplosTitle}
                           </div>
                         )}
-                        <ul className="space-y-1 text-sm text-zinc-700">
+                        <ul className="space-y-1 text-sm text-[#3d4663]">
                           {item.exemplos.map((ex, eIdx) => (
                             <li key={eIdx} className="flex items-baseline gap-2 leading-relaxed">
-                              <span className="font-mono text-xs text-zinc-400">·</span>
+                              <span className="font-mono text-xs text-[#4f46e5]">·</span>
                               <span>{ex}</span>
                             </li>
                           ))}
@@ -208,7 +217,7 @@ export const Page4AtividadesImagem: React.FC = () => {
                     )}
 
                     {item.nota && (
-                      <p className="text-xs sm:text-sm text-zinc-600 bg-zinc-50 border border-zinc-200/80 rounded-xl px-3.5 py-2.5 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-[#3d4663] italic leading-relaxed pt-1">
                         {item.nota}
                       </p>
                     )}
@@ -217,16 +226,18 @@ export const Page4AtividadesImagem: React.FC = () => {
               </div>
             </div>
 
-            <div className="pt-5 border-t border-zinc-200 space-y-3">
+            <div className="pt-6 border-t border-indigo-100 space-y-4">
               <div className="flex items-center justify-between gap-2">
-                <h3 className="text-sm font-bold text-zinc-900">
+                <h3 className="text-sm font-bold text-[#0d153e]">
                   Exemplo de prompt pronto a usar
                 </h3>
                 <button
                   type="button"
                   onClick={() => handleCopyPrompt(activeActivity.prompt)}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-white transition-colors whitespace-nowrap shrink-0 ${
-                    copiedPrompt ? 'bg-teal-700' : 'bg-zinc-900 hover:bg-blue-700'
+                  className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-white transition-all whitespace-nowrap shrink-0 ${
+                    copiedPrompt
+                      ? 'bg-teal-700'
+                      : 'bg-gradient-to-r from-[#4f46e5] to-[#6366f1] hover:from-[#4338ca] hover:to-[#4f46e5] shadow-sm shadow-indigo-500/20'
                   }`}
                 >
                   {copiedPrompt ? (
@@ -237,41 +248,43 @@ export const Page4AtividadesImagem: React.FC = () => {
                   <span>{copiedPrompt ? 'Copiado' : 'Copiar Prompt'}</span>
                 </button>
               </div>
-              <p className="font-mono text-xs text-zinc-800 leading-relaxed bg-[#f8f8f6] p-4 rounded-xl border border-zinc-200/80 select-all whitespace-pre-line">
+              <p className="font-mono text-xs text-[#1e243d] leading-relaxed bg-[#f4f3fb] p-4 rounded-xl border border-indigo-200/70 select-all whitespace-pre-line">
                 {activeActivity.prompt}
               </p>
 
-              <div className="bg-blue-50/70 border border-blue-200/80 rounded-xl p-4 flex items-start gap-3 text-xs sm:text-sm text-blue-950 leading-relaxed">
-                <Lightbulb className="w-4 h-4 shrink-0 mt-0.5 text-blue-700" aria-hidden="true" />
-                <div>
-                  <strong className="font-semibold text-blue-900">Dica para o Prompt: </strong>
-                  {activeActivity.promptTip}
+              <div className="divide-y divide-indigo-100/80 text-xs sm:text-sm text-[#3d4663] leading-relaxed">
+                <div className="py-3 flex items-start gap-3">
+                  <Lightbulb className="w-4 h-4 shrink-0 mt-0.5 text-[#6d28d9]" aria-hidden="true" />
+                  <div>
+                    <strong className="font-semibold text-[#4c28d9]">Dica para o Prompt: </strong>
+                    {activeActivity.promptTip}
+                  </div>
                 </div>
-              </div>
 
-              <div className="bg-[#f8f8f6] border border-zinc-200/80 rounded-xl p-4 flex items-start gap-3 text-xs sm:text-sm text-zinc-700 leading-relaxed">
-                <SlidersHorizontal
-                  className="w-4 h-4 shrink-0 mt-0.5 text-amber-800"
-                  aria-hidden="true"
-                />
-                <div>
-                  <strong className="font-semibold text-zinc-900">
-                    Adaptação aos objetivos:{' '}
-                  </strong>
-                  {activeActivity.promptAdaptation}
+                <div className="py-3 flex items-start gap-3">
+                  <SlidersHorizontal
+                    className="w-4 h-4 shrink-0 mt-0.5 text-[#4f46e5]"
+                    aria-hidden="true"
+                  />
+                  <div>
+                    <strong className="font-semibold text-[#0d153e]">
+                      Adaptação aos objetivos:{' '}
+                    </strong>
+                    {activeActivity.promptAdaptation}
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="pt-5 border-t border-zinc-200 space-y-2.5">
-              <h3 className="inline-flex items-center gap-2 text-sm font-bold text-zinc-900">
-                <Package className="w-4 h-4 text-amber-800 shrink-0" aria-hidden="true" />
+            <div className="pt-6 border-t border-indigo-100 space-y-2.5">
+              <h3 className="inline-flex items-center gap-2 text-sm font-bold text-[#0d153e]">
+                <Package className="w-4 h-4 text-[#4f46e5] shrink-0" aria-hidden="true" />
                 <span>Preparação e materiais para a aula</span>
               </h3>
-              <ul className="space-y-1.5 text-sm text-zinc-700">
+              <ul className="space-y-1.5 text-sm text-[#3d4663]">
                 {activeActivity.materials.map((mat, mIdx) => (
-                  <li key={mIdx} className="flex items-baseline gap-2 leading-relaxed">
-                    <span className="font-mono text-xs text-zinc-400">·</span>
+                  <li key={mIdx} className="flex items-baseline gap-2.5 leading-relaxed">
+                    <span className="font-mono text-xs text-[#4f46e5]">·</span>
                     <span>{mat}</span>
                   </li>
                 ))}
@@ -279,35 +292,35 @@ export const Page4AtividadesImagem: React.FC = () => {
             </div>
           </section>
 
-          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
-            <section className="bg-[#f8f8f6] rounded-xl border border-zinc-200/90 p-5 sm:p-6 space-y-3">
-              <h3 className="inline-flex items-center gap-2 text-sm font-bold text-zinc-900">
-                <Target className="w-4 h-4 text-amber-800 shrink-0" aria-hidden="true" />
+          <aside className="lg:col-span-5 bg-gradient-to-br from-[#faf9fe] to-[#f1edfe]/70 rounded-2xl border border-indigo-100 p-6 divide-y divide-indigo-100 lg:sticky lg:top-24">
+            <section className="pb-6 space-y-3">
+              <h3 className="inline-flex items-center gap-2 text-sm font-bold text-[#0d153e]">
+                <Target className="w-4 h-4 text-[#4f46e5] shrink-0" aria-hidden="true" />
                 <span>Objetivos de aprendizagem</span>
               </h3>
-              <ul className="space-y-2 text-sm text-zinc-700">
+              <ul className="space-y-2 text-sm text-[#1e243d]">
                 {activeActivity.objetivos.map((obj, i) => (
-                  <li key={i} className="flex items-baseline gap-2 leading-relaxed">
-                    <span className="font-mono text-xs text-zinc-400">·</span>
+                  <li key={i} className="flex items-baseline gap-2.5 leading-relaxed">
+                    <span className="font-mono text-xs text-[#4f46e5]">·</span>
                     <span>{obj}</span>
                   </li>
                 ))}
               </ul>
             </section>
 
-            <section className="bg-[#f8f8f6] rounded-xl border border-zinc-200/90 p-5 sm:p-6 space-y-4">
-              <h3 className="inline-flex items-center gap-2 text-sm font-bold text-zinc-900">
-                <Award className="w-4 h-4 text-amber-800 shrink-0" aria-hidden="true" />
+            <section className="pt-6 space-y-4">
+              <h3 className="inline-flex items-center gap-2 text-sm font-bold text-[#0d153e]">
+                <Award className="w-4 h-4 text-[#6d28d9] shrink-0" aria-hidden="true" />
                 <span>Avaliação</span>
               </h3>
 
               {activeActivity.avaliacao.entrega && activeActivity.avaliacao.entrega.length > 0 && (
-                <div className="space-y-1.5 pb-3 border-b border-zinc-200/80">
-                  <div className="text-xs font-semibold text-zinc-900">O aluno entrega:</div>
-                  <ul className="space-y-1.5 text-sm text-zinc-700">
+                <div className="space-y-1.5 pb-4 border-b border-indigo-100">
+                  <div className="text-xs font-semibold text-[#0d153e]">O aluno entrega:</div>
+                  <ul className="space-y-1.5 text-sm text-[#1e243d]">
                     {activeActivity.avaliacao.entrega.map((item, idx) => (
-                      <li key={idx} className="flex items-baseline gap-2 leading-relaxed">
-                        <span className="font-mono text-xs text-zinc-400">·</span>
+                      <li key={idx} className="flex items-baseline gap-2.5 leading-relaxed">
+                        <span className="font-mono text-xs text-[#4f46e5]">·</span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -316,20 +329,20 @@ export const Page4AtividadesImagem: React.FC = () => {
               )}
 
               <div className="space-y-1.5">
-                <div className="text-xs font-semibold text-zinc-900">
+                <div className="text-xs font-semibold text-[#0d153e]">
                   Avaliação das Aprendizagens
                 </div>
-                <ul className="space-y-1.5 text-sm text-zinc-700">
+                <ul className="space-y-1.5 text-sm text-[#1e243d]">
                   {activeActivity.avaliacao.itens.map((it, i) => (
-                    <li key={i} className="flex items-baseline gap-2 leading-relaxed">
-                      <span className="font-mono text-xs text-zinc-400">·</span>
+                    <li key={i} className="flex items-baseline gap-2.5 leading-relaxed">
+                      <span className="font-mono text-xs text-[#4f46e5]">·</span>
                       <span>{it}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             </section>
-          </div>
+          </aside>
         </div>
       </article>
     </div>

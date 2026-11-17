@@ -1,7 +1,8 @@
 import React from 'react';
-import { ExternalLink, Info } from 'lucide-react';
+import { Headphones, Info } from 'lucide-react';
 import { AUDIO_TOOLS } from '../data/moduloData.ts';
-import { ToolBrandMark } from '../components/ToolBrandMark.tsx';
+import { PageHeader } from '../components/PageHeader.tsx';
+import { ToolCatalogCard } from '../components/ToolCatalogCard.tsx';
 
 const PEDAGOGICAL_BENEFITS = [
   {
@@ -32,116 +33,62 @@ const PEDAGOGICAL_BENEFITS = [
 
 export const Page5FerramentasAudio: React.FC = () => {
   return (
-    <div className="space-y-12">
-      <header className="border-b border-zinc-200 pb-6">
-        <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
-          FERRAMENTAS DE ÁUDIO
-        </h1>
-      </header>
+    <div className="space-y-14">
+      <PageHeader title="FERRAMENTAS DE ÁUDIO" Icon={Headphones} />
 
-      <section className="space-y-5">
-        <div className="border-b border-zinc-200 pb-3">
-          <h2 className="font-display text-2xl font-bold text-zinc-900">
+      <section className="space-y-6">
+        <div className="border-b border-indigo-100 pb-3.5">
+          <h2 className="font-display text-2xl font-bold text-[#0d153e]">
             VANTAGENS PEDAGÓGICAS DO ÁUDIO
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="bg-white rounded-2xl border border-indigo-100/90 shadow-[0_4px_20px_rgba(79,70,229,0.04)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y sm:divide-y-0 sm:gap-px sm:bg-indigo-100/80 overflow-hidden">
           {PEDAGOGICAL_BENEFITS.map((item, idx) => (
-            <div key={idx} className="bg-white rounded-xl border border-zinc-200 p-5 space-y-2">
-              <div className="font-mono text-xs font-semibold text-zinc-400 tabular-nums">
+            <div key={idx} className="bg-white p-6 sm:p-7 space-y-2.5">
+              <div className="font-mono text-xs font-bold text-[#4f46e5] tabular-nums">
                 0{idx + 1}
               </div>
-              <h3 className="font-display text-base font-bold text-zinc-900">{item.title}</h3>
-              <p className="text-sm text-zinc-600 leading-relaxed">{item.desc}</p>
+              <h3 className="font-display text-base font-bold text-[#0d153e]">
+                {item.title}
+              </h3>
+              <p className="text-sm text-[#3d4663] leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       <section className="space-y-6">
-        <div className="border-b border-zinc-200 pb-4">
-          <h2 className="font-display text-2xl font-bold text-zinc-900">
+        <div className="border-b border-indigo-100 pb-4">
+          <h2 className="font-display text-2xl font-bold text-[#0d153e]">
             CATÁLOGO DE FERRAMENTAS IDENTIFICADAS
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {AUDIO_TOOLS.map((tool) => (
-            <article
+            <ToolCatalogCard
               key={tool.id}
-              className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-7 flex flex-col gap-5"
-            >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-3 min-w-0">
-                    <ToolBrandMark toolId={tool.id} toolName={tool.name} />
-                    <h3 className="font-display text-xl font-bold text-zinc-900 truncate">
-                      {tool.name}
-                    </h3>
-                  </div>
-                  <a
-                    href={tool.officialUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Experimentar ${tool.name} no site oficial`}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-blue-700 text-white text-xs font-semibold transition-colors shrink-0 min-h-[36px]"
-                  >
-                    <span>Experimentar</span>
-                    <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
-                  </a>
-                </div>
-                <p className="text-sm text-zinc-700 leading-relaxed">{tool.recommendedFor}</p>
-              </div>
-
-              <dl className="divide-y divide-zinc-100 border-t border-zinc-200 text-xs sm:text-sm">
-                <div className="py-3 space-y-1">
-                  <dt className="font-semibold text-zinc-900">Principais funcionalidades</dt>
-                  <dd className="text-zinc-600 leading-relaxed">
-                    <ul className="list-disc pl-4 space-y-1">
-                      {tool.capabilities.map((cap, idx) => (
-                        <li key={idx}>{cap}</li>
-                      ))}
-                    </ul>
-                  </dd>
-                </div>
-                <div className="py-3 space-y-1">
-                  <dt className="font-semibold text-zinc-900">Aplicações em sala de aula</dt>
-                  <dd className="text-zinc-600 leading-relaxed">{tool.classroomApplications}</dd>
-                </div>
-                <div className="py-3 space-y-1">
-                  <dt className="font-semibold text-zinc-900">Plano gratuito e limitações</dt>
-                  <dd className="text-zinc-600 leading-relaxed">
-                    <strong className="font-medium text-zinc-800">{tool.freePlan}</strong>{' '}
-                    {tool.limitations}
-                  </dd>
-                </div>
-                <div className="py-3 space-y-1">
-                  <dt className="font-semibold text-zinc-900">Idade e condições de utilização</dt>
-                  <dd className="text-zinc-600 leading-relaxed">{tool.privacyOrAge}</dd>
-                </div>
-                <div className="py-3 space-y-1">
-                  <dt className="font-semibold text-zinc-900">Alternativa gratuita</dt>
-                  <dd className="text-zinc-600 leading-relaxed">{tool.freeAlternative}</dd>
-                </div>
-                <div className="pt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-500">
-                  <span>Fonte oficial: {tool.officialSource}</span>
-                  <a
-                    href={tool.officialUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-700 hover:underline font-medium break-all"
-                  >
-                    {tool.officialUrl}
-                  </a>
-                </div>
-              </dl>
-            </article>
+              id={tool.id}
+              name={tool.name}
+              officialUrl={tool.officialUrl}
+              description={tool.recommendedFor}
+              capabilitiesLabel="Principais funcionalidades"
+              capabilities={tool.capabilities}
+              applicationLabel="Aplicações em sala de aula"
+              applicationText={tool.classroomApplications}
+              freePlan={tool.freePlan}
+              limitations={tool.limitations}
+              privacyLabel="Idade e condições de utilização"
+              privacyOrAge={tool.privacyOrAge}
+              freeAlternative={tool.freeAlternative}
+              officialSource={tool.officialSource}
+            />
           ))}
         </div>
 
-        <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-4 flex items-start gap-3 text-xs sm:text-sm text-zinc-700">
-          <Info className="w-4 h-4 text-zinc-500 shrink-0 mt-0.5" aria-hidden="true" />
+        <div className="pt-6 border-t border-indigo-100 flex items-start gap-3 text-xs sm:text-sm text-[#3d4663] leading-relaxed">
+          <Info className="w-4 h-4 text-[#4f46e5] shrink-0 mt-0.5" aria-hidden="true" />
           <p>
             Ferramentas genéricas de música por IA ou extensões de transcrição de reuniões sem identificação oficial verificável foram removidas. Qualquer solução de transcrição de reuniões só deve ser adotada após validação institucional, verificação das plataformas suportadas, limites gratuitos e cumprimento das regras de privacidade e consentimento.
           </p>

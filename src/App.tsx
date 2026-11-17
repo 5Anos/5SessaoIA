@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar.tsx';
-import { PageFooter } from './components/PageFooter.tsx';
 import { SearchModal } from './components/SearchModal.tsx';
 import { Page1VisaoGeral } from './pages/Page1VisaoGeral.tsx';
 import { Page2FerramentasImagem } from './pages/Page2FerramentasImagem.tsx';
@@ -36,6 +35,7 @@ export default function App() {
         const pageNum = parseInt(match[1], 10);
         if (pageNum >= 1 && pageNum <= 8) {
           setCurrentPage(pageNum);
+          window.scrollTo({ top: 0 });
         }
       }
     };
@@ -73,7 +73,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8f8f6] text-zinc-900 selection:bg-blue-100 selection:text-blue-900">
+    <div className="min-h-screen flex flex-col bg-[#f8f7fc] text-[#0d153e] selection:bg-indigo-100 selection:text-indigo-950">
       <Navbar
         currentPage={currentPage}
         onSelectPage={handleSelectPage}
@@ -83,11 +83,11 @@ export default function App() {
       <main
         className={
           currentPage === 1
-            ? 'flex-1 w-full'
+            ? 'flex-1 w-full flex flex-col'
             : 'flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12'
         }
       >
-        <div>
+        <div className={currentPage === 1 ? 'flex-1 flex flex-col' : undefined}>
           {currentPage === 1 && <Page1VisaoGeral />}
           {currentPage === 2 && <Page2FerramentasImagem />}
           {currentPage === 3 && <Page3PromptsImagem />}
@@ -98,8 +98,6 @@ export default function App() {
           {currentPage === 8 && <Page9Bibliografia />}
         </div>
       </main>
-
-      <PageFooter noTopMargin={currentPage === 1} />
 
       <SearchModal
         isOpen={isSearchOpen}

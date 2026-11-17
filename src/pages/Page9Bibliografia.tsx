@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Copy, Check, ExternalLink } from 'lucide-react';
+import { Copy, Check, ExternalLink, BookOpen } from 'lucide-react';
 import { BIBLIOGRAPHY, ETHICS_OFFICIAL_LINKS } from '../data/moduloData.ts';
+import { PageHeader } from '../components/PageHeader.tsx';
 
 export const Page9Bibliografia: React.FC = () => {
   const [copiedIdx, setCopiedIdx] = useState<number | null>(null);
@@ -37,40 +38,37 @@ export const Page9Bibliografia: React.FC = () => {
   };
 
   return (
-    <div className="space-y-12">
-      <header className="border-b border-zinc-200 pb-6 space-y-2">
-        <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
-          BIBLIOGRAFIA E RECURSOS OFICIAIS
-        </h1>
-        <p className="text-sm sm:text-base text-zinc-600 max-w-2xl leading-relaxed">
-          Referências oficiais europeias, internacionais e nacionais em norma APA 7, fundamentação relevante e ficha técnica atualizada.
-        </p>
-      </header>
+    <div className="space-y-14">
+      <PageHeader
+        title="BIBLIOGRAFIA E RECURSOS OFICIAIS"
+        description="Referências oficiais europeias, internacionais e nacionais em norma APA 7, fundamentação relevante e ficha técnica atualizada."
+        Icon={BookOpen}
+      />
 
       <section className="space-y-5">
-        <div className="border-b border-zinc-200 pb-3">
-          <h2 className="font-display text-xl font-bold text-zinc-900">
+        <div className="border-b border-indigo-100 pb-3.5">
+          <h2 className="font-display text-xl sm:text-2xl font-bold text-[#0d153e]">
             Referências Bibliográficas e Normativas (APA 7)
           </h2>
         </div>
 
-        <div className="bg-white rounded-2xl border border-zinc-200 divide-y divide-zinc-200">
+        <div className="bg-white rounded-2xl border border-indigo-100/90 shadow-[0_4px_20px_rgba(79,70,229,0.04)] divide-y divide-indigo-100/75">
           {BIBLIOGRAPHY.map((item, idx) => {
             const isCopied = copiedIdx === idx;
             return (
               <div
                 key={idx}
-                className="px-6 py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                className="px-5 sm:px-7 py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
               >
                 <div className="flex items-baseline gap-4 min-w-0">
-                  <span className="font-mono text-xs font-semibold text-blue-700 tabular-nums shrink-0">
+                  <span className="font-mono text-xs font-bold text-[#4f46e5] tabular-nums shrink-0">
                     [{idx + 1}]
                   </span>
                   <div className="space-y-1.5 min-w-0">
-                    <div className="text-xs font-semibold text-zinc-500">
+                    <div className="text-xs font-semibold text-[#525b7a]">
                       {item.author} · {item.year}
                     </div>
-                    <p className="text-sm sm:text-base text-zinc-900 leading-relaxed">
+                    <p className="text-sm sm:text-base text-[#0d153e] leading-relaxed break-words">
                       {item.citation}
                     </p>
                     {item.url && (
@@ -78,7 +76,7 @@ export const Page9Bibliografia: React.FC = () => {
                         href={item.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-medium text-blue-700 hover:underline break-all"
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-[#4f46e5] hover:text-[#4338ca] hover:underline break-all"
                       >
                         <span>Consultar fonte oficial</span>
                         <ExternalLink className="w-3 h-3 shrink-0" aria-hidden="true" />
@@ -91,10 +89,10 @@ export const Page9Bibliografia: React.FC = () => {
                   type="button"
                   onClick={() => handleCopy(idx, item.citation)}
                   aria-label={`Copiar citação de ${item.author}`}
-                  className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-colors self-start sm:self-center shrink-0 min-h-[36px] ${
+                  className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-colors self-start sm:self-center shrink-0 min-h-[36px] whitespace-nowrap ${
                     isCopied
                       ? 'bg-teal-700 text-white'
-                      : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-800'
+                      : 'bg-indigo-50 hover:bg-[#4f46e5] text-[#4338ca] hover:text-white border border-indigo-100'
                   }`}
                 >
                   {isCopied ? (
@@ -115,30 +113,30 @@ export const Page9Bibliografia: React.FC = () => {
         </div>
       </section>
 
-      <section className="space-y-4">
-        <div className="border-b border-zinc-200 pb-3">
-          <h2 className="font-display text-xl font-bold text-zinc-900">
+      <section className="space-y-5">
+        <div className="border-b border-indigo-100 pb-3.5">
+          <h2 className="font-display text-xl sm:text-2xl font-bold text-[#0d153e]">
             Ligações e Documentos Oficiais
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-white rounded-2xl border border-indigo-100/90 shadow-[0_4px_20px_rgba(79,70,229,0.04)] divide-y md:divide-y-0 md:grid md:grid-cols-2 md:gap-px md:bg-indigo-100/80 overflow-hidden">
           {ETHICS_OFFICIAL_LINKS.map((ref, idx) => (
             <a
               key={idx}
               href={ref.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white rounded-xl border border-zinc-200 p-4 flex items-start justify-between gap-3 hover:border-blue-700 transition-colors group"
+              className="bg-white p-6 flex items-start justify-between gap-4 hover:bg-[#faf9fe] transition-colors group"
             >
-              <div className="space-y-1 min-w-0">
-                <div className="text-xs font-semibold text-blue-700">{ref.entity}</div>
-                <div className="text-sm font-medium text-zinc-900 group-hover:text-blue-700 leading-snug">
+              <div className="space-y-1.5 min-w-0">
+                <div className="text-xs font-bold text-[#4f46e5]">{ref.entity}</div>
+                <div className="text-sm font-medium text-[#0d153e] group-hover:text-[#4f46e5] leading-snug">
                   {ref.title}
                 </div>
               </div>
               <ExternalLink
-                className="w-4 h-4 text-zinc-400 group-hover:text-blue-700 shrink-0 mt-1"
+                className="w-4 h-4 text-indigo-300 group-hover:text-[#4f46e5] shrink-0 mt-1 transition-colors"
                 aria-hidden="true"
               />
             </a>
@@ -146,28 +144,30 @@ export const Page9Bibliografia: React.FC = () => {
         </div>
       </section>
 
-      <section className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8 space-y-6">
-        <div className="border-b border-zinc-200 pb-4">
-          <h2 className="font-display text-xl font-bold text-zinc-900">
-            Ficha Técnica e Atualização
-          </h2>
-        </div>
+      <section className="pt-8 border-t border-indigo-100 space-y-6">
+        <h2 className="font-display text-xl sm:text-2xl font-bold text-[#0d153e]">
+          Ficha Técnica e Atualização
+        </h2>
 
-        <dl className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
+        <dl className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm">
           <div className="space-y-1">
-            <dt className="text-xs font-medium text-zinc-500">Autoria Original</dt>
-            <dd className="font-display text-base font-bold text-zinc-900">Carla Oliveira</dd>
-            <dd className="text-xs text-zinc-500">Modulo3_FerramentasIA_2 · Genially</dd>
+            <dt className="text-xs font-medium text-[#525b7a]">Autoria Original</dt>
+            <dd className="font-display text-lg font-bold text-[#0d153e]">Carla Oliveira</dd>
+            <dd className="text-xs text-[#525b7a]">Modulo3_FerramentasIA_2 · Genially</dd>
           </div>
           <div className="space-y-1">
-            <dt className="text-xs font-medium text-zinc-500">Datas de Edição</dt>
-            <dd className="font-display text-base font-bold text-zinc-900">23 de fevereiro de 2026</dd>
-            <dd className="text-xs text-zinc-500">Última revisão editorial: 13 de novembro de 2026</dd>
+            <dt className="text-xs font-medium text-[#525b7a]">Datas de Edição</dt>
+            <dd className="font-display text-lg font-bold text-[#0d153e]">
+              23 de fevereiro de 2026
+            </dd>
+            <dd className="text-xs text-[#525b7a]">
+              Última revisão editorial: 13 de novembro de 2026
+            </dd>
           </div>
         </dl>
 
-        <div className="pt-5 border-t border-zinc-200 text-xs sm:text-sm text-zinc-700 leading-relaxed">
-          <strong className="font-semibold text-zinc-900">Nota sobre atualização de fontes: </strong>
+        <div className="text-xs sm:text-sm text-[#3d4663] leading-relaxed bg-white rounded-xl p-5 border border-indigo-100/90">
+          <strong className="font-semibold text-[#0d153e]">Nota sobre atualização de fontes: </strong>
           Os planos, funcionalidades, limites de utilização e condições legais das plataformas podem mudar. A data de consulta e a ligação à fonte oficial devem acompanhar a informação apresentada.
         </div>
       </section>

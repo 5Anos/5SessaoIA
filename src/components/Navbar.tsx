@@ -119,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       {mobileMenuOpen && (
         <nav
           aria-label="Navegação móvel do módulo"
-          className="lg:hidden border-t border-zinc-200 bg-white px-4 py-3 space-y-1"
+          className="lg:hidden border-t border-indigo-100 bg-white px-4 py-3 space-y-1"
         >
           {PAGES_LIST.map((page) => {
             const isActive = currentPage === page.number;
@@ -130,13 +130,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => handleNavClick(page.number)}
                 className={`w-full text-left px-3 py-2.5 rounded-lg text-sm flex items-center justify-between transition-colors min-h-[44px] ${
                   isActive
-                    ? 'bg-blue-50 text-blue-800 font-semibold'
-                    : 'text-zinc-700 hover:bg-zinc-50'
+                    ? 'bg-[#f1ebfe] text-[#4338ca] font-semibold'
+                    : 'text-[#1e243d] hover:bg-indigo-50/60'
                 }`}
               >
-                <span className="truncate">
-                  {page.shortTitle}
-                </span>
+                <span className="truncate">{page.shortTitle}</span>
               </button>
             );
           })}

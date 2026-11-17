@@ -4,7 +4,7 @@ import { HeroEdTechIllustration } from '../components/HeroEdTechIllustration.tsx
 
 export const Page1VisaoGeral: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#faf9fe] via-white to-[#f1edfe] min-h-[calc(100vh-11.5rem)] flex items-center">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#faf9fe] via-white to-[#f1edfe] flex-1 flex items-center">
       {/* Flowing soft lavender and periwinkle background waves */}
       <svg
         aria-hidden="true"
@@ -89,4 +89,3 @@ export const Page1VisaoGeral: React.FC = () => {
     </section>
   );
 };
-
