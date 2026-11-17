@@ -1,5 +1,18 @@
 import React, { useState } from 'react';
-import { Menu, Search, X } from 'lucide-react';
+import {
+  AudioWaveform,
+  BookOpen,
+  Brain,
+  Headphones,
+  Home,
+  Image as ImageIcon,
+  Menu,
+  PenLine,
+  Presentation,
+  Search,
+  ShieldCheck,
+  X,
+} from 'lucide-react';
 import { PAGES_LIST } from '../data/moduloData.ts';
 
 interface NavbarProps {
@@ -11,15 +24,16 @@ interface NavbarProps {
 const TOP_NAV_ITEMS: {
   pageNumber: number;
   label: string;
+  Icon: React.ComponentType<{ className?: string; 'aria-hidden'?: boolean }>;
 }[] = [
-  { pageNumber: 1, label: 'Início' },
-  { pageNumber: 2, label: 'Imagem' },
-  { pageNumber: 3, label: 'Prompts' },
-  { pageNumber: 4, label: 'Ativ. Imagem' },
-  { pageNumber: 5, label: 'Áudio' },
-  { pageNumber: 6, label: 'Ativ. Áudio' },
-  { pageNumber: 7, label: 'Ética' },
-  { pageNumber: 8, label: 'Bibliografia' },
+  { pageNumber: 1, label: 'Início', Icon: Home },
+  { pageNumber: 2, label: 'Imagem', Icon: ImageIcon },
+  { pageNumber: 3, label: 'Prompts', Icon: PenLine },
+  { pageNumber: 4, label: 'Ativ. Imagem', Icon: Presentation },
+  { pageNumber: 5, label: 'Áudio', Icon: Headphones },
+  { pageNumber: 6, label: 'Ativ. Áudio', Icon: AudioWaveform },
+  { pageNumber: 7, label: 'Ética', Icon: ShieldCheck },
+  { pageNumber: 8, label: 'Bibliografia', Icon: BookOpen },
 ];
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -35,41 +49,42 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-zinc-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3 xl:gap-6">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-indigo-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 xl:gap-4">
         <button
           type="button"
           onClick={() => handleNavClick(1)}
-          className="font-display text-sm sm:text-base xl:text-lg font-bold tracking-tight text-zinc-900 hover:text-blue-700 transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-700 rounded-sm"
+          className="inline-flex items-center gap-2.5 font-display text-sm sm:text-base xl:text-[17px] font-bold tracking-tight text-[#0d153e] hover:text-[#4f46e5] transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#4f46e5] rounded-sm"
         >
-          Módulo 3 · IA na Educação
+          <Brain className="w-6 h-6 text-[#4f46e5] shrink-0" aria-hidden={true} />
+          <span>Módulo 3 · IA na Educação</span>
         </button>
 
         <nav
           aria-label="Navegação principal"
-          className="hidden lg:flex items-center gap-3.5 xl:gap-5"
+          className="hidden lg:flex items-center gap-1 xl:gap-1.5"
         >
-          {TOP_NAV_ITEMS.map((item) => {
-            const isActive = currentPage === item.pageNumber;
+          {TOP_NAV_ITEMS.map(({ pageNumber, label, Icon }) => {
+            const isActive = currentPage === pageNumber;
             return (
               <button
-                key={item.pageNumber}
+                key={pageNumber}
                 type="button"
-                onClick={() => handleNavClick(item.pageNumber)}
+                onClick={() => handleNavClick(pageNumber)}
                 aria-current={isActive ? 'page' : undefined}
-                className={`relative py-5 text-xs xl:text-sm font-medium transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 ${
+                className={`inline-flex items-center gap-1.5 px-2 xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-[13px] transition-colors whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4f46e5] ${
                   isActive
-                    ? 'text-blue-700 font-semibold'
-                    : 'text-zinc-600 hover:text-zinc-900'
+                    ? 'bg-gradient-to-r from-[#4f46e5] to-[#6366f1] text-white font-semibold shadow-sm shadow-indigo-500/20'
+                    : 'text-[#111936] hover:text-[#4f46e5] hover:bg-indigo-50/75 font-medium'
                 }`}
               >
-                {item.label}
-                {isActive && (
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-0 bottom-0 h-0.5 bg-blue-700 rounded-full"
-                  />
-                )}
+                <Icon
+                  className={`w-3.5 h-3.5 shrink-0 ${
+                    isActive ? 'text-white' : 'text-[#4f46e5]'
+                  }`}
+                  aria-hidden={true}
+                />
+                <span>{label}</span>
               </button>
             );
           })}
@@ -80,11 +95,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             type="button"
             onClick={onOpenSearch}
             aria-label="Pesquisar no Módulo 3"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-700 bg-zinc-100 hover:bg-zinc-200/80 rounded-lg transition-colors whitespace-nowrap shrink-0 min-h-[36px]"
+            className="inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 text-xs font-medium text-[#1e1b4b] bg-indigo-50/80 hover:bg-indigo-100/80 border border-indigo-100 rounded-lg transition-colors whitespace-nowrap shrink-0 min-h-[36px]"
           >
-            <Search className="w-3.5 h-3.5 text-zinc-500" />
-            <span className="hidden sm:inline">Pesquisar</span>
-            <kbd className="hidden xl:inline font-mono text-[10px] text-zinc-500 ml-0.5">⌘K</kbd>
+            <Search className="w-3.5 h-3.5 text-[#4f46e5]" />
+            <span className="hidden sm:inline lg:hidden xl:inline">Pesquisar</span>
+            <kbd className="hidden xl:inline font-mono text-[10px] text-indigo-600/80 ml-0.5">
+              ⌘K
+            </kbd>
           </button>
 
           <button
@@ -92,7 +109,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-expanded={mobileMenuOpen}
             aria-label={mobileMenuOpen ? 'Fechar menu de páginas' : 'Abrir menu de páginas'}
-            className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-zinc-200 text-zinc-700 hover:bg-zinc-100 transition-colors shrink-0"
+            className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-indigo-100 text-[#1e1b4b] hover:bg-indigo-50 transition-colors shrink-0"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
