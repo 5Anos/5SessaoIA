@@ -163,27 +163,48 @@ test('AUDIO_TOOLS and AUDIO_ACTIVITIES reflect 9 unique audio tools and 3 activi
     assert.ok(tool.officialSource.length > 0);
   }
   assert.equal(AUDIO_ACTIVITIES.length, 3);
+  assert.deepEqual(
+    AUDIO_ACTIVITIES.map((a) => a.id),
+    ['vozes-do-patrimonio', 'podcast-cidade-2050', 'dobrador-poliglota'],
+  );
   for (const act of AUDIO_ACTIVITIES) {
     assert.equal('expectedResult' in act, false);
     assert.equal('visualPreviewLabel' in act, false);
     assert.equal('safeguards' in act, false);
+    assert.equal('prompt' in act, false);
   }
-  const dobrador = AUDIO_ACTIVITIES.find((a) => a.id === 'dobrador-poliglota');
-  assert.ok(dobrador);
-  assert.equal(dobrador.implementacao.length, 3);
-  assert.deepEqual(dobrador.implementacao[1].ferramentas, [
-    'HeyGen (versão gratuita limitada)',
-    'CapCut (gratuito)',
-  ]);
+
+  const expectedToolUrls: Record<string, string> = {
+    Canva: 'https://www.canva.com/',
+    TTSMaker: 'https://ttsmaker.com/',
+    Audacity: 'https://www.audacityteam.org/',
+    'Adobe Podcast': 'https://podcast.adobe.com/',
+    'Spotify for Podcasters': 'https://creators.spotify.com/',
+    TTSFree: 'https://ttsfree.com/',
+    NotebookLM: 'https://notebooklm.google.com/',
+    Gemini: 'https://gemini.google.com/',
+    HeyGen: 'https://www.heygen.com/',
+    CapCut: 'https://www.capcut.com/',
+  };
+
+  const linkedTools = AUDIO_ACTIVITIES.flatMap((a) =>
+    a.implementacao.flatMap((step) => step.ferramentas ?? []),
+  );
+  assert.equal(linkedTools.length, 10);
+  for (const tool of linkedTools) {
+    assert.equal(tool.url, expectedToolUrls[tool.name]);
+  }
+
+  const dobrador = AUDIO_ACTIVITIES[2];
   assert.deepEqual(dobrador.implementacao[2].pontos, [
-    'Erros gramaticais',
-    'Vocabulário inadequado',
-    'Expressões idiomáticas mal traduzidas',
+    'Erros gramaticais.',
+    'Vocabulário inadequado.',
+    'Expressões idiomáticas mal traduzidas.',
   ]);
   assert.deepEqual(dobrador.avaliacao.entrega, [
-    'Vídeo original',
-    'Vídeo traduzido',
-    'Lista de correções',
+    'Vídeo original.',
+    'Vídeo traduzido.',
+    'Lista de correções.',
   ]);
 });
 
@@ -202,6 +223,8 @@ test('searchModuloContent covers image, audio, ethics and bibliography', () => {
   assert.ok(searchModuloContent('Clipchamp').some((r) => r.pageNumber === 5));
   assert.ok(searchModuloContent('Descript').some((r) => r.pageNumber === 5));
   assert.ok(searchModuloContent('TTS For Free').some((r) => r.pageNumber === 5));
+  assert.ok(searchModuloContent('TTSMaker').some((r) => r.pageNumber === 6));
+  assert.ok(searchModuloContent('TTSFree').some((r) => r.pageNumber === 6));
   assert.ok(searchModuloContent('HeyGen').some((r) => r.pageNumber === 6));
   assert.ok(searchModuloContent('Dobrador Poliglota').some((r) => r.pageNumber === 6));
   assert.ok(searchModuloContent('RGPD').some((r) => r.pageNumber === 7));

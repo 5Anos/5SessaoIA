@@ -1378,22 +1378,26 @@ export const AUDIO_TOOLS: AudioTool[] = [
   },
 ];
 
+export interface AudioActivityTool {
+  name: string;
+  url: string;
+  note?: string;
+}
+
 export interface AudioActivity {
   id: string;
   title: string;
   objetivos: string[];
-  recommendedTool?: string;
-  prompt?: string;
-  freeAlternative?: string;
   implementacao: {
     etapa: string;
     titulo: string;
-    descricao: string;
+    descricao?: string;
     pontos?: string[];
-    ferramentas?: string[];
+    ferramentas?: AudioActivityTool[];
+    notaFinal?: string;
   }[];
   avaliacao: {
-    entrega: string | string[];
+    entrega: string[];
     itens: string[];
   };
 }
@@ -1404,82 +1408,116 @@ export const AUDIO_ACTIVITIES: AudioActivity[] = [
     title: 'ATIVIDADE: VOZES DO PATRIMÓNIO',
     objetivos: [
       'Desenvolver consciência histórica e patrimonial.',
-      'Realizar investigação com base em fontes documentais.',
-      'Produzir comunicação oral estruturada e rigorosa.',
+      'Produzir discurso narrativo estruturado.',
+      'Aplicar ferramentas digitais na criação multimédia.',
     ],
-    recommendedTool: 'NotebookLM para pesquisa baseada em fontes e ElevenLabs para narração sintética.',
-    prompt: 'Com base exclusivamente nas fontes históricas fornecidas, escreve um guião de narração em primeira pessoa, como se o monumento escolhido estivesse a contar a sua própria história. Utiliza português europeu, linguagem clara e adequada a um público escolar. O texto deve ter entre 150 e 180 palavras, incluir a origem do monumento, a sua função e a sua importância histórica. Não inventes datas, personagens ou acontecimentos. Quando a informação não estiver nas fontes, assinala que é necessário confirmar.',
-    freeAlternative: 'Gravar a narração com a voz do professor ou dos alunos, com autorização adequada, e editar no Audacity.',
     implementacao: [
       {
         etapa: 'Etapa 1',
         titulo: 'Investigação Local',
-        descricao: 'Os alunos selecionam um monumento ou espaço histórico local e recolhem informação em fontes credíveis fornecidas ou validadas pelo professor.',
+        descricao: 'O professor solicita que os alunos escolham um monumento ou espaço histórico da sua localidade. Devem pesquisar a sua origem, função e importância histórica.',
       },
       {
         etapa: 'Etapa 2',
         titulo: 'Construção do Guião',
-        descricao: 'Com apoio do NotebookLM sobre as fontes selecionadas, estruturam um guião em primeira pessoa entre 150 e 180 palavras, verificando factos e datas.',
+        descricao: 'Os alunos escrevem um monólogo na 1.ª pessoa, como se fossem uma personagem ligada ao espaço (ex: fundador, habitante, trabalhador da época).',
       },
       {
         etapa: 'Etapa 3',
         titulo: 'Produção Áudio',
-        descricao: 'Convertem o texto em narração clara no ElevenLabs ou gravam diretamente a leitura e editam o áudio final.',
         ferramentas: [
-          'NotebookLM — síntese e organização a partir de fontes históricas',
-          'ElevenLabs — síntese de voz (Text-to-Speech) em plano gratuito com 10 000 créditos/mês',
-          'Audacity — alternativa gratuita para gravação e edição local',
+          {
+            name: 'Canva',
+            url: 'https://www.canva.com/',
+            note: '(plano gratuito) – gravação ou inserção de narração; edição de vídeo com áudio.',
+          },
+          {
+            name: 'TTSMaker',
+            url: 'https://ttsmaker.com/',
+            note: '(gratuito online) – conversão texto-voz.',
+          },
         ],
+        notaFinal: 'Os alunos geram o áudio e integram-no num pequeno vídeo com imagens do local.',
       },
     ],
     avaliacao: {
-      entrega: 'Guião revisto com fontes assinaladas e ficheiro áudio final.',
+      entrega: [
+        'Guião escrito.',
+        'Ficheiro áudio.',
+        'Vídeo final.',
+      ],
       itens: [
-        'Rigor histórico e fidelidade às fontes consultadas.',
-        'Clareza narrativa e adequação ao português europeu.',
-        'Organização e qualidade técnica da gravação ou síntese.',
+        'Rigor histórico.',
+        'Organização do discurso.',
       ],
     },
   },
   {
     id: 'podcast-cidade-2050',
-    title: 'ATIVIDADE: PODCAST "CIDADE 2050"',
+    title: 'ATIVIDADE: PODCAST «CIDADE 2050»',
     objetivos: [
-      'Desenvolver pensamento crítico sobre sustentabilidade urbana.',
-      'Estruturar comunicação oral argumentativa com perspetivas distintas.',
-      'Praticar técnicas básicas de gravação e edição de áudio.',
+      'Desenvolver pensamento crítico sobre sustentabilidade.',
+      'Estruturar comunicação oral argumentativa.',
+      'Trabalhar edição de áudio.',
     ],
-    recommendedTool: 'Gravação dos alunos, edição com Audacity e melhoria opcional com Adobe Podcast.',
-    prompt: 'Cria um guião para um podcast escolar intitulado "Cidade 2050". O podcast deve ter um apresentador e dois convidados com perspetivas diferentes sobre a cidade do futuro. Aborda mobilidade sustentável, energia, espaços verdes, habitação e tecnologia. Distingue factos atuais de previsões e cenários hipotéticos. Não inventes estatísticas nem apresentes previsões como certezas. Utiliza português europeu, linguagem clara e uma duração estimada de três a quatro minutos.',
-    freeAlternative: 'Gravação e edição integral com Audacity.',
     implementacao: [
       {
         etapa: 'Etapa 1',
         titulo: 'Problematização',
-        descricao: 'O professor propõe a questão orientadora "Como será a nossa cidade em 2050?" e orienta o levantamento de factos atuais vs. cenários futuros.',
+        descricao: 'O professor lança a questão: «Como será a nossa cidade em 2050?»',
       },
       {
         etapa: 'Etapa 2',
-        titulo: 'Estrutura do Guião',
-        descricao: 'Os grupos distribuem os papéis (apresentador e dois convidados) e redigem um diálogo equilibrado com duração estimada de três a quatro minutos.',
+        titulo: 'Estrutura do Podcast',
+        descricao: 'Cada grupo elabora perguntas e respostas fundamentadas.',
       },
       {
         etapa: 'Etapa 3',
-        titulo: 'Gravação, Edição e Melhoria',
-        descricao: 'Gravam o episódio, editam cortes e níveis no Audacity e, se necessário, melhoram a nitidez da voz.',
+        titulo: 'Gravação e Edição',
         ferramentas: [
-          'Audacity — gravação, corte e mistura gratuitos em ambiente local',
-          'Adobe Podcast (Enhance Speech) — redução de ruído em áudio até 30 min/ficheiro e 1 h/dia',
-          'Spotify for Creators — publicação opcional após validação institucional',
+          {
+            name: 'Audacity',
+            url: 'https://www.audacityteam.org/',
+            note: '(gratuito) – edição de áudio.',
+          },
+          {
+            name: 'Adobe Podcast',
+            url: 'https://podcast.adobe.com/',
+            note: '– para criar o podcast.',
+          },
+          {
+            name: 'Spotify for Podcasters',
+            url: 'https://creators.spotify.com/',
+            note: '(gratuito) – publicação opcional.',
+          },
+          {
+            name: 'TTSFree',
+            url: 'https://ttsfree.com/',
+            note: '– geração de vozes diferentes.',
+          },
+          {
+            name: 'NotebookLM',
+            url: 'https://notebooklm.google.com/',
+            note: '– para criar o podcast.',
+          },
+          {
+            name: 'Gemini',
+            url: 'https://gemini.google.com/',
+            note: '– para criar o podcast.',
+          },
         ],
       },
     ],
     avaliacao: {
-      entrega: 'Guião estruturado e ficheiro áudio final.',
+      entrega: [
+        'Guião estruturado.',
+        'Ficheiro áudio final.',
+      ],
       itens: [
-        'Distinção clara entre factos verificados e cenários hipotéticos.',
-        'Coerência argumentativa e diversidade de perspetivas.',
-        'Clareza na comunicação oral e edição limpa.',
+        'Coerência argumentativa.',
+        'Criatividade.',
+        'Clareza na comunicação.',
+        'Uso adequado da ferramenta.',
       ],
     },
   },
@@ -1502,8 +1540,16 @@ export const AUDIO_ACTIVITIES: AudioActivity[] = [
         titulo: 'Tradução com IA',
         descricao: 'Os alunos utilizam ferramentas gratuitas para traduzir para a língua que estão a aprender (Inglês, Espanhol, entre outras).',
         ferramentas: [
-          'HeyGen (versão gratuita limitada)',
-          'CapCut (gratuito)',
+          {
+            name: 'HeyGen',
+            url: 'https://www.heygen.com/',
+            note: '(versão gratuita limitada)',
+          },
+          {
+            name: 'CapCut',
+            url: 'https://www.capcut.com/',
+            note: '(gratuito)',
+          },
         ],
       },
       {
@@ -1511,22 +1557,22 @@ export const AUDIO_ACTIVITIES: AudioActivity[] = [
         titulo: 'Correção',
         descricao: 'Comparam a tradução automática com o original e identificam:',
         pontos: [
-          'Erros gramaticais',
-          'Vocabulário inadequado',
-          'Expressões idiomáticas mal traduzidas',
+          'Erros gramaticais.',
+          'Vocabulário inadequado.',
+          'Expressões idiomáticas mal traduzidas.',
         ],
       },
     ],
     avaliacao: {
       entrega: [
-        'Vídeo original',
-        'Vídeo traduzido',
-        'Lista de correções',
+        'Vídeo original.',
+        'Vídeo traduzido.',
+        'Lista de correções.',
       ],
       itens: [
-        'Correção linguística das propostas',
-        'Capacidade de identificar inadequações nas expressões idiomáticas',
-        'Fundamentação gramatical das alterações',
+        'Correção linguística das propostas.',
+        'Capacidade de identificar inadequações nas expressões idiomáticas.',
+        'Fundamentação gramatical das alterações.',
       ],
     },
   },
@@ -1862,11 +1908,16 @@ export function searchModuloContent(query: string): SearchResult[] {
       act.objetivos.some((o) => o.toLowerCase().includes(q)) ||
       act.implementacao.some(
         (i) =>
-          i.descricao.toLowerCase().includes(q) ||
-          (i.ferramentas?.some((f) => f.toLowerCase().includes(q)) ?? false) ||
+          (i.descricao?.toLowerCase().includes(q) ?? false) ||
+          (i.notaFinal?.toLowerCase().includes(q) ?? false) ||
+          (i.ferramentas?.some(
+            (f) =>
+              f.name.toLowerCase().includes(q) ||
+              (f.note?.toLowerCase().includes(q) ?? false),
+          ) ??
+            false) ||
           (i.pontos?.some((pt) => pt.toLowerCase().includes(q)) ?? false),
-      ) ||
-      (act.recommendedTool?.toLowerCase().includes(q) ?? false)
+      )
     ) {
       results.push({
         pageId: 'atividades-audio',

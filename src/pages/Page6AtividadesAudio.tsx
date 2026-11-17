@@ -3,14 +3,12 @@ import {
   Target,
   ListChecks,
   Award,
-  Copy,
-  Check,
+  ExternalLink,
 } from 'lucide-react';
 import { AUDIO_ACTIVITIES } from '../data/moduloData.ts';
 
 export const Page6AtividadesAudio: React.FC = () => {
   const [selectedActivityId, setSelectedActivityId] = useState<string>(AUDIO_ACTIVITIES[0].id);
-  const [copiedPrompt, setCopiedPrompt] = useState(false);
   const articleRef = useRef<HTMLElement>(null);
 
   const activeActivity =
@@ -18,7 +16,6 @@ export const Page6AtividadesAudio: React.FC = () => {
 
   const handleSelectActivity = (id: string) => {
     setSelectedActivityId(id);
-    setCopiedPrompt(false);
     requestAnimationFrame(() => {
       const el = articleRef.current;
       if (!el) return;
@@ -29,45 +26,12 @@ export const Page6AtividadesAudio: React.FC = () => {
     });
   };
 
-  const markCopied = () => {
-    setCopiedPrompt(true);
-    setTimeout(() => setCopiedPrompt(false), 2000);
-  };
-
-  const fallbackCopy = (text: string) => {
-    try {
-      const textarea = document.createElement('textarea');
-      textarea.value = text;
-      textarea.setAttribute('readonly', '');
-      textarea.style.position = 'fixed';
-      textarea.style.opacity = '0';
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-      markCopied();
-    } catch {
-      // noop
-    }
-  };
-
-  const handleCopyPrompt = (text: string) => {
-    if (navigator?.clipboard?.writeText) {
-      navigator.clipboard.writeText(text).then(markCopied).catch(() => fallbackCopy(text));
-    } else {
-      fallbackCopy(text);
-    }
-  };
-
   return (
     <div className="space-y-10">
-      <header className="border-b border-zinc-200 pb-6 space-y-2">
+      <header className="border-b border-zinc-200 pb-6">
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
           ATIVIDADES EM SALA DE AULA COM FERRAMENTAS DE ÁUDIO
         </h1>
-        <p className="text-sm sm:text-base text-zinc-600 max-w-3xl leading-relaxed">
-          Propostas didáticas para narração histórica, produção de podcast escolar e dobragem multilingue.
-        </p>
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -118,55 +82,7 @@ export const Page6AtividadesAudio: React.FC = () => {
             </h2>
           </div>
 
-          {(activeActivity.recommendedTool || activeActivity.freeAlternative || activeActivity.prompt) && (
-            <section className="space-y-4">
-              {(activeActivity.recommendedTool || activeActivity.freeAlternative) && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm bg-[#f8f8f6] p-4 rounded-xl border border-zinc-200/80">
-                  {activeActivity.recommendedTool && (
-                    <div>
-                      <span className="font-semibold text-zinc-900">Ferramenta recomendada: </span>
-                      <span className="text-zinc-700">{activeActivity.recommendedTool}</span>
-                    </div>
-                  )}
-                  {activeActivity.freeAlternative && (
-                    <div>
-                      <span className="font-semibold text-zinc-900">Alternativa gratuita: </span>
-                      <span className="text-zinc-700">{activeActivity.freeAlternative}</span>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {activeActivity.prompt && (
-                <div className="space-y-1.5">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-sm font-bold text-zinc-900">Prompt completo</span>
-                    <button
-                      type="button"
-                      onClick={() => handleCopyPrompt(activeActivity.prompt!)}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-white transition-colors ${
-                        copiedPrompt ? 'bg-teal-700' : 'bg-zinc-900 hover:bg-blue-700'
-                      }`}
-                    >
-                      {copiedPrompt ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                      <span>{copiedPrompt ? 'Copiado' : 'Copiar Prompt'}</span>
-                    </button>
-                  </div>
-                  <p className="font-mono text-xs text-zinc-800 leading-relaxed bg-[#f8f8f6] p-4 rounded-xl border border-zinc-200/80 select-all">
-                    {activeActivity.prompt}
-                  </p>
-                </div>
-              )}
-            </section>
-          )}
-
-          <section
-            className={`space-y-3 ${
-              activeActivity.recommendedTool || activeActivity.freeAlternative || activeActivity.prompt
-                ? 'pt-4 border-t border-zinc-200'
-                : ''
-            }`}
-          >
+          <section className="space-y-3">
             <h3 className="inline-flex items-center gap-2 text-sm font-bold text-zinc-900">
               <Target className="w-4 h-4 text-amber-800 shrink-0" aria-hidden="true" />
               <span>Objetivos de aprendizagem:</span>
@@ -202,7 +118,9 @@ export const Page6AtividadesAudio: React.FC = () => {
                     </h4>
                   </div>
 
-                  <p className="text-sm text-zinc-700 leading-relaxed">{item.descricao}</p>
+                  {item.descricao && (
+                    <p className="text-sm text-zinc-700 leading-relaxed">{item.descricao}</p>
+                  )}
 
                   {item.pontos && item.pontos.length > 0 && (
                     <ul className="space-y-1.5 pl-1 text-sm text-zinc-700">
@@ -216,7 +134,7 @@ export const Page6AtividadesAudio: React.FC = () => {
                   )}
 
                   {item.ferramentas && item.ferramentas.length > 0 && (
-                    <div className="pt-2 space-y-1.5">
+                    <div className="pt-1 space-y-1.5">
                       <div className="text-xs font-semibold text-zinc-500">
                         Ferramentas associadas:
                       </div>
@@ -224,13 +142,26 @@ export const Page6AtividadesAudio: React.FC = () => {
                         {item.ferramentas.map((tool, tIdx) => (
                           <li
                             key={tIdx}
-                            className="text-xs text-zinc-800 bg-[#f8f8f6] px-3 py-2 rounded-lg border border-zinc-200/80"
+                            className="text-xs text-zinc-800 bg-[#f8f8f6] px-3 py-2 rounded-lg border border-zinc-200/80 leading-relaxed"
                           >
-                            · {tool}
+                            <a
+                              href={tool.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 font-semibold text-blue-700 hover:text-blue-800 underline underline-offset-2"
+                            >
+                              <span>{tool.name}</span>
+                              <ExternalLink className="w-3 h-3 shrink-0" aria-hidden="true" />
+                            </a>
+                            {tool.note && <span> {tool.note}</span>}
                           </li>
                         ))}
                       </ul>
                     </div>
+                  )}
+
+                  {item.notaFinal && (
+                    <p className="text-sm text-zinc-700 leading-relaxed pt-1">{item.notaFinal}</p>
                   )}
                 </div>
               ))}
@@ -243,24 +174,17 @@ export const Page6AtividadesAudio: React.FC = () => {
               <span>Avaliação:</span>
             </h3>
 
-            {Array.isArray(activeActivity.avaliacao.entrega) ? (
-              <div className="text-sm text-zinc-800 bg-[#f8f8f6] p-3.5 rounded-xl border border-zinc-200/80 space-y-1.5">
-                <div className="font-semibold text-zinc-900">O aluno entrega:</div>
-                <ul className="space-y-1 text-zinc-700">
-                  {activeActivity.avaliacao.entrega.map((item, idx) => (
-                    <li key={idx} className="flex items-baseline gap-2">
-                      <span className="font-mono text-xs text-zinc-400">·</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : (
-              <p className="text-sm text-zinc-800 bg-[#f8f8f6] p-3.5 rounded-xl border border-zinc-200/80">
-                <strong className="font-semibold text-zinc-900">O aluno entrega: </strong>
-                {activeActivity.avaliacao.entrega}
-              </p>
-            )}
+            <div className="text-sm text-zinc-800 bg-[#f8f8f6] p-3.5 rounded-xl border border-zinc-200/80 space-y-1.5">
+              <div className="font-semibold text-zinc-900">O aluno entrega:</div>
+              <ul className="space-y-1 text-zinc-700">
+                {activeActivity.avaliacao.entrega.map((item, idx) => (
+                  <li key={idx} className="flex items-baseline gap-2">
+                    <span className="font-mono text-xs text-zinc-400">·</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             <div className="space-y-1.5">
               <div className="text-xs font-semibold text-zinc-500">
