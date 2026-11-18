@@ -23,7 +23,13 @@ export const Page6AtividadesAudio: React.FC = () => {
       if (!el) return;
       const rect = el.getBoundingClientRect();
       if (rect.top < 72 || rect.top > window.innerHeight * 0.65) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const prefersReducedMotion =
+          typeof window.matchMedia === 'function' &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        el.scrollIntoView({
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
+          block: 'start',
+        });
       }
     });
   };
@@ -46,8 +52,9 @@ export const Page6AtividadesAudio: React.FC = () => {
             <button
               key={act.id}
               type="button"
+              aria-pressed={isSelected}
               onClick={() => handleSelectActivity(act.id)}
-              className={`text-left px-4 py-3.5 rounded-xl border transition-all flex flex-col gap-1 ${
+              className={`text-left px-4 py-3.5 rounded-xl border transition-all flex flex-col gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4f46e5] focus-visible:ring-offset-2 ${
                 isSelected
                   ? 'bg-gradient-to-r from-[#4f46e5] to-[#6366f1] border-[#4f46e5] text-white shadow-sm shadow-indigo-500/20'
                   : 'bg-white border-indigo-100 hover:border-indigo-300 hover:bg-indigo-50/40 text-[#0d153e]'
@@ -134,7 +141,7 @@ export const Page6AtividadesAudio: React.FC = () => {
                               href={tool.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 font-semibold text-[#4f46e5] hover:text-[#4338ca] underline underline-offset-2"
+                              className="inline-flex items-center gap-1 font-semibold text-[#4f46e5] hover:text-[#4338ca] underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4f46e5] focus-visible:ring-offset-2 rounded-sm"
                             >
                               <span>{tool.name}</span>
                               <ExternalLink className="w-3 h-3 shrink-0" aria-hidden="true" />

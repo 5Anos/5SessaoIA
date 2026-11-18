@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Target,
   ListChecks,
@@ -12,6 +12,7 @@ import {
   Presentation,
   Clock,
   Wrench,
+  ShieldCheck,
 } from 'lucide-react';
 import { IMAGE_ACTIVITIES, type ImageActivityTool } from '../data/moduloData.ts';
 import { PageHeader } from '../components/PageHeader.tsx';
@@ -36,7 +37,7 @@ function renderDescriptionWithToolLinks(text: string, ferramentas?: ImageActivit
         href={matchedTool.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-0.5 font-semibold text-[#4f46e5] hover:text-[#4338ca] underline underline-offset-2"
+        className="inline-flex items-center gap-0.5 font-semibold text-[#4f46e5] hover:text-[#4338ca] underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4f46e5] focus-visible:ring-offset-2 rounded-sm"
       >
         <span>{matchedTool.name}</span>
         <ExternalLink className="w-3 h-3 shrink-0" aria-hidden="true" />
@@ -47,44 +48,93 @@ function renderDescriptionWithToolLinks(text: string, ferramentas?: ImageActivit
 
 export const Page4AtividadesImagem: React.FC = () => {
   const [selectedActivityId, setSelectedActivityId] = useState<string>(IMAGE_ACTIVITIES[0].id);
-  const [copiedPrompt, setCopiedPrompt] = useState(false);
+  const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'error'>('idle');
+  const [statusAnnouncement, setStatusAnnouncement] = useState<string>('');
+  const resetTimerRef = useRef<number | null>(null);
   const articleRef = useRef<HTMLElement>(null);
 
   const activeActivity =
     IMAGE_ACTIVITIES.find((a) => a.id === selectedActivityId) || IMAGE_ACTIVITIES[0];
 
+  useEffect(() => {
+    return () => {
+      if (resetTimerRef.current !== null) {
+        window.clearTimeout(resetTimerRef.current);
+      }
+    };
+  }, []);
+
+  const clearResetTimer = () => {
+    if (resetTimerRef.current !== null) {
+      window.clearTimeout(resetTimerRef.current);
+      resetTimerRef.current = null;
+    }
+  };
+
   const handleSelectActivity = (id: string) => {
+    clearResetTimer();
     setSelectedActivityId(id);
-    setCopiedPrompt(false);
+    setCopyStatus('idle');
+    setStatusAnnouncement('');
     requestAnimationFrame(() => {
       const el = articleRef.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
       if (rect.top < 72 || rect.top > window.innerHeight * 0.65) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const prefersReducedMotion =
+          typeof window.matchMedia === 'function' &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        el.scrollIntoView({
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
+          block: 'start',
+        });
       }
     });
   };
 
+  const scheduleReset = () => {
+    clearResetTimer();
+    resetTimerRef.current = window.setTimeout(() => {
+      setCopyStatus('idle');
+      setStatusAnnouncement('');
+      resetTimerRef.current = null;
+    }, 3000);
+  };
+
   const markCopied = () => {
-    setCopiedPrompt(true);
-    setTimeout(() => setCopiedPrompt(false), 2000);
+    setCopyStatus('copied');
+    setStatusAnnouncement('Prompt copiado para a área de transferência.');
+    scheduleReset();
+  };
+
+  const markCopyError = () => {
+    setCopyStatus('error');
+    setStatusAnnouncement('Não foi possível copiar. Selecione e copie o texto manualmente.');
+    scheduleReset();
   };
 
   const fallbackCopy = (text: string) => {
+    let textarea: HTMLTextAreaElement | null = null;
     try {
-      const textarea = document.createElement('textarea');
+      textarea = document.createElement('textarea');
       textarea.value = text;
       textarea.setAttribute('readonly', '');
       textarea.style.position = 'fixed';
       textarea.style.opacity = '0';
       document.body.appendChild(textarea);
       textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-      markCopied();
+      const succeeded = document.execCommand('copy');
+      if (succeeded) {
+        markCopied();
+      } else {
+        markCopyError();
+      }
     } catch {
-      // noop
+      markCopyError();
+    } finally {
+      if (textarea && textarea.parentNode) {
+        textarea.parentNode.removeChild(textarea);
+      }
     }
   };
 
@@ -96,12 +146,38 @@ export const Page4AtividadesImagem: React.FC = () => {
     }
   };
 
+  const copiedPrompt = copyStatus === 'copied';
+
   return (
-    <div className="space-y-10">
+    <div className="space-y-8">
       <PageHeader
         title="ATIVIDADES EM SALA DE AULA COM FERRAMENTAS DE IMAGEM"
         Icon={Presentation}
       />
+
+      <section
+        aria-labelledby="nota-utilizacao-responsavel-imagem"
+        className="bg-[#faf9fe] border border-indigo-100 rounded-xl px-5 py-4 space-y-1.5"
+      >
+        <h2
+          id="nota-utilizacao-responsavel-imagem"
+          className="inline-flex items-center gap-2 text-sm font-bold text-[#0d153e]"
+        >
+          <ShieldCheck className="w-4 h-4 text-[#4f46e5] shrink-0" aria-hidden="true" />
+          <span>Utilização responsável das ferramentas de IA</span>
+        </h2>
+        <p className="text-xs sm:text-sm text-[#3d4663] leading-relaxed">
+          Antes de utilizar uma ferramenta com os alunos, o professor deve verificar os requisitos de idade, as condições da conta, os termos de utilização e as orientações da escola. Quando os alunos não puderem utilizar diretamente a ferramenta, o professor poderá realizar a demonstração, envolvendo-os na construção dos prompts e na análise crítica dos resultados. Não introduza nomes, fotografias, vídeos ou outros dados pessoais dos alunos em ferramentas externas de IA. Utilize apenas imagens que tenha autorização para usar e confirme sempre a exatidão e a adequação dos resultados gerados.
+        </p>
+        <p className="text-xs sm:text-sm text-[#3d4663] leading-relaxed">
+          <strong className="font-semibold text-[#0d153e]">Acessibilidade:</strong>{' '}
+          forneça descrições textuais ou orais das imagens relevantes e não utilize a cor como único meio de transmitir informação.
+        </p>
+      </section>
+
+      <div role="status" aria-live="polite" className="sr-only">
+        {statusAnnouncement}
+      </div>
 
       <nav
         aria-label="Selecionar atividade com imagem"
@@ -114,8 +190,9 @@ export const Page4AtividadesImagem: React.FC = () => {
             <button
               key={act.id}
               type="button"
+              aria-pressed={isSelected}
               onClick={() => handleSelectActivity(act.id)}
-              className={`text-left px-4 py-3.5 rounded-xl border transition-all flex flex-col gap-1 ${
+              className={`text-left px-4 py-3.5 rounded-xl border transition-all flex flex-col gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4f46e5] focus-visible:ring-offset-2 ${
                 isSelected
                   ? 'bg-gradient-to-r from-[#4f46e5] to-[#6366f1] border-[#4f46e5] text-white shadow-sm shadow-indigo-500/20'
                   : 'bg-white border-indigo-100 hover:border-indigo-300 hover:bg-indigo-50/40 text-[#0d153e]'
@@ -235,20 +312,28 @@ export const Page4AtividadesImagem: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleCopyPrompt(activeActivity.prompt)}
-                  className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-white transition-all whitespace-nowrap shrink-0 ${
+                  className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-white transition-all whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4f46e5] focus-visible:ring-offset-2 ${
                     copiedPrompt
                       ? 'bg-teal-700'
                       : 'bg-gradient-to-r from-[#4f46e5] to-[#6366f1] hover:from-[#4338ca] hover:to-[#4f46e5] shadow-sm shadow-indigo-500/20'
                   }`}
                 >
                   {copiedPrompt ? (
-                    <Check className="w-3.5 h-3.5" />
+                    <Check className="w-3.5 h-3.5" aria-hidden="true" />
                   ) : (
-                    <Copy className="w-3.5 h-3.5" />
+                    <Copy className="w-3.5 h-3.5" aria-hidden="true" />
                   )}
                   <span>{copiedPrompt ? 'Copiado' : 'Copiar Prompt'}</span>
                 </button>
               </div>
+              {copyStatus === 'error' && (
+                <p
+                  role="alert"
+                  className="text-xs font-medium text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2"
+                >
+                  Não foi possível copiar. Selecione e copie o texto manualmente.
+                </p>
+              )}
               <p className="font-mono text-xs text-[#1e243d] leading-relaxed bg-[#f4f3fb] p-4 rounded-xl border border-indigo-200/70 select-all whitespace-pre-line">
                 {activeActivity.prompt}
               </p>
@@ -327,7 +412,7 @@ export const Page4AtividadesImagem: React.FC = () => {
                           href={tool.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 font-display text-sm font-bold text-[#4f46e5] hover:text-[#4338ca] underline underline-offset-2"
+                          className="inline-flex items-center gap-1.5 font-display text-sm font-bold text-[#4f46e5] hover:text-[#4338ca] underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4f46e5] focus-visible:ring-offset-2 rounded-sm"
                         >
                           <span>{tool.name}</span>
                           <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />

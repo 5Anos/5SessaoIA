@@ -1,5 +1,5 @@
 import React from 'react';
-import { Headphones } from 'lucide-react';
+import { Headphones, ShieldCheck } from 'lucide-react';
 import { AUDIO_TOOLS } from '../data/moduloData.ts';
 import { PageHeader } from '../components/PageHeader.tsx';
 import { ToolCatalogCard } from '../components/ToolCatalogCard.tsx';
@@ -7,27 +7,27 @@ import { ToolCatalogCard } from '../components/ToolCatalogCard.tsx';
 const PEDAGOGICAL_BENEFITS = [
   {
     title: 'Diferenciação pedagógica',
-    desc: 'Explicações em áudio para apoiar diferentes ritmos de aprendizagem.',
+    desc: 'Permite disponibilizar explicações em áudio para apoiar diferentes ritmos de aprendizagem, devendo ser acompanhadas por transcrições ou alternativas escritas quando necessário.',
   },
   {
     title: 'Poupança de tempo',
-    desc: 'Apoio na preparação de guiões, narrações e limpeza de gravações existentes.',
+    desc: 'Consoante a ferramenta, pode acelerar a preparação de narrações a partir de texto, o corte de gravações ou a redução de ruído, exigindo sempre revisão do professor antes da utilização.',
   },
   {
     title: 'Melhoria da comunicação',
-    desc: 'Voz clara, redução de ruído de fundo e preparação de materiais legendados.',
+    desc: 'Facilita a obtenção de áudio mais audível, gravações com menos ruído de fundo e legendagem ou transcrição de apoio, sem dispensar a verificação de pronúncia e entoação.',
   },
   {
     title: 'Avaliação diversificada',
-    desc: 'Trabalhos orais gravados, podcasts escolares e feedback em áudio.',
+    desc: 'Apoia trabalhos orais gravados e feedback áudio produzidos por alunos e docentes; a fala sintética gerada por IA não substitui nem comprova o desempenho oral real do aluno.',
   },
   {
     title: 'Apoio linguístico',
-    desc: 'Exploração da oralidade, pronúncia e compreensão auditiva.',
+    desc: 'Ajuda a preparar modelos de compreensão auditiva e pronúncia, verificando sempre a variedade linguística selecionada — em especial a distinção entre Português (Portugal) e Português (Brasil).',
   },
   {
     title: 'Inclusão',
-    desc: 'Apoio a alunos com dificuldades de leitura ou necessidades educativas específicas.',
+    desc: 'Apoia alunos com dificuldades de leitura através de recursos sonoros e reforça a acessibilidade quando combinado com transcrições escritas ou legendas adequadas.',
   },
 ];
 
@@ -41,6 +41,9 @@ export const Page5FerramentasAudio: React.FC = () => {
           <h2 className="font-display text-2xl font-bold text-[#0d153e]">
             VANTAGENS PEDAGÓGICAS DO ÁUDIO
           </h2>
+          <p className="text-sm text-[#3d4663] mt-1.5">
+            Em conjunto, estas ferramentas podem apoiar diferentes momentos educativos — nenhuma ferramenta isolada assegura todos os benefícios abaixo.
+          </p>
         </div>
 
         <div className="bg-white rounded-2xl border border-indigo-100/90 shadow-[0_4px_20px_rgba(79,70,229,0.04)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y sm:divide-y-0 sm:gap-px sm:bg-indigo-100/80 overflow-hidden">
@@ -56,6 +59,45 @@ export const Page5FerramentasAudio: React.FC = () => {
             </div>
           ))}
         </div>
+
+        <aside
+          aria-labelledby="nota-privacidade-audio"
+          className="bg-[#faf9fe] border border-indigo-100 rounded-xl px-5 py-4 space-y-2"
+        >
+          <h3
+            id="nota-privacidade-audio"
+            className="inline-flex items-center gap-2 text-sm font-bold text-[#0d153e]"
+          >
+            <ShieldCheck className="w-4 h-4 text-[#4f46e5] shrink-0" aria-hidden="true" />
+            <span>Privacidade, segurança e utilização responsável</span>
+          </h3>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1.5 text-xs sm:text-sm text-[#3d4663] leading-relaxed">
+            <li className="flex items-baseline gap-2">
+              <span className="font-mono text-xs text-[#4f46e5]">·</span>
+              <span>Não carregue gravações identificáveis de alunos nem dados pessoais sem autorização adequada e salvaguardas institucionais.</span>
+            </li>
+            <li className="flex items-baseline gap-2">
+              <span className="font-mono text-xs text-[#4f46e5]">·</span>
+              <span>Consulte a política de privacidade e as condições de tratamento de dados de cada plataforma antes da utilização.</span>
+            </li>
+            <li className="flex items-baseline gap-2">
+              <span className="font-mono text-xs text-[#4f46e5]">·</span>
+              <span>Não utilize vozes sintéticas para imitar pessoas identificáveis sem o seu consentimento expresso.</span>
+            </li>
+            <li className="flex items-baseline gap-2">
+              <span className="font-mono text-xs text-[#4f46e5]">·</span>
+              <span>Rever e validar todo o áudio gerado por IA antes da utilização em aula (exatidão, pronúncia e entoação).</span>
+            </li>
+            <li className="flex items-baseline gap-2">
+              <span className="font-mono text-xs text-[#4f46e5]">·</span>
+              <span>Forneça transcrições ou alternativas acessíveis sempre que adequado às necessidades dos alunos.</span>
+            </li>
+            <li className="flex items-baseline gap-2">
+              <span className="font-mono text-xs text-[#4f46e5]">·</span>
+              <span>Confirme se a voz ou transcrição selecionada utiliza Português (Portugal) ou Português (Brasil).</span>
+            </li>
+          </ul>
+        </aside>
       </section>
 
       <section className="space-y-6">
