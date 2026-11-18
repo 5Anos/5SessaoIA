@@ -138,32 +138,6 @@ export const Page2FerramentasImagem: React.FC = () => {
             </div>
           ))}
         </div>
-
-        {/* Distinção compacta entre imagens decorativas/criativas e informativas/científicas */}
-        <div className="bg-white rounded-2xl border border-indigo-100/90 shadow-[0_4px_20px_rgba(79,70,229,0.04)] p-5 sm:p-6 space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            <div className="space-y-1">
-              <h3 className="font-display text-sm sm:text-base font-bold text-[#0d153e]">
-                Imagens decorativas e criativas
-              </h3>
-              <p className="text-xs sm:text-sm text-[#3d4663] leading-relaxed">
-                Personagens, cenários, ilustrações, histórias e composições artísticas.
-              </p>
-            </div>
-            <div className="space-y-1 md:border-l md:border-indigo-100/90 md:pl-6">
-              <h3 className="font-display text-sm sm:text-base font-bold text-[#0d153e]">
-                Imagens informativas e científicas
-              </h3>
-              <p className="text-xs sm:text-sm text-[#3d4663] leading-relaxed">
-                Anatomia, células, sistemas biológicos, mapas, diagramas e representações matemáticas.
-              </p>
-            </div>
-          </div>
-
-          <p className="pt-3 border-t border-indigo-100/80 text-xs sm:text-sm text-[#1e243d] font-medium leading-relaxed">
-            As imagens informativas e científicas exigem validação rigorosa, pois podem apresentar estruturas, relações ou conceitos incorretos.
-          </p>
-        </div>
       </section>
 
       <section className="space-y-6">
