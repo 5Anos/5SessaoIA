@@ -130,6 +130,7 @@ export interface ImageTool {
   focusFilter: 'iniciacao' | 'controlo-estilo' | 'edicao-texto';
   shortTag: string;
   description: string;
+  promptLanguage: string;
   capabilities: string[];
   educationalUse: string;
   freePlan: string;
@@ -147,6 +148,7 @@ export const IMAGE_TOOLS: ImageTool[] = [
     focusFilter: 'iniciacao',
     shortTag: 'Conta Microsoft · Criação acessível',
     description: 'Criação acessível de imagens e designs visuais através de instruções em linguagem natural.',
+    promptLanguage: 'Português recomendado. Escreve os prompts em português; não existe vantagem demonstrada em utilizar inglês.',
     capabilities: [
       'Geração de imagens a partir de descrições textuais simples.',
       'Criação rápida de materiais visuais e composições de design.',
@@ -165,6 +167,7 @@ export const IMAGE_TOOLS: ImageTool[] = [
     focusFilter: 'controlo-estilo',
     shortTag: '150 tokens diários · Controlo criativo',
     description: 'Geração de imagens com diferentes estilos visuais e controlos criativos avançados.',
+    promptLanguage: 'Inglês recomendado. Os modelos e funcionalidades estão otimizados para prompts em inglês.',
     capabilities: [
       'Seleção de estilos visuais e modelos artísticos variados.',
       'Controlo mais detalhado de composição, dimensões e acabamento.',
@@ -183,6 +186,7 @@ export const IMAGE_TOOLS: ImageTool[] = [
     focusFilter: 'edicao-texto',
     shortTag: 'Geração e edição · Conta Adobe',
     description: 'Geração e edição de imagens com inteligência artificial generativa, incluindo preenchimento e substituição de elementos.',
+    promptLanguage: 'Português ou inglês. A ferramenta aceita prompts em várias línguas, incluindo português.',
     capabilities: [
       'Geração de imagens com elevado realismo ou estilo editorial.',
       'Edição generativa, preenchimento e substituição de objetos em fotografias.',
@@ -201,6 +205,7 @@ export const IMAGE_TOOLS: ImageTool[] = [
     focusFilter: 'edicao-texto',
     shortTag: '30 créditos semanais · Tipografia',
     description: 'Geração de imagens com especial atenção ao tratamento de texto e composição tipográfica.',
+    promptLanguage: 'Português ou inglês. Para gerar texto dentro das imagens, prefere inglês, que apresenta maior precisão.',
     capabilities: [
       'Integração de títulos, palavras e frases na composição visual.',
       'Criação de cartazes, capas e peças de comunicação visual.',
@@ -219,6 +224,7 @@ export const IMAGE_TOOLS: ImageTool[] = [
     focusFilter: 'iniciacao',
     shortTag: 'Design e paginação · Plano Free',
     description: 'Plataforma de design visual, paginação, apresentações, cartazes, infográficos e materiais educativos.',
+    promptLanguage: 'Português ou inglês. O Canva AI suporta português e inglês.',
     capabilities: [
       'Composição de apresentações, cartazes, infográficos e fichas didáticas.',
       'Integração de imagens geradas por IA com texto, esquemas e diagramas.',
@@ -237,6 +243,7 @@ export const IMAGE_TOOLS: ImageTool[] = [
     focusFilter: 'controlo-estilo',
     shortTag: 'Créditos diários · Estilos e modelos',
     description: 'Plataforma online de criação e edição de imagens por inteligência artificial a partir de descrições escritas ou imagens de referência, com grande variedade de estilos visuais.',
+    promptLanguage: 'Inglês recomendado. Muitos modelos e fluxos de geração utilizam prompts e etiquetas em inglês.',
     capabilities: [
       'Geração de imagens a partir de texto (texto → imagem) e transformação de imagens existentes.',
       'Escolha de estilos artísticos variados, remoção de fundo, filtros rápidos e aumento de resolução.',
@@ -258,6 +265,7 @@ export const OTHER_IMAGE_TOOLS: ImageTool[] = [
     focusFilter: 'edicao-texto',
     shortTag: 'Assistente conversacional · Imagem',
     description: 'Assistente conversacional da OpenAI com capacidades integradas de geração e edição de imagens diretamente na conversa, a partir de texto, imagens de referência ou esboços.',
+    promptLanguage: 'Português ou inglês. Podes escrever instruções diretamente em português.',
     capabilities: [
       'Criação de ilustrações, cenas educativas e composições com texto legível a partir de descrições escritas.',
       'Edição conversacional de zonas específicas de uma imagem mantendo a coerência do restante conteúdo.',
@@ -276,6 +284,7 @@ export const OTHER_IMAGE_TOOLS: ImageTool[] = [
     focusFilter: 'controlo-estilo',
     shortTag: 'Assistente Google · Multimodal',
     description: 'Assistente multimodal da Google com geração integrada de imagens a partir de texto, combinação de referências e edição assistida por instruções.',
+    promptLanguage: 'Português ou inglês. Podes escrever instruções diretamente em português.',
     capabilities: [
       'Geração de imagens ilustrativas, composições visuais e representações a partir de descrições em linguagem natural.',
       'Edição sequencial, combinação de elementos visuais a partir de referências e integração de texto em múltiplos idiomas.',
@@ -294,6 +303,7 @@ export const OTHER_IMAGE_TOOLS: ImageTool[] = [
     focusFilter: 'iniciacao',
     shortTag: 'Assistente Microsoft · Criação visual',
     description: 'Assistente de IA da Microsoft que integra a criação de imagens a partir de texto no chat e permite continuar a edição visual em conjunto com ferramentas de design.',
+    promptLanguage: 'Português recomendado. Utiliza instruções claras em português.',
     capabilities: [
       'Geração de ilustrações, cartazes e conceitos visuais diretamente através de pedidos escritos no chat.',
       'Ajustes rápidos e ligação ao Microsoft Designer para recorte, remoção de fundo e composição final.',
@@ -312,6 +322,7 @@ export const OTHER_IMAGE_TOOLS: ImageTool[] = [
     focusFilter: 'iniciacao',
     shortTag: 'Fontes documentais · Infográficos',
     description: 'Assistente da Google centrado nos documentos carregados pelo utilizador, orientado para analisar fontes e gerar sínteses e recursos visuais fundamentados nessas fontes (não funciona como gerador aberto de fotografia ou arte).',
+    promptLanguage: 'Português. Seleciona português como idioma do infográfico nas definições de geração.',
     capabilities: [
       'Organização e síntese rigorosa a partir de PDFs, apontamentos, páginas web e documentos da disciplina.',
       'Criação de infográficos no painel Studio com base nas fontes fornecidas, permitindo ajustar idioma, nível de detalhe, orientação e estilo visual.',
@@ -374,7 +385,7 @@ export const IMAGE_PROMPTS: ImagePrompt[] = [
     category: 'Ficção & Futuro',
     objective: 'Estimular a criatividade, a exploração de cenários futuristas e a visualização de ambientes científicos.',
     recommendedTool: 'Leonardo.Ai',
-    prompt: 'Cria uma ilustração cinematográfica em formato horizontal 16:9 do interior de uma enorme biblioteca científica instalada numa estação espacial em forma de anel. Mostra estantes curvas repletas de livros, dois astronautas adultos a ler em gravidade zero e janelas panorâmicas com a Terra visível ao fundo. Utiliza uma perspetiva ampla, iluminação azul suave com apontamentos dourados, arquitetura futurista plausível e elevado detalhe visual. A composição deve transmitir tranquilidade, descoberta e conhecimento. Não incluas palavras, letras, logótipos ou marcas de água.',
+    prompt: 'Create a cinematic illustration in horizontal 16:9 format of the interior of an enormous scientific library inside a ring-shaped space station. Show curved bookshelves filled with books, two adult astronauts reading in zero gravity, and panoramic windows with Earth visible in the background. Use a wide perspective, soft blue lighting with golden accents, plausible futuristic architecture, and high visual detail. The composition should convey calm, discovery, and knowledge. Do not include words, letters, logos, or watermarks.',
     expectedResult: 'Imagem panorâmica de uma biblioteca espacial, com a Terra visível através das janelas e astronautas a ler.',
     freeAlternative: 'Microsoft Designer',
     imageKey: 'space-library',
@@ -400,7 +411,7 @@ export const IMAGE_PROMPTS: ImagePrompt[] = [
     category: 'Ficção & Futuro',
     objective: 'Relacionar competências digitais, programação e profissões emergentes.',
     recommendedTool: 'Leonardo.Ai',
-    prompt: 'Cria uma ilustração futurista realista de uma pessoa adulta a trabalhar como programadora num espaço tecnológico moderno. A pessoa está sentada diante de uma secretária com vários ecrãs holográficos que apresentam estruturas abstratas de código e gráficos, sem palavras legíveis. Ao fundo, vê-se uma cidade inteligente através de uma janela panorâmica. Utiliza iluminação cinematográfica, composição equilibrada, ambiente profissional e detalhes tecnológicos plausíveis. Formato horizontal 16:9. Sem logótipos ou marcas de água.',
+    prompt: 'Create a realistic futuristic illustration of an adult programmer working in a modern technological workspace. The person is seated at a desk with several holographic screens displaying abstract code structures and graphics, with no legible words. In the background, a smart city is visible through a panoramic window. Use cinematic lighting, balanced composition, a professional atmosphere, and plausible technological details. Horizontal 16:9 format. No logos or watermarks.',
     expectedResult: 'Profissional de programação num ambiente tecnológico futurista, com ecrãs e cidade inteligente.',
     freeAlternative: 'Microsoft Designer',
     imageKey: 'future-programmer',
@@ -413,7 +424,7 @@ export const IMAGE_PROMPTS: ImagePrompt[] = [
     category: 'Ficção & Futuro',
     objective: 'Explorar a exploração espacial, a ciência e a sustentabilidade em ambientes extremos.',
     recommendedTool: 'Leonardo.Ai',
-    prompt: 'Cria uma imagem de uma base científica humana em Marte, com módulos habitacionais pressurizados, painéis solares, um veículo explorador e dois astronautas com fatos espaciais adequados ao ambiente marciano. Representa a superfície avermelhada do planeta, montanhas ao longe e uma atmosfera poeirenta subtil. A base deve parecer funcional e cientificamente plausível, não uma cidade de ficção científica. Estilo de concept art realista, iluminação natural e formato horizontal 16:9. Sem texto, bandeiras, logótipos ou marcas de água.',
+    prompt: 'Create an image of a scientific human base on Mars, with pressurised habitation modules, solar panels, an exploration vehicle, and two astronauts wearing space suits suitable for the Martian environment. Depict the planet\'s reddish surface, distant mountains, and a subtle dusty atmosphere. The base should look functional and scientifically plausible, not like a science-fiction city. Realistic concept art style, natural lighting, and horizontal 16:9 format. No text, flags, logos, or watermarks.',
     expectedResult: 'Base científica funcional na superfície marciana, com astronautas, módulos e veículo explorador.',
     freeAlternative: 'Microsoft Designer',
     imageKey: 'mars-base',
@@ -531,6 +542,13 @@ export interface ImageActivityTool {
   url: string;
 }
 
+export interface ImageActivityToolRecommendation {
+  name: string;
+  url: string;
+  role: 'Principal' | 'Alternativa';
+  justificacao: string;
+}
+
 export interface ImageActivityStage {
   etapa: string;
   titulo: string;
@@ -552,6 +570,7 @@ export interface ImageActivity {
   promptTip: string;
   promptAdaptation: string;
   objetivos: string[];
+  ferramentasRecomendadas: ImageActivityToolRecommendation[];
   implementacao: ImageActivityStage[];
   avaliacao: {
     entrega?: string[];
@@ -578,6 +597,22 @@ export const IMAGE_ACTIVITIES: ImageActivity[] = [
       'Reconhecer mudanças na natureza.',
       'Relacionar clima com o meio envolvente.',
       'Utilizar ferramentas digitais com orientação.',
+    ],
+    ferramentasRecomendadas: [
+      {
+        name: 'Adobe Firefly',
+        url: 'https://firefly.adobe.com/',
+        role: 'Principal',
+        justificacao:
+          'Permite selecionar e alterar zonas específicas de uma fotografia através do Preenchimento Generativo, preservando os restantes elementos da imagem.',
+      },
+      {
+        name: 'ChatGPT',
+        url: 'https://chatgpt.com/',
+        role: 'Alternativa',
+        justificacao:
+          'Permite carregar uma fotografia e pedir alterações específicas através de instruções em linguagem natural. A preservação exata da composição deve ser verificada.',
+      },
     ],
     implementacao: [
       {
@@ -637,6 +672,22 @@ export const IMAGE_ACTIVITIES: ImageActivity[] = [
       'Dominar ferramentas de edição generativa.',
       'Desenvolver o pensamento crítico sobre o espaço urbano.',
     ],
+    ferramentasRecomendadas: [
+      {
+        name: 'Adobe Firefly',
+        url: 'https://firefly.adobe.com/',
+        role: 'Principal',
+        justificacao:
+          'O Preenchimento Generativo permite selecionar áreas de uma fotografia real e introduzir alterações, mantendo o restante espaço como referência.',
+      },
+      {
+        name: 'Leonardo.Ai',
+        url: 'https://leonardo.ai/',
+        role: 'Alternativa',
+        justificacao:
+          'Disponibiliza orientação por imagem de referência, permitindo desenvolver propostas visuais a partir da fotografia original.',
+      },
+    ],
     implementacao: [
       {
         etapa: 'Etapa 1',
@@ -689,6 +740,22 @@ export const IMAGE_ACTIVITIES: ImageActivity[] = [
       'Praticar a expressão oral em língua inglesa.',
       'Diferenciar linguagem literal de linguagem figurada.',
     ],
+    ferramentasRecomendadas: [
+      {
+        name: 'Microsoft Designer',
+        url: 'https://designer.microsoft.com/',
+        role: 'Principal',
+        justificacao:
+          'Permite gerar imagens a partir de descrições textuais, sendo adequado à criação de duas ilustrações independentes para comparar o sentido literal e figurado.',
+      },
+      {
+        name: 'ChatGPT',
+        url: 'https://chatgpt.com/',
+        role: 'Alternativa',
+        justificacao:
+          'Permite criar e aperfeiçoar ilustrações através de instruções detalhadas, mantendo um estilo visual coerente entre as duas imagens.',
+      },
+    ],
     implementacao: [
       {
         etapa: 'Etapa 1',
@@ -739,6 +806,22 @@ export const IMAGE_ACTIVITIES: ImageActivity[] = [
       'Desenvolver a capacidade de abstração e conceptualização.',
       'Estimular a reflexão crítica sobre o impacto da tecnologia.',
     ],
+    ferramentasRecomendadas: [
+      {
+        name: 'Leonardo.Ai',
+        url: 'https://leonardo.ai/',
+        role: 'Principal',
+        justificacao:
+          'Disponibiliza geração de ilustrações e ferramentas de orientação visual adequadas à construção de composições conceptuais e simbólicas.',
+      },
+      {
+        name: 'ChatGPT',
+        url: 'https://chatgpt.com/',
+        role: 'Alternativa',
+        justificacao:
+          'Permite desenvolver ilustrações conceptuais através de instruções detalhadas sobre simbolismo, composição, iluminação e ambiente.',
+      },
+    ],
     implementacao: [
       {
         etapa: 'Etapa 1',
@@ -787,6 +870,22 @@ export const IMAGE_ACTIVITIES: ImageActivity[] = [
       'Compreender a biomecânica e a técnica correta das modalidades.',
       'Desenvolver a capacidade de autoanálise e correção motora.',
       'Utilizar referências visuais para aprimorar a performance física.',
+    ],
+    ferramentasRecomendadas: [
+      {
+        name: 'Leonardo.Ai',
+        url: 'https://leonardo.ai/',
+        role: 'Principal',
+        justificacao:
+          'A funcionalidade Pose Guidance permite utilizar referências de pose para orientar a representação visual das diferentes fases do movimento.',
+      },
+      {
+        name: 'ChatGPT',
+        url: 'https://chatgpt.com/',
+        role: 'Alternativa',
+        justificacao:
+          'Permite criar storyboards ilustrativos com instruções específicas para representar as fases de um movimento desportivo.',
+      },
     ],
     implementacao: [
       {

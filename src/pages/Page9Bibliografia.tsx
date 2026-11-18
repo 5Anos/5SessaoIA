@@ -41,17 +41,10 @@ export const Page9Bibliografia: React.FC = () => {
     <div className="space-y-14">
       <PageHeader
         title="BIBLIOGRAFIA E RECURSOS OFICIAIS"
-        description="Referências oficiais europeias, internacionais e nacionais em norma APA 7, fundamentação relevante e ficha técnica atualizada."
         Icon={BookOpen}
       />
 
-      <section className="space-y-5">
-        <div className="border-b border-indigo-100 pb-3.5">
-          <h2 className="font-display text-xl sm:text-2xl font-bold text-[#0d153e]">
-            Referências Bibliográficas e Normativas (APA 7)
-          </h2>
-        </div>
-
+      <section>
         <div className="bg-white rounded-2xl border border-indigo-100/90 shadow-[0_4px_20px_rgba(79,70,229,0.04)] divide-y divide-indigo-100/75">
           {BIBLIOGRAPHY.map((item, idx) => {
             const isCopied = copiedIdx === idx;
@@ -146,30 +139,27 @@ export const Page9Bibliografia: React.FC = () => {
 
       <section className="pt-8 border-t border-indigo-100 space-y-6">
         <h2 className="font-display text-xl sm:text-2xl font-bold text-[#0d153e]">
-          Ficha Técnica e Atualização
+          Ficha Técnica
         </h2>
 
         <dl className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm">
           <div className="space-y-1">
-            <dt className="text-xs font-medium text-[#525b7a]">Autoria Original</dt>
+            <dt className="text-xs font-medium text-[#525b7a]">Autoria</dt>
             <dd className="font-display text-lg font-bold text-[#0d153e]">Carla Oliveira</dd>
-            <dd className="text-xs text-[#525b7a]">Modulo3_FerramentasIA_2 · Genially</dd>
           </div>
           <div className="space-y-1">
             <dt className="text-xs font-medium text-[#525b7a]">Datas de Edição</dt>
             <dd className="font-display text-lg font-bold text-[#0d153e]">
-              23 de fevereiro de 2026
+              15 de novembro de 2026
             </dd>
-            <dd className="text-xs text-[#525b7a]">
-              Última revisão editorial: 13 de novembro de 2026
+          </div>
+          <div className="space-y-1 sm:col-span-2">
+            <dt className="text-xs font-medium text-[#525b7a]">Licença</dt>
+            <dd className="text-sm font-medium text-[#0d153e] leading-relaxed">
+              Creative Commons — Atribuição-NãoComercial 4.0 Internacional (CC BY-NC 4.0)
             </dd>
           </div>
         </dl>
-
-        <div className="text-xs sm:text-sm text-[#3d4663] leading-relaxed bg-white rounded-xl p-5 border border-indigo-100/90">
-          <strong className="font-semibold text-[#0d153e]">Nota sobre atualização de fontes: </strong>
-          Os planos, funcionalidades, limites de utilização e condições legais das plataformas podem mudar. A data de consulta e a ligação à fonte oficial devem acompanhar a informação apresentada.
-        </div>
       </section>
     </div>
   );

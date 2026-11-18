@@ -11,6 +11,7 @@ import {
   Package,
   Presentation,
   Clock,
+  Wrench,
 } from 'lucide-react';
 import { IMAGE_ACTIVITIES, type ImageActivityTool } from '../data/moduloData.ts';
 import { PageHeader } from '../components/PageHeader.tsx';
@@ -305,6 +306,47 @@ export const Page4AtividadesImagem: React.FC = () => {
                     <span>{obj}</span>
                   </li>
                 ))}
+              </ul>
+            </section>
+
+            <section className="py-6 space-y-3.5">
+              <h3 className="inline-flex items-center gap-2 text-sm font-bold text-[#0d153e]">
+                <Wrench className="w-4 h-4 text-[#4f46e5] shrink-0" aria-hidden="true" />
+                <span>Ferramentas recomendadas</span>
+              </h3>
+
+              <ul className="space-y-3">
+                {[...activeActivity.ferramentasRecomendadas]
+                  .sort((a, b) =>
+                    a.role === 'Principal' ? -1 : b.role === 'Principal' ? 1 : 0,
+                  )
+                  .map((tool) => (
+                    <li key={`${tool.role}-${tool.name}`} className="space-y-1">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <a
+                          href={tool.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 font-display text-sm font-bold text-[#4f46e5] hover:text-[#4338ca] underline underline-offset-2"
+                        >
+                          <span>{tool.name}</span>
+                          <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                        </a>
+                        <span
+                          className={`text-[11px] font-semibold px-2 py-0.5 rounded-md ${
+                            tool.role === 'Principal'
+                              ? 'bg-indigo-100/90 text-[#4338ca]'
+                              : 'bg-white/90 border border-indigo-100 text-[#3d4663]'
+                          }`}
+                        >
+                          {tool.role}
+                        </span>
+                      </div>
+                      <p className="text-xs sm:text-sm text-[#3d4663] leading-relaxed">
+                        {tool.justificacao}
+                      </p>
+                    </li>
+                  ))}
               </ul>
             </section>
 

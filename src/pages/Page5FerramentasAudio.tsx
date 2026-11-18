@@ -1,5 +1,5 @@
 import React from 'react';
-import { Headphones, Info } from 'lucide-react';
+import { Headphones } from 'lucide-react';
 import { AUDIO_TOOLS } from '../data/moduloData.ts';
 import { PageHeader } from '../components/PageHeader.tsx';
 import { ToolCatalogCard } from '../components/ToolCatalogCard.tsx';
@@ -83,15 +83,9 @@ export const Page5FerramentasAudio: React.FC = () => {
               privacyOrAge={tool.privacyOrAge}
               freeAlternative={tool.freeAlternative}
               officialSource={tool.officialSource}
+              showOfficialSource={false}
             />
           ))}
-        </div>
-
-        <div className="pt-6 border-t border-indigo-100 flex items-start gap-3 text-xs sm:text-sm text-[#3d4663] leading-relaxed">
-          <Info className="w-4 h-4 text-[#4f46e5] shrink-0 mt-0.5" aria-hidden="true" />
-          <p>
-            Ferramentas genéricas de música por IA ou extensões de transcrição de reuniões sem identificação oficial verificável foram removidas. Qualquer solução de transcrição de reuniões só deve ser adotada após validação institucional, verificação das plataformas suportadas, limites gratuitos e cumprimento das regras de privacidade e consentimento.
-          </p>
         </div>
       </section>
     </div>

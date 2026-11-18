@@ -122,7 +122,7 @@ export const Page6AtividadesAudio: React.FC = () => {
                   {item.ferramentas && item.ferramentas.length > 0 && (
                     <div className="pt-2 space-y-2">
                       <div className="text-xs font-semibold text-[#525b7a]">
-                        Ferramentas associadas:
+                        Ferramentas recomendadas
                       </div>
                       <ul className="divide-y divide-indigo-100/75 border border-indigo-100 rounded-xl bg-[#f8f7fc]">
                         {item.ferramentas.map((tool, tIdx) => (

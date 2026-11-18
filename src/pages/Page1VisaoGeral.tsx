@@ -1,10 +1,11 @@
 import React from 'react';
 import { Image as ImageIcon, Mic } from 'lucide-react';
 import { HeroEdTechIllustration } from '../components/HeroEdTechIllustration.tsx';
+import { MODULE_OBJECTIVES } from '../data/moduloData.ts';
 
 export const Page1VisaoGeral: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#faf9fe] via-white to-[#f1edfe] flex-1 flex items-center">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#faf9fe] via-white to-[#f1edfe] flex-1 flex flex-col justify-center">
       {/* Flowing soft lavender and periwinkle background waves */}
       <svg
         aria-hidden="true"
@@ -68,14 +69,14 @@ export const Page1VisaoGeral: React.FC = () => {
 
             <div className="space-y-5 text-base sm:text-[17px] text-[#1e243d] leading-[1.7] max-w-xl">
               <p>
-                A Inteligência Artificial abre novas possibilidades para a criação de recursos educativos, permitindo transformar ideias em{' '}
+                A Inteligência Artificial abre novas possibilidades para a criação de recursos educativos, permitindo transformar ideias em conteúdos de{' '}
                 <strong className="font-semibold text-[#4c28d9]">
-                  imagens e conteúdos áudio
+                  texto, imagem, áudio e vídeo
                 </strong>{' '}
                 que enriquecem as experiências de aprendizagem.
               </p>
               <p>
-                Neste módulo, os professores poderão conhecer ferramentas de IA, explorar as suas funcionalidades, experimentar prompts e desenvolver propostas práticas para integrar estas tecnologias nas atividades de sala de aula.
+                Neste módulo, os professores poderão explorar ferramentas de IA para texto, imagem, áudio e vídeo, compreender as suas potencialidades, experimentar prompts e conceber propostas práticas para integrar estas tecnologias no trabalho docente.
               </p>
             </div>
           </div>
@@ -84,6 +85,35 @@ export const Page1VisaoGeral: React.FC = () => {
           <div className="lg:col-span-6 flex items-center justify-center lg:justify-end">
             <HeroEdTechIllustration />
           </div>
+        </div>
+
+        {/* Learning Objectives */}
+        <div className="mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-indigo-200/60">
+          <div className="flex items-center gap-3 mb-5 sm:mb-6">
+            <span
+              aria-hidden="true"
+              className="w-1 h-5 rounded-full bg-gradient-to-b from-[#6d28d9] to-[#4f46e5] shrink-0"
+            />
+            <h2 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#0d153e]">
+              Objetivos de aprendizagem
+            </h2>
+          </div>
+
+          <ol className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+            {MODULE_OBJECTIVES.map((objective, idx) => (
+              <li
+                key={objective}
+                className="flex flex-col items-start gap-3.5 rounded-2xl bg-white/90 backdrop-blur-sm border border-indigo-100/90 shadow-[0_4px_20px_rgba(79,70,229,0.05)] p-5 sm:p-6 transition-colors hover:border-violet-200"
+              >
+                <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#f1ebfe] border border-violet-200/80 font-display text-sm font-bold text-[#4c28d9] tabular-nums">
+                  {String(idx + 1).padStart(2, '0')}
+                </span>
+                <p className="text-[15px] sm:text-base font-medium text-[#1e243d] leading-relaxed">
+                  {objective}
+                </p>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>

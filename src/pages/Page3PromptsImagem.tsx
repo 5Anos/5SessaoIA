@@ -5,6 +5,8 @@ import { PROMPT_SAMPLE_IMAGES } from '../data/mediaAssets.ts';
 import { VisualFrame } from '../components/VisualFrame.tsx';
 import { PageHeader } from '../components/PageHeader.tsx';
 
+const ENGLISH_PROMPT_IDS = new Set([1, 3, 4]);
+
 export const Page3PromptsImagem: React.FC = () => {
   const [copiedId, setCopiedId] = useState<number | null>(null);
 
@@ -42,8 +44,7 @@ export const Page3PromptsImagem: React.FC = () => {
   return (
     <div className="space-y-12">
       <PageHeader
-        title="PROMPTS PARA CRIAR IMAGENS — 12 EXEMPLOS COMPLETOS"
-        description="Cada exemplo apresenta o objetivo pedagógico, a ferramenta recomendada, o prompt completo, o resultado esperado com área visual associada e a alternativa gratuita."
+        title="PROMPTS PARA CRIAR IMAGENS"
         Icon={PenLine}
       />
 
@@ -95,7 +96,7 @@ export const Page3PromptsImagem: React.FC = () => {
                           aria-label={`Abrir ferramenta recomendada para ${p.title} num novo separador`}
                           className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-indigo-200 bg-[#f8f7fc] text-[#4338ca] hover:bg-[#4f46e5] hover:border-[#4f46e5] hover:text-white text-xs font-semibold transition-colors min-h-[38px] whitespace-nowrap shrink-0 self-start sm:self-center"
                         >
-                          <span>Abrir ferramenta recomendada</span>
+                          <span>Experimentar</span>
                           <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                         </a>
                       )}
@@ -129,6 +130,10 @@ export const Page3PromptsImagem: React.FC = () => {
                           </>
                         )}
                       </button>
+                    </div>
+                    <div className="text-xs font-semibold text-[#4338ca]">
+                      Idioma do prompt:{' '}
+                      {ENGLISH_PROMPT_IDS.has(p.id) ? 'Inglês' : 'Português'}
                     </div>
                     <p className="font-mono text-xs text-[#1e243d] leading-relaxed bg-[#f4f3fb] p-4 rounded-xl border border-indigo-200/70 select-all">
                       {p.prompt}

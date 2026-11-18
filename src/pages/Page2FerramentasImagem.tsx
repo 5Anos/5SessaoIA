@@ -3,7 +3,6 @@ import {
   LayoutGrid,
   Table2,
   ExternalLink,
-  ShieldAlert,
   Image as ImageIcon,
   Sparkles,
   Check,
@@ -111,14 +110,6 @@ export const Page2FerramentasImagem: React.FC = () => {
             </div>
           ))}
         </div>
-
-        <div className="bg-amber-50/85 border border-amber-200 rounded-xl p-5 flex items-start gap-3 text-xs sm:text-sm text-amber-950 leading-relaxed">
-          <ShieldAlert className="w-4 h-4 shrink-0 mt-0.5 text-amber-700" aria-hidden="true" />
-          <div>
-            <strong className="font-semibold">Verificação de direitos e licenças: </strong>
-            a geração de uma imagem por IA não garante, por si só, a inexistência de direitos de autor ou de outros direitos de terceiros. É necessário verificar as condições da ferramenta, os direitos sobre os materiais introduzidos, a utilização de marcas, personagens e imagens de pessoas, bem como as condições de utilização do resultado.
-          </div>
-        </div>
       </section>
 
       <section className="space-y-6">
@@ -176,6 +167,7 @@ export const Page2FerramentasImagem: React.FC = () => {
                 privacyOrAge={tool.privacyOrAge}
                 freeAlternative={tool.freeAlternative}
                 officialSource={tool.officialSource}
+                showOfficialSource={false}
               />
             ))}
           </div>
@@ -252,6 +244,7 @@ export const Page2FerramentasImagem: React.FC = () => {
               privacyOrAge={tool.privacyOrAge}
               freeAlternative={tool.freeAlternative}
               officialSource={tool.officialSource}
+              showOfficialSource={false}
             />
           ))}
         </div>
