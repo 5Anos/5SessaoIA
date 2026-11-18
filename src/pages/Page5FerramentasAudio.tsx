@@ -41,9 +41,6 @@ export const Page5FerramentasAudio: React.FC = () => {
           <h2 className="font-display text-2xl font-bold text-[#0d153e]">
             VANTAGENS PEDAGÓGICAS DO ÁUDIO
           </h2>
-          <p className="text-sm text-[#3d4663] mt-1.5">
-            Em conjunto, estas ferramentas podem apoiar diferentes momentos educativos — nenhuma ferramenta isolada assegura todos os benefícios abaixo.
-          </p>
         </div>
 
         <div className="bg-white rounded-2xl border border-indigo-100/90 shadow-[0_4px_20px_rgba(79,70,229,0.04)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y sm:divide-y-0 sm:gap-px sm:bg-indigo-100/80 overflow-hidden">
@@ -103,7 +100,7 @@ export const Page5FerramentasAudio: React.FC = () => {
       <section className="space-y-6">
         <div className="border-b border-indigo-100 pb-4">
           <h2 className="font-display text-2xl font-bold text-[#0d153e]">
-            CATÁLOGO DE FERRAMENTAS IDENTIFICADAS
+            FERRAMENTAS DE ÁUDIO
           </h2>
         </div>
 

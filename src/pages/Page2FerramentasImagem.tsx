@@ -222,7 +222,7 @@ export const Page2FerramentasImagem: React.FC = () => {
                 privacyOrAge={tool.privacyOrAge}
                 freeAlternative={tool.freeAlternative}
                 officialSource={tool.officialSource}
-                showOfficialSource={true}
+                showOfficialSource={false}
               />
             ))}
           </div>
@@ -300,7 +300,7 @@ export const Page2FerramentasImagem: React.FC = () => {
               privacyOrAge={tool.privacyOrAge}
               freeAlternative={tool.freeAlternative}
               officialSource={tool.officialSource}
-              showOfficialSource={true}
+              showOfficialSource={false}
             />
           ))}
         </div>

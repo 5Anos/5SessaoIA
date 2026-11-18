@@ -169,10 +169,6 @@ export const Page4AtividadesImagem: React.FC = () => {
         <p className="text-xs sm:text-sm text-[#3d4663] leading-relaxed">
           Antes de utilizar uma ferramenta com os alunos, o professor deve verificar os requisitos de idade, as condições da conta, os termos de utilização e as orientações da escola. Quando os alunos não puderem utilizar diretamente a ferramenta, o professor poderá realizar a demonstração, envolvendo-os na construção dos prompts e na análise crítica dos resultados. Não introduza nomes, fotografias, vídeos ou outros dados pessoais dos alunos em ferramentas externas de IA. Utilize apenas imagens que tenha autorização para usar e confirme sempre a exatidão e a adequação dos resultados gerados.
         </p>
-        <p className="text-xs sm:text-sm text-[#3d4663] leading-relaxed">
-          <strong className="font-semibold text-[#0d153e]">Acessibilidade:</strong>{' '}
-          forneça descrições textuais ou orais das imagens relevantes e não utilize a cor como único meio de transmitir informação.
-        </p>
       </section>
 
       <div role="status" aria-live="polite" className="sr-only">
