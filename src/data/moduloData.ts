@@ -1053,7 +1053,7 @@ export const AUDIO_TOOLS: AudioTool[] = [
   {
     id: 'notebooklm',
     category: 'Podcasts e resumos áudio com IA',
-    name: 'NotebookLM',
+    name: 'Gemini Notebook (anteriormente NotebookLM)',
     recommendedFor: 'Analisar fontes documentais carregadas pelo utilizador e gerar Resumos Áudio (Audio Overviews) em formato conversacional.',
     capabilities: [
       'Síntese e consulta fundamentada exclusivamente nos documentos fornecidos pelo utilizador (PDFs, apontamentos e ligações web).',
@@ -1062,7 +1062,7 @@ export const AUDIO_TOOLS: AudioTool[] = [
     classroomApplications: 'Preparação pelo professor de sínteses áudio de apoio à revisão de matérias a partir de documentos curriculares validados; não substitui a leitura nem a verificação das fontes originais.',
     freePlan: 'Acesso gratuito com conta Google elegível, sujeito às definições do administrador escolar, às políticas da Google e a limites de utilização variáveis (não assumir cotas fixas permanentes).',
     limitations: 'Os Resumos Áudio podem conter imprecisões, omissões ou simplificações e têm de ser revistos pelo docente; além disso, não substituem um podcast escrito e gravado pelos alunos nem o estudo das fontes originais.',
-    privacyOrAge: 'Distinguir contas Google pessoais de contas Google Workspace for Education (onde o acesso é gerido pelo administrador escolar e costuma estar desativado por omissão no ensino básico e secundário); confirmar elegibilidade etária e não carregar dados pessoais.',
+    privacyOrAge: 'A maioria das contas Google escolares e profissionais tem acesso ao Gemini Notebook. Nas contas Google Workspace for Education, o serviço está disponível nas edições elegíveis, incluindo Education Fundamentals e Education Standard, sendo o acesso e as funcionalidades dependentes da licença e das configurações da organização. As funcionalidades avançadas podem exigir licenças adicionais. Confirmar as condições de acesso aplicáveis à conta utilizada, os requisitos de idade e as regras institucionais de proteção de dados. Não carregar documentos com dados pessoais ou informação confidencial sem autorização institucional.',
     officialSource: 'NotebookLM (página oficial)',
     officialUrl: 'https://notebooklm.google/',
     freeAlternative: 'Guião de síntese elaborado pelos alunos ou docente com base nas fontes originais, gravado e editado localmente no Audacity (software gratuito e de código aberto).',
@@ -1297,7 +1297,7 @@ export const AUDIO_ACTIVITIES: AudioActivity[] = [
           {
             name: 'Audacity',
             url: 'https://www.audacityteam.org/',
-            note: '(software gratuito de código aberto) – gravação áudio, edição de áudio, mistura, processamento e transcrição local com IA através do plugin OpenVINO Whisper (não gera podcasts automaticamente).',
+            note: '(software gratuito e de código aberto) – gravação, edição, mistura e processamento de áudio. Permite funcionalidades adicionais através de plugins, incluindo transcrição com IA através do OpenVINO Whisper. Atenção: os plugins OpenVINO não são atualmente compatíveis com a versão mais recente do Audacity. É necessário consultar a página oficial para verificar as versões compatíveis antes de utilizar esta funcionalidade. O Audacity não gera podcasts automaticamente.',
           },
           {
             name: 'Adobe Podcast',
@@ -1315,7 +1315,7 @@ export const AUDIO_ACTIVITIES: AudioActivity[] = [
             note: '(ferramenta opcional de voz sintética com plano gratuito limitado) – utilizável apenas em breves segmentos opcionais, sem substituir a oralidade dos alunos.',
           },
           {
-            name: 'NotebookLM',
+            name: 'Gemini Notebook (anteriormente NotebookLM)',
             url: 'https://notebooklm.google.com/',
             note: '(acesso gratuito sujeito a conta elegível) – gera Resumos Áudio a partir das fontes fornecidas; são sínteses geradas por IA e não equivalem a um podcast original produzido pelos alunos.',
           },
@@ -1468,7 +1468,7 @@ export const ETHICS_SECTIONS: EthicsSection[] = [
     title: 'Regulamento Europeu da Inteligência Artificial',
     paragraphs: [
       'O Regulamento (UE) 2024/1689, conhecido como AI Act, estabelece regras harmonizadas para a inteligência artificial na União Europeia. A sua aplicação ocorre por fases.',
-      'A obrigação de promover um nível suficiente de literacia em IA, prevista no artigo 4.º, é aplicável desde 2 de fevereiro de 2025. O regulamento tem outras datas de aplicação e disposições transitórias, pelo que devem ser consultadas as versões oficiais atualizadas.',
+      'O artigo 4.º do Regulamento da Inteligência Artificial, aplicável desde 2 de fevereiro de 2025, estabelece que os prestadores e responsáveis pela implantação de sistemas de IA devem adotar medidas para apoiar o desenvolvimento da literacia em IA das pessoas envolvidas na operação e utilização desses sistemas em seu nome. Na sequência da alteração introduzida pelo Regulamento (UE) 2026/1744, em vigor desde 27 de julho de 2026, deixou de ser exigida a garantia de um nível específico de literacia em IA para cada pessoa. A Comissão Europeia e os Estados-Membros devem apoiar os esforços de cumprimento desta obrigação.',
       'Nem todas as ferramentas de IA utilizadas na educação são automaticamente classificadas como sistemas de alto risco. A classificação depende da finalidade prevista e da utilização concreta do sistema.',
     ],
   },

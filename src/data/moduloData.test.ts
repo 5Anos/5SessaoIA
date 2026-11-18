@@ -410,7 +410,7 @@ test('AUDIO_TOOLS and AUDIO_ACTIVITIES reflect 9 unique audio tools and 3 activi
     'Adobe Podcast': 'https://podcast.adobe.com/',
     'Spotify for Creators': 'https://creators.spotify.com/',
     TTSFree: 'https://ttsfree.com/',
-    NotebookLM: 'https://notebooklm.google.com/',
+    'Gemini Notebook (anteriormente NotebookLM)': 'https://notebooklm.google.com/',
     Gemini: 'https://gemini.google.com/',
     HeyGen: 'https://www.heygen.com/',
     CapCut: 'https://www.capcut.com/',
@@ -436,7 +436,7 @@ test('AUDIO_TOOLS and AUDIO_ACTIVITIES reflect 9 unique audio tools and 3 activi
   const podcastTools = podcast.implementacao[2].ferramentas ?? [];
   assert.ok(!podcastTools.some((t) => t.name === 'Spotify for Podcasters'));
   assert.ok(podcastTools.some((t) => t.name === 'Audacity' && t.note?.includes('OpenVINO Whisper')));
-  assert.ok(podcastTools.some((t) => t.name === 'NotebookLM' && t.note?.includes('não equivalem a um podcast original')));
+  assert.ok(podcastTools.some((t) => t.name === 'Gemini Notebook (anteriormente NotebookLM)' && t.note?.includes('não equivalem a um podcast original')));
   assert.ok(podcast.implementacao[2].notaFinal?.includes('RSS') && podcast.implementacao[2].notaFinal?.includes('email'));
 
   // Activity 3: O Dobrador Poliglota
